@@ -1,0 +1,70 @@
+.hamburgerButton {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	position: relative;
+	z-index: 10;
+}
+
+.bar {
+	display: block;
+	width: 16px;
+	height: 2px;
+	background: black;
+	margin: 6px 0;
+	transition: 0.4s;
+	border-radius: 2px;
+}
+
+.open.bar:nth-child(1) {
+	transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.open.bar:nth-child(2) {
+	opacity: 0;
+}
+
+.open.bar:nth-child(3) {
+	transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.hamburgerContainer {
+	position: relative; /* これを追加 */
+}
+
+
+.menu {
+	max-width: 480px;
+	display: none;
+	position: absolute;
+	top: 55px;
+	left: 0; /* 変更 */
+	background: white;
+	width: 300px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.menu.open {
+	display: block;
+}
+
+.menu ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.menu li {
+	border-bottom: 1px solid #ddd;
+}
+
+.menu a {
+	display: block;
+	padding: 15px;
+	text-decoration: none;
+	color: black;
+}
+
+.menu a:hover {
+	background: #f4f4f4;
+}
