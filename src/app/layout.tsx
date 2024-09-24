@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Container } from "@/components/Container";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -28,9 +29,11 @@ export default function RootLayout({
 		<html lang='ja'>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ backgroundColor: "#333333" ,color:"#fff"}}
+				style={{ backgroundColor: "#333333", color: "#fff" }}
 			>
-				<Container>{children}</Container>
+				<AuthContextProvider>
+					<Container>{children}</Container>
+				</AuthContextProvider>
 			</body>
 		</html>
 	);
