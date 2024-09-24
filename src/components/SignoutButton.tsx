@@ -1,12 +1,19 @@
-"use client";  // クライアントコンポーネントとして明示
+"use client"; // クライアントコンポーネントとして明示
 
-
-import { auth } from '../firebase';
+import { auth } from "@/firebase";
 
 function SignOutButton() {
+  const handleSignOut = () => {
+    auth.signOut().then(() => {
+      window.location.reload(); // サインアウト後にリロード
+    });
+  };
 
-
-  return <button onClick={()=> auth.signOut()}>サインアウト</button>;
+  return (
+		<>
+			<button onClick={handleSignOut} className="text-black">サインアウト</button>
+		</>
+	);
 }
 
 export default SignOutButton;
