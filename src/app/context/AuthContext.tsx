@@ -9,44 +9,57 @@ import React, {
 } from "react";
 import { auth, firestore } from "@/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { User } from "firebase/auth";
 
 interface AuthContextType {
-	user: string | null;
+	user: User | null;
 	username: string | null;
+	userId: string | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-	const [user, setUser] = useState<string | null>(null);
+	const [user, setUser] = useState<User | null>(null);
 	const [username, setUsername] = useState<string | null>(null);
 
+	//userのuid
+	const [userId, setUserId] = useState<string | null>(null);
+
 	useEffect(() => {
-		// Firebase Authの状態を監視
 		const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
 			if (currentUser) {
-				const userEmail = currentUser.email;
-				setUser(userEmail);
+				setUser(currentUser);
 
+				const authUid = currentUser.uid;
+				setUserId(authUid);
 
-				const userDocRef = doc(firestore, "profile", currentUser.uid);
+				const userDocRef = doc(firestore, "profile", authUid);
 				const userDocSnap = await getDoc(userDocRef);
 
 				if (userDocSnap.exists()) {
-					const userData = userDocSnap.data(); // Firestoreから取得したデータ
-					setUsername(userData?.username); // Firestoreのusernameを設定
+					const userData = userDocSnap.data();
+					setUsername(userData?.username);
+					if (userData?.userId) {
+						setUserId(userData.userId);
+					}
 					console.log(
 						"ログイン中:",
-						userEmail,
+						currentUser.email,
 						"ユーザーネーム:",
-						userData?.username
+						userData?.username,
+						"Firestore のユーザーID:",
+						userData?.userId || authUid
 					);
 				} else {
 					console.error("ユーザーデータが存在しません");
+					console.log("Authentication の uid:", authUid);
 				}
 			} else {
+				// ユーザーがログアウト
 				setUser(null);
 				setUsername(null);
+				setUserId(null);
 				console.log("ログインしていません");
 			}
 		});
@@ -55,7 +68,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 	}, []);
 
 	return (
-		<AuthContext.Provider value={{ user, username }}>
+		<AuthContext.Provider value={{ user, username, userId }}>
 			{children}
 		</AuthContext.Provider>
 	);
