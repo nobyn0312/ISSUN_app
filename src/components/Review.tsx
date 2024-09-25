@@ -2,28 +2,26 @@
 
 import React, { useState } from "react";
 import { SecondaryButton } from "./Button";
+import Link from "next/link";
 
 // propsの型定義を追加
 type ReviewProps = {
 	itemId: string;
 };
 
-
 const Review = ({ itemId }: ReviewProps) => {
-
-			console.log("Review for item ID: ", itemId);
-
-	
+	console.log("アイテムID: ", itemId);
+	// レビュータイトル
 	const [title, setTitle] = useState("");
+	// レート
 	const [rate, setRate] = useState("");
+	// コメント
 	const [comment, setComment] = useState("");
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		console.log("Review for item ID: ", itemId);
-		// ここでレビューのデータを送信する処理を実装する
+		console.log("アイテムID: ", itemId);
 	};
-
 
 	return (
 		<section
@@ -42,9 +40,10 @@ const Review = ({ itemId }: ReviewProps) => {
 
 					<p>reviewer：32</p>
 				</div>
-				<SecondaryButton style={{ width: "40%" }}>
+				{/* <SecondaryButton style={{ width: "40%" }}>
 					<a href='/review/create/'>レビュー追加</a>
-				</SecondaryButton>
+				</SecondaryButton> */}
+				<Link href={`/review/create?itemId=${itemId}`}>レビューを書く</Link>
 			</div>
 
 			<div
