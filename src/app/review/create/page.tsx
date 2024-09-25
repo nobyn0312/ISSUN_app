@@ -5,52 +5,63 @@ import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { firestore } from "@/firebase";
 import { useAuthContext } from "@/app/context/AuthContext";
+import { useSearchParams } from "next/navigation";
 
-export const Review = ({ itemId }: { itemId: string }) => {
+const Review = () => {
 	const { user, username } = useAuthContext();
+	const { userId } = useAuthContext();
+	const searchParams = useSearchParams();
+	const itemId = searchParams.get("itemId");
+
+
 	const [title, setTitle] = useState("");
 	const [rate, setRate] = useState("");
 	const [size, setSize] = useState("");
 	const [comment, setComment] = useState("");
 
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
 
-		// ユーザーがログインしていない場合は処理を中止
-		if (!user) {
-			alert("ログインが必要です");
-			return;
-		}
+const handleSubmit = async (e: React.FormEvent) => {
+	e.preventDefault();
 
-		try {
-			// Firestoreの"reviews"コレクションにデータを追加
-			await addDoc(collection(firestore, "review"), {
-				user: user, // Firebase Authのユーザー情報
-        username: username || "匿名ユーザー",
-        itemId:itemId,
-				title: title,
-				rate: rate,
-				size: size,
-				comment: comment,
-				createdAt: new Date(), // レビュー作成日時
-			});
+	if (!user) {
+		alert("ログインが必要です");
+		return;
+	}
 
-			alert("レビューを送信しました");
-			// フォームの初期化
-			setTitle("");
-			setRate("");
-			setSize("");
-			setComment("");
-		} catch (error) {
-			console.error("レビューの送信に失敗しました", error);
-			alert("レビューの送信に失敗しました");
-		}
-	};
+	try {
+		await addDoc(collection(firestore, "review"), {
+			uid: user.uid, // Firebase AuthのユーザーUID
+			username: username || "匿名ユーザー",
+			itemId: itemId, // アイテムID
+			title: title,
+			rate: rate,
+			size: size,
+			comment: comment,
+			createdAt: new Date(),
+		});
+
+		alert("レビューを送信しました");
+		setTitle("");
+		setRate("");
+		setSize("");
+		setComment("");
+	} catch (error) {
+		console.error("レビューの送信に失敗しました", error);
+		alert("レビューの送信に失敗しました");
+	}
+};
 
 	return (
 		<>
 			<Header />
 			<h2>レビュー追加</h2>
+
+			<p>ユーザーネーム</p>
+			<p>{username}</p>
+			<p>ユーザーID</p>
+			<p>{userId}</p>
+			<p>アイテムID</p>
+			<p>{itemId}</p>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor='title'>タイトル</label>
 				<input
