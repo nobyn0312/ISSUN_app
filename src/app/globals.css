@@ -7,6 +7,6 @@
   --foreground: #171717;
 }
 
-input{
+input,textarea{
   color: black;
 }
