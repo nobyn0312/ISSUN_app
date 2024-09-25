@@ -9,7 +9,8 @@ const UserInfo = () => {
 	const defaultPhotoURL = "/images/defaultUser.svg";
 
 	const photoURL = auth.currentUser?.photoURL || defaultPhotoURL;
-	// const { username } = useAuthContext();
+	const { username } = useAuthContext();
+
 
 	return (
 		<div>
@@ -24,7 +25,7 @@ const UserInfo = () => {
 							className='rounded-full'
 							style={{ display: "block", margin: "0 auto" }}
 						/>
-						{/* <p style={{ fontSize: "10px", color: "black" }}>{username}</p> */}
+						<p style={{ fontSize: "10px", color: "black" }}>{username}</p>
 					</div>
 				</>
 			)}
