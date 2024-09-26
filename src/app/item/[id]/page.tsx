@@ -33,6 +33,7 @@ const ItemDetail = async ({ params }: { params: { id: string } }) => {
 	return (
 		<>
 			<Header />
+			<p>{ item.id}</p>
 			<main style={{ padding: "24px" }}>
 				<Image
 					src={item.imageUrl}
@@ -78,7 +79,7 @@ const ItemDetail = async ({ params }: { params: { id: string } }) => {
 
 				<Review itemId={item.id} />
 
-				<PrimaryButton>
+				<PrimaryButton style={{margin:"0 auto"}}>
 					<Link href={item.url} style={{ display: "block" }}>
 						販売ショップへ
 					</Link>
