@@ -7,6 +7,7 @@ import { firestore, storage } from "@/firebase";
 import { v4 as uuidv4 } from "uuid";
 import Header from "@/components/Header";
 import { PrimaryButton } from "@/components/Button";
+import { ContentsAreaGray } from "@/components/ContentsArea";
 
 const Page = () => {
 	// アイテム名
@@ -103,76 +104,96 @@ const Page = () => {
 			) : (
 				<>
 					<Header />
-					<div>
-						<h1>商品登録</h1>
+					<div style={{ padding: "16px" }}>
+						<p
+							style={{ fontSize: "16px", fontWeight: "bold", color: "#FF5E2A" }}
+						>Add item</p>
+						<h2
+							style={{ fontSize: "28px", fontWeight: "bold", color: "#FF5E2A" }}
+						>商品の追加</h2>
 					</div>
+
 					<form onSubmit={handleSubmit}>
-						<div>
-							<label>商品名:</label>
-							<input
-								type='text'
-								value={name}
-								onChange={(e) => setName(e.target.value)}
-								required
-								className='text-black'
-							/>
-						</div>
+						<ContentsAreaGray>
+							<div>
+								<label>商品名:</label>
+								<input
+									type='text'
+									value={name}
+									onChange={(e) => setName(e.target.value)}
+									required
+									className='text-black'
+									placeholder='商品名を入力'
+								/>
+							</div>
 
-						<div>
-							<label>価格:</label>
-							<input
-								type='number'
-								value={price}
-								onChange={(e) => setPrice(Number(e.target.value))}
-								required
-								className='text-black'
-							/>
-						</div>
+							<div>
+								<label>価格:</label>
+								{/* <input
+									type='number'
+									value={price}
+									onChange={(e) => setPrice(Number(e.target.value))}
+									required
+									className='text-black'
+									placeholder='1111'
+								/> */}
+								<input
+									type='text'
+									className='text-black'
+									placeholder='金額を入力してください'
+									value={price}
+									required
+									// onChange={handleChange}
+									onChange={(e) => setPrice(Number(e.target.value))}
+									style={{ padding: "4px", width: "200px" }}
+								/>
+							</div>
 
-						<div>
-							<label>画像:</label>
-							<input
-								type='file'
-								onChange={handleFileChange} // ファイル選択時に一時保存
-								accept='.png, .jpeg,.jpg, .webp'
-								required
-							/>
-						</div>
+							<div>
+								<label>画像:</label>
+								<input
+									type='file'
+									onChange={handleFileChange} // ファイル選択時に一時保存
+									accept='.png, .jpeg,.jpg, .webp'
+									required
+								/>
+							</div>
 
-						<div>
-							<label>カテゴリー</label>
-							<select
-								value={category}
-								onChange={(e) => setCategory(e.target.value)}
-								className='text-black'
-							>
-								<option value=''>ALL</option>
-								<option value='outer'>アウター</option>
-								<option value='shirt'>Tシャツ・シャツ</option>
-								<option value='pants'>パンツ</option>
-							</select>
-						</div>
+							<div>
+								<label>カテゴリー</label>
+								<select
+									value={category}
+									onChange={(e) => setCategory(e.target.value)}
+									className='text-black'
+								>
+									<option value=''>カテゴリーを選択</option>
+									<option value='outer'>アウター</option>
+									<option value='shirt'>Tシャツ・シャツ</option>
+									<option value='pants'>パンツ</option>
+								</select>
+							</div>
 
-						<div>
-							<label>詳細:</label>
-							<textarea
-								value={detail}
-								onChange={(e) => setDetail(e.target.value)}
-								required
-								className='text-black'
-							/>
-						</div>
+							<div>
+								<label>詳細:</label>
+								<textarea
+									value={detail}
+									onChange={(e) => setDetail(e.target.value)}
+									required
+									className='text-black'
+								/>
+							</div>
 
-						<div>
-							<label>購入先:</label>
-							<input
-								type='text'
-								value={url}
-								onChange={(e) => setUrl(e.target.value)}
-								required
-								className='text-black'
-							/>
-						</div>
+							<div>
+								<label>購入先:</label>
+								<input
+									type='text'
+									value={url}
+									onChange={(e) => setUrl(e.target.value)}
+									required
+									className='text-black'
+								/>
+							</div>
+						</ContentsAreaGray>
 
 						<PrimaryButton type='submit'>登録</PrimaryButton>
 					</form>

@@ -10,6 +10,8 @@ import SignOutButton from "@/components/SignoutButton";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ContentsAreaOrange } from "@/components/ContentsArea";
+import Header from "@/components/Header";
 
 const handleLogin = async (email: string, password: string) => {
 	try {
@@ -46,7 +48,8 @@ export default function SignIn() {
 
 	return (
 		<>
-			<main style={{ padding: "24px" }}>
+			<Header/>
+			<div style={{ padding: "16px" }}>
 				<section>
 					<div>
 						<h1 className=''>
@@ -65,50 +68,53 @@ export default function SignIn() {
 								<SignOutButton />
 							</>
 						) : (
-							<>
-								<p>ログイン</p>
-								<form onSubmit={onSubmit}>
-									<div>
-										<label htmlFor='email'>Email:</label>
-										<input
-											type='email'
-											id='email'
-											value={email}
-											onChange={(e) => setEmail(e.target.value)}
-											required
-										/>
-									</div>
-									<div>
-										<label htmlFor='password'>Password:</label>
-										<input
-											type='password'
-											id='password'
-											value={password}
-											onChange={(e) => setPassword(e.target.value)}
-											required
-										/>
-									</div>
+								<>
 
-									<button
-										type='submit'
-										style={{
-											padding: "8px",
-											border: "1px solid #333",
-											background: "#fff",
-											color: "#333",
-										}}
-									>
-										ログイン
-									</button>
-								</form>
+								<ContentsAreaOrange>
+									<p>ログイン</p>
+									<form onSubmit={onSubmit}>
+										<div>
+											<label htmlFor='email'>Email:</label>
+											<input
+												type='email'
+												id='email'
+												value={email}
+												onChange={(e) => setEmail(e.target.value)}
+												required
+											/>
+										</div>
+										<div>
+											<label htmlFor='password'>Password:</label>
+											<input
+												type='password'
+												id='password'
+												value={password}
+												onChange={(e) => setPassword(e.target.value)}
+												required
+											/>
+										</div>
 
-								<p>Google認証</p>
-								<SigninButton />
+										<button
+											type='submit'
+											style={{
+												padding: "8px",
+												border: "1px solid #333",
+												background: "#fff",
+												color: "#333",
+											}}
+										>
+											ログイン
+										</button>
+									</form>
+
+									<p>Google認証</p>
+									<SigninButton />
+								</ContentsAreaOrange>
 							</>
 						)}
 					</div>
 				</section>
-			</main>
+			</div>
 		</>
 	);
 }
