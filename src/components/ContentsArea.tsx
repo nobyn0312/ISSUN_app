@@ -1,17 +1,44 @@
 import React, { ReactNode } from "react";
 
-type Props = {
+type AreaProps = {
 	children: ReactNode;
+	className?: string; // 追加のクラスを受け取る
+	style?: React.CSSProperties; // styleをpropsとして追加
 };
 
-const ContentsArea = ({children}:Props) => {
+export const ContentsAreaOrange: React.FC<AreaProps> = ({
+	children,
+	className,
+	style,
+}) => {
 	return (
-		<>
-			<div style={{ borderRadius: "8px", background: "#FF5E2A",padding:"16px" }}>
+		<div style={{ padding: "0 16px" }}>
+			<div
+				style={{ padding: "16px", background: "#FF5E2A", borderRadius: "10px" }}
+			>
 				{children}
 			</div>
-		</>
+		</div>
 	);
 };
 
-export default ContentsArea;
+export const ContentsAreaGray: React.FC<AreaProps> = ({
+	children,
+	className,
+	style,
+}) => {
+	return (
+		<div style={{ padding: "0 16px" }}>
+			<div
+				style={{
+					padding: "16px",
+					background: "#D9D9D9",
+					borderRadius: "10px",
+					color: "#333",
+				}}
+			>
+				{children}
+			</div>
+		</div>
+	);
+};
