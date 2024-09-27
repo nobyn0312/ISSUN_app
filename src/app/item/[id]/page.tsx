@@ -33,7 +33,7 @@ const ItemDetail = async ({ params }: { params: { id: string } }) => {
 	return (
 		<>
 			<Header />
-			<p>{ item.id}</p>
+			{/* <p>{ item.id}</p> */}
 			<main style={{ padding: "24px" }}>
 				<Image
 					src={item.imageUrl}
