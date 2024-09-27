@@ -107,16 +107,21 @@ const Page = () => {
 					<div style={{ padding: "16px" }}>
 						<p
 							style={{ fontSize: "16px", fontWeight: "bold", color: "#FF5E2A" }}
-						>Add item</p>
+						>
+							Add item
+						</p>
 						<h2
 							style={{ fontSize: "28px", fontWeight: "bold", color: "#FF5E2A" }}
-						>商品の追加</h2>
+						>
+							アイテムの追加
+						</h2>
 					</div>
 
 					<form onSubmit={handleSubmit}>
-						<ContentsAreaGray>
-							<div>
-								<label>商品名:</label>
+						<ContentsAreaGray style={{ marginBottom: "32px" }}>
+							<div style={{ padding: "16px 0px 0" }}>
+								<label>アイテム名:</label>
+								<br />
 								<input
 									type='text'
 									value={name}
@@ -127,8 +132,9 @@ const Page = () => {
 								/>
 							</div>
 
-							<div>
+							<div style={{ padding: "16px 0px 0" }}>
 								<label>価格:</label>
+								<br />
 								{/* <input
 									type='number'
 									value={price}
@@ -149,8 +155,9 @@ const Page = () => {
 								/>
 							</div>
 
-							<div>
+							<div style={{ padding: "16px 0px 0" }}>
 								<label>画像:</label>
+								<br />
 								<input
 									type='file'
 									onChange={handleFileChange} // ファイル選択時に一時保存
@@ -159,8 +166,9 @@ const Page = () => {
 								/>
 							</div>
 
-							<div>
+							<div style={{ padding: "16px 0px 0" }}>
 								<label>カテゴリー</label>
+								<br />
 								<select
 									value={category}
 									onChange={(e) => setCategory(e.target.value)}
@@ -173,8 +181,9 @@ const Page = () => {
 								</select>
 							</div>
 
-							<div>
+							<div style={{ padding: "16px 0px 0" }}>
 								<label>詳細:</label>
+								<br />
 								<textarea
 									value={detail}
 									onChange={(e) => setDetail(e.target.value)}
@@ -183,8 +192,9 @@ const Page = () => {
 								/>
 							</div>
 
-							<div>
+							<div style={{ padding: "16px 0px 0" }}>
 								<label>購入先:</label>
+								<br />
 								<input
 									type='text'
 									value={url}
@@ -195,7 +205,7 @@ const Page = () => {
 							</div>
 						</ContentsAreaGray>
 
-						<PrimaryButton type='submit'>登録</PrimaryButton>
+						<PrimaryButton type='submit'>アイテムを追加</PrimaryButton>
 					</form>
 				</>
 			)}
