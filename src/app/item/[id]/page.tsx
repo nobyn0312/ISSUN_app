@@ -74,12 +74,14 @@ const ItemDetail = async ({ params }: { params: { id: string } }) => {
 					</p>
 
 					<p style={{ fontSize: "20px", fontWeight: "bold" }}>DETAIL</p>
-					<p style={{ fontSize: "14px" }}>{item.detail}</p>
+					<p style={{ fontSize: "14px", whiteSpace: "pre-line" }}>
+						{item.detail}
+					</p>
 				</section>
 
 				<Review itemId={item.id} />
 
-				<PrimaryButton style={{margin:"0 auto"}}>
+				<PrimaryButton style={{ margin: "0 auto" }}>
 					<Link href={item.url} style={{ display: "block" }}>
 						販売ショップへ
 					</Link>
