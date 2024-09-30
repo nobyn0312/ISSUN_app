@@ -70,37 +70,38 @@ const Review = ({ itemId }: ReviewProps) => {
 
 	return (
 		<>
-				<section
-					style={{
-						background: "#ffffff",
-						color: "#333333",
-						borderRadius: "15px",
-						marginBottom: "24px",
-						padding: "16px",
-					}}
-				>
-					<div className='flex align-bottom items-end justify-between mb-4'>
-						<div style={{ width: "40%" }}>
-							<p style={{ fontSize: "16px", fontWeight: "bold" }}>minnano</p>
-							<h2 style={{ fontSize: "28px", fontWeight: "bold" }}>Review</h2>
+			<section
+				style={{
+					background: "#ffffff",
+					color: "#333333",
+					borderRadius: "15px",
+					marginBottom: "24px",
+					padding: "16px",
+				}}
+			>
+				<div className='flex align-bottom items-end justify-between mb-4'>
+					<div style={{ width: "40%" }}>
+						<p style={{ fontSize: "16px", fontWeight: "bold" }}>minnano</p>
+						<h2 style={{ fontSize: "28px", fontWeight: "bold" }}>Review</h2>
 
-							<p>reviewer：{reviews.length}</p>
-						</div>
-						<Link href={`/review/create?itemId=${itemId}`}>レビューを書く</Link>
+						<p>reviewer：{reviews.length}</p>
 					</div>
+					<Link href={`/review/create?itemId=${itemId}`}>レビューを書く</Link>
+				</div>
 
-					{reviews.map((review, index) => {
-						console.log(review.createdAt.toDate());
-						return (
-							<div
-								key={index}
-								style={{
-									padding: "16px",
-									background: "#E6E6E6",
-									borderRadius: "10px",
-									marginBottom: "24px",
-								}}
-							>
+				{reviews.map((review, index) => {
+					console.log(review.createdAt.toDate());
+					return (
+						<div
+							key={index}
+							style={{
+								padding: "16px",
+								background: "#E6E6E6",
+								borderRadius: "10px",
+								marginBottom: "24px",
+							}}
+						>
+							<div className='flex justify-between'>
 								<p
 									style={{
 										fontWeight: "bold",
@@ -110,36 +111,38 @@ const Review = ({ itemId }: ReviewProps) => {
 								>
 									{review.title}
 								</p>
-								<p style={{ fontWeight: "light", marginBottom: "8px" }}>
-									{review.createdAt.toDate().toString()}
-								</p>
-
-								<p style={{ color: "#FF5E2A", fontSize: "20px" }}>
-									{/* rateを星の数に変換 */}
-									{"★".repeat(review.rate) + "☆".repeat(5 - review.rate)}
-								</p>
-
-								<p style={{ fontSize: "20px", fontWeight: "bold" }}>
-									SIZE：{review.size}
-								</p>
-								<div
-									style={{
-										border: "1px solid #333",
-										width: "100%",
-										marginBottom: "8px",
-									}}
-								></div>
-								<p style={{ lineHeight: "1.75", marginBottom: "60px" }}>
-									{review.comment}
-								</p>
-
-								<p>
-									<small>{review.username}</small>
-								</p>
+								<button style={{fontSize:"14px"}}>編集</button>
 							</div>
-						);
-					})}
-				</section>
+							<p style={{ fontWeight: "light", marginBottom: "8px" }}>
+								{review.createdAt.toDate().toString()}
+							</p>
+
+							<p style={{ color: "#FF5E2A", fontSize: "20px" }}>
+								{/* rateを星の数に変換 */}
+								{"★".repeat(review.rate) + "☆".repeat(5 - review.rate)}
+							</p>
+
+							<p style={{ fontSize: "20px", fontWeight: "bold" }}>
+								SIZE：{review.size}
+							</p>
+							<div
+								style={{
+									border: "1px solid #333",
+									width: "100%",
+									marginBottom: "8px",
+								}}
+							></div>
+							<p style={{ lineHeight: "1.75", marginBottom: "60px" }}>
+								{review.comment}
+							</p>
+
+							<p>
+								<small>{review.username}</small>
+							</p>
+						</div>
+					);
+				})}
+			</section>
 		</>
 	);
 };
