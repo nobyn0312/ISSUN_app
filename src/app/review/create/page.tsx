@@ -80,6 +80,7 @@ const Review = () => {
 							id='title'
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
+							style={{ width: "100%", padding: "8px", borderRadius: "6px" }}
 						/>
 					</div>
 
@@ -90,6 +91,7 @@ const Review = () => {
 							id='rate'
 							value={rate}
 							onChange={(e) => setRate(e.target.value)}
+							style={{ width: "100%", padding: "8px", borderRadius: "6px" }}
 						>
 							<option value=''>選択してください</option>
 							<option value='1'>★☆☆☆☆</option>
@@ -107,6 +109,7 @@ const Review = () => {
 							id='size'
 							value={size}
 							onChange={(e) => setSize(e.target.value)}
+							style={{ width: "100%", padding: "8px", borderRadius: "6px" }}
 						>
 							<option value=''>選択してください</option>
 							<option value='XS'>XS</option>
@@ -124,6 +127,12 @@ const Review = () => {
 							id='comment'
 							value={comment}
 							onChange={(e) => setComment(e.target.value)}
+							style={{
+								width: "100%",
+								height: "250px",
+								padding: "8px",
+								borderRadius: "6px",
+							}}
 						/>
 					</div>
 				</ContentsAreaOrange>

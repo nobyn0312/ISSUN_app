@@ -129,6 +129,7 @@ const Page = () => {
 									required
 									className='text-black'
 									placeholder='商品名を入力'
+									style={{ width: "100%", padding: "8px", borderRadius: "6px" }}
 								/>
 							</div>
 
@@ -151,7 +152,11 @@ const Page = () => {
 									required
 									// onChange={handleChange}
 									onChange={(e) => setPrice(Number(e.target.value))}
-									style={{ padding: "4px", width: "200px" }}
+									style={{
+										padding: "8px",
+										width: "200px",
+										borderRadius: "6px",
+									}}
 								/>
 							</div>
 
@@ -163,6 +168,7 @@ const Page = () => {
 									onChange={handleFileChange} // ファイル選択時に一時保存
 									accept='.png, .jpeg,.jpg, .webp'
 									required
+									style={{borderRadius: "6px" }}
 								/>
 							</div>
 
@@ -173,6 +179,7 @@ const Page = () => {
 									value={category}
 									onChange={(e) => setCategory(e.target.value)}
 									className='text-black'
+									style={{ padding: "8px" }}
 								>
 									<option value=''>カテゴリーを選択</option>
 									<option value='outer'>アウター</option>
@@ -188,12 +195,19 @@ const Page = () => {
 									value={detail}
 									onChange={(e) => setDetail(e.target.value)}
 									required
+									aria-multiline
 									className='text-black'
+									style={{
+										width: "100%",
+										height: "250px",
+										padding: "8px",
+										borderRadius: "6px",
+									}}
 								/>
 							</div>
 
 							<div style={{ padding: "16px 0px 0" }}>
-								<label>購入先:</label>
+								<label>購入先URL:</label>
 								<br />
 								<input
 									type='text'
@@ -201,6 +215,8 @@ const Page = () => {
 									onChange={(e) => setUrl(e.target.value)}
 									required
 									className='text-black'
+									placeholder='https://'
+									style={{ padding: "8px", borderRadius: "6px" }}
 								/>
 							</div>
 						</ContentsAreaGray>
