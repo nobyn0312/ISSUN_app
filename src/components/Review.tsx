@@ -111,7 +111,7 @@ const Review = ({ itemId }: ReviewProps) => {
 								>
 									{review.title}
 								</p>
-								<button style={{fontSize:"14px"}}>編集</button>
+								<button style={{ fontSize: "14px" }}>編集</button>
 							</div>
 							<p style={{ fontWeight: "light", marginBottom: "8px" }}>
 								{review.createdAt.toDate().toString()}
@@ -132,7 +132,13 @@ const Review = ({ itemId }: ReviewProps) => {
 									marginBottom: "8px",
 								}}
 							></div>
-							<p style={{ lineHeight: "1.75", marginBottom: "60px" }}>
+							<p
+								style={{
+									lineHeight: "1.75",
+									marginBottom: "60px",
+									whiteSpace: "pre-line",
+								}}
+							>
 								{review.comment}
 							</p>
 
