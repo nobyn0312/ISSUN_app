@@ -12,9 +12,11 @@ import {
 	Timestamp,
 } from "firebase/firestore";
 import { Container } from "./Container";
+import { useRouter } from "next/router";
 
 type ReviewProps = {
 	itemId: string;
+	review:string
 };
 
 // review型
@@ -27,7 +29,7 @@ type ReviewData = {
 	createdAt: Timestamp;
 };
 
-const Review = ({ itemId }: ReviewProps) => {
+const Review = ({ itemId, review }: ReviewProps) => {
 	console.log("アイテムID: ", itemId);
 
 	const [reviews, setReviews] = useState<ReviewData[]>([]);
@@ -36,6 +38,8 @@ const Review = ({ itemId }: ReviewProps) => {
 	// const [title, setTitle] = useState("");
 	// const [rate, setRate] = useState("");
 	// const [comment, setComment] = useState("");
+
+	// const router = useRouter();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -67,6 +71,10 @@ const Review = ({ itemId }: ReviewProps) => {
 	useEffect(() => {
 		fetchReviews();
 	}, [itemId]);
+
+	// const handleEdit = () => {
+	// 	router.push(`/review/edit?reviewId=${review.id}`); // reviewIdをクエリパラメータとして渡す
+	// };
 
 	return (
 		<>
@@ -112,6 +120,7 @@ const Review = ({ itemId }: ReviewProps) => {
 									{review.title}
 								</p>
 								<button style={{ fontSize: "14px" }}>編集</button>
+								{/* <button onClick={handleEdit}>編集</button> */}
 							</div>
 							<p style={{ fontWeight: "light", marginBottom: "8px" }}>
 								{review.createdAt.toDate().toString()}
