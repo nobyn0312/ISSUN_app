@@ -2,7 +2,7 @@
 
 import Header from "@/components/Header";
 import { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { firestore } from "@/firebase";
 import { useAuthContext } from "@/app/context/AuthContext";
 import { useSearchParams } from "next/navigation";
@@ -11,7 +11,6 @@ import { PrimaryButton } from "@/components/Button";
 
 const Review = () => {
 	const { user, username } = useAuthContext();
-	const { userId } = useAuthContext();
 	const searchParams = useSearchParams();
 	const itemId = searchParams.get("itemId");
 
@@ -29,10 +28,10 @@ const Review = () => {
 		}
 
 		try {
-			await addDoc(collection(firestore, "review"), {
-				uid: user.uid, // Firebase AuthのユーザーUID
-				username: username || "匿名ユーザー",
-				itemId: itemId, // アイテムID
+			const docRef = await addDoc(collection(firestore, "review"), {
+				uid: user.uid,
+				username: username,
+				itemId: itemId,
 				title: title,
 				rate: rate,
 				size: size,
@@ -40,7 +39,16 @@ const Review = () => {
 				createdAt: new Date(),
 			});
 
+			//レビュー投稿時に登録されたIDをreviewIdとして登録する
+			await updateDoc(doc(firestore, "review", docRef.id), {
+				// reviewのidをdocRef.idとして
+				reviewId: docRef.id,
+			});
+			const reviewId = docRef.id;
+
+			console.log(reviewId);
 			alert("レビューを送信しました");
+
 			setTitle("");
 			setRate("");
 			setSize("");
@@ -62,13 +70,6 @@ const Review = () => {
 					レビューの投稿
 				</h2>
 			</div>
-
-			{/* <p>ユーザーネーム</p>
-			<p>{username}</p>
-			<p>ユーザーID</p>
-			<p>{userId}</p>
-			<p>アイテムID</p>
-			<p>{itemId}</p> */}
 
 			<form onSubmit={handleSubmit}>
 				<ContentsAreaOrange style={{ marginBottom: "32px" }}>

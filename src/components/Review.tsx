@@ -12,7 +12,7 @@ import {
 	Timestamp,
 } from "firebase/firestore";
 import { Container } from "./Container";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type ReviewProps = {
 	itemId: string;
@@ -39,7 +39,7 @@ const Review = ({ itemId, review }: ReviewProps) => {
 	// const [rate, setRate] = useState("");
 	// const [comment, setComment] = useState("");
 
-	// const router = useRouter();
+	const router = useRouter();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -72,9 +72,9 @@ const Review = ({ itemId, review }: ReviewProps) => {
 		fetchReviews();
 	}, [itemId]);
 
-	// const handleEdit = () => {
-	// 	router.push(`/review/edit?reviewId=${review.id}`); // reviewIdをクエリパラメータとして渡す
-	// };
+const handleEdit = (reviewId: string) => {
+	router.push(`/review/edit?reviewId=${reviewId}`);
+};
 
 	return (
 		<>
@@ -119,15 +119,14 @@ const Review = ({ itemId, review }: ReviewProps) => {
 								>
 									{review.title}
 								</p>
-								<button style={{ fontSize: "14px" }}>編集</button>
-								{/* <button onClick={handleEdit}>編集</button> */}
+								{/* review.id を handleEdit に渡す */}
+								<button onClick={() => handleEdit(review.id)}>編集</button>
 							</div>
 							<p style={{ fontWeight: "light", marginBottom: "8px" }}>
 								{review.createdAt.toDate().toString()}
 							</p>
 
 							<p style={{ color: "#FF5E2A", fontSize: "20px" }}>
-								{/* rateを星の数に変換 */}
 								{"★".repeat(review.rate) + "☆".repeat(5 - review.rate)}
 							</p>
 

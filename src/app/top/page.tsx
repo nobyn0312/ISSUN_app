@@ -15,20 +15,20 @@ import { useParams } from "next/navigation";
 import { fetchItems, Item } from "@/libs/fetchItems";
 
 const TopPage = () => {
-	const [imageUrls, setImageUrls] = useState<string[]>([]);
+	// const [imageUrls, setImageUrls] = useState<string[]>([]);
 	const [loading, setLoading] = useState(true);
 	const { id } = useParams();
 	const [items, setItems] = useState<Item[]>([]);
+	const [error, setError] = useState<string | null>(null);
 
 	useEffect(() => {
 		const getItems = async () => {
 			try {
 				const fetchedItems = await fetchItems();
 				setItems(fetchedItems);
-				// 画像のURLを抽出して設定する処理を追加
-				setImageUrls(fetchedItems.map((item) => item.imageUrl));
 			} catch (error) {
-				console.error("Error fetching items:", error);
+				setError("データ取得失敗");
+				console.error("エラー", error);
 			} finally {
 				setLoading(false);
 			}
