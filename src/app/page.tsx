@@ -48,11 +48,11 @@ export default function Home() {
 	const [user] = useAuthState(auth);
 	const router = useRouter();
 
-	useEffect(() => {
-		if (user) {
-			router.push("/top");
-		}
-	}, [user, router]);
+	// useEffect(() => {
+	// 	if (user) {
+	// 		router.push("/top");
+	// 	}
+	// }, [user, router]);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
