@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import Header from "@/components/Header";
+import { PrimaryButton, SecondaryButton } from "@/components/Button";
 
 const handleLogin = async (email: string, password: string) => {
 	try {
@@ -34,7 +35,7 @@ export default function SignIn() {
 
 	useEffect(() => {
 		if (user) {
-			router.push("/top"); // ログイン成功時にリダイレクト
+			router.push("/top");
 		}
 	}, [user, router]);
 
@@ -43,24 +44,14 @@ export default function SignIn() {
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		await handleLogin(email, password); // ログイン処理を呼び出す
+		await handleLogin(email, password);
 	};
 
 	return (
 		<>
-			<Header/>
+			<Header />
 			<div style={{ padding: "16px" }}>
 				<section>
-					<div>
-						<h1 className=''>
-							<Image
-								src='/images/topLogo.webp'
-								width={480}
-								height={480}
-								alt='BOXロゴ'
-							/>
-						</h1>
-					</div>
 					<div>
 						{user ? (
 							<>
@@ -68,48 +59,74 @@ export default function SignIn() {
 								<SignOutButton />
 							</>
 						) : (
-								<>
+							<>
+								<div style={{ padding: "16px" }}>
+									<p
+										style={{
+											fontSize: "16px",
+											fontWeight: "bold",
+											color: "#FF5E2A",
+										}}
+									>
+										Sign in
+									</p>
+									<h2
+										style={{
+											fontSize: "28px",
+											fontWeight: "bold",
+											color: "#FF5E2A",
+										}}
+									>
+										ログイン
+									</h2>
+								</div>
 
-								<ContentsAreaOrange>
-									<p>ログイン</p>
-									<form onSubmit={onSubmit}>
+								<form onSubmit={onSubmit}>
+									<ContentsAreaOrange style={{ marginBottom: "32px" }}>
 										<div>
-											<label htmlFor='email'>Email:</label>
+											<label htmlFor='email'>メールアドレス</label>
+											<br />
 											<input
 												type='email'
 												id='email'
 												value={email}
 												onChange={(e) => setEmail(e.target.value)}
 												required
+												style={{
+													width: "100%",
+													padding: "8px",
+													borderRadius: "6px",
+												}}
 											/>
 										</div>
-										<div>
-											<label htmlFor='password'>Password:</label>
+										<div
+											style={{ padding: "16px 0px 0", marginBottom: "32px" }}
+										>
+											<label htmlFor='password'>パスワード:</label>
+											<br />
 											<input
 												type='password'
 												id='password'
 												value={password}
 												onChange={(e) => setPassword(e.target.value)}
 												required
+												style={{
+													width: "100%",
+													padding: "8px",
+													borderRadius: "6px",
+												}}
 											/>
 										</div>
+									</ContentsAreaOrange>
+								</form>
 
-										<button
-											type='submit'
-											style={{
-												padding: "8px",
-												border: "1px solid #333",
-												background: "#fff",
-												color: "#333",
-											}}
-										>
-											ログイン
-										</button>
-									</form>
+								<PrimaryButton style={{marginBottom:"32px"}} type='submit'>ログイン</PrimaryButton>
 
-									<p>Google認証</p>
+									<p className="pt-4 pb-4 text-center" style={{borderBottom:"2px solid #fff",marginBottom:"16px"}}>Google認証の方はこちら</p>
+
+								<SecondaryButton style={{ color: "#333" }}>
 									<SigninButton />
-								</ContentsAreaOrange>
+								</SecondaryButton>
 							</>
 						)}
 					</div>
