@@ -1,9 +1,10 @@
 import { auth } from "@/firebase";
 import Image from "next/image";
-import React, { useState } from "react";
-import SignOutButton from "./SignoutButton";
+// import React, { useState } from "react";
+// import SignOutButton from "./SignoutButton";
 
 import { useAuthContext } from "@/app/context/AuthContext";
+import Link from "next/link";
 
 const UserInfo = () => {
 	const defaultPhotoURL = "/images/defaultUser.svg";
