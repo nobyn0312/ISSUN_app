@@ -45,6 +45,17 @@ const TopPage = () => {
 		<>
 			<Header />
 			<main style={{ padding: "24px" }}>
+				<div>
+					<h1 className=''>
+						<Image
+							src='/images/topLogo.webp'
+							width={480}
+							height={480}
+							alt='BOXロゴ'
+							style={{ marginBottom: "32px" }}
+						/>
+					</h1>
+				</div>
 				<SelectCategory className='mb-4' />
 				<section>
 					<ul className='flex justify-between flex-wrap'>
@@ -60,9 +71,20 @@ const TopPage = () => {
 									/>
 								</Link>
 								<div style={{ marginTop: "10px" }}>
-									<h2>{item.name}</h2>
-									<p>¥{item.price.toLocaleString()}</p>
-									{/* <p>ID: {item.id}</p> */}
+									<h2 style={{ fontWeight: "bold", fontSize: "18px" }}>
+										{item.name.length > 10
+											? `${item.name.slice(0, 10)}...`
+											: item.name}
+									</h2>
+									<p
+										style={{
+											color: "#ff5e2a",
+											fontSize: "16px",
+											fontWeight: "bold",
+										}}
+									>
+										{item.category}
+									</p>
 								</div>
 							</li>
 						))}

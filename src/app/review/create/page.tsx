@@ -48,6 +48,7 @@ const Review = () => {
 
 			console.log(reviewId);
 			alert("レビューを送信しました");
+			window.location.href = "/top";
 
 			setTitle("");
 			setRate("");
@@ -72,7 +73,7 @@ const Review = () => {
 			</div>
 
 			<form onSubmit={handleSubmit}>
-				<ContentsAreaOrange style={{ marginBottom: "32px" }}>
+				<ContentsAreaOrange style={{ margin:"0 16px 32px"}}>
 					<div style={{ padding: "16px 0px 0" }}>
 						<label htmlFor='title'>タイトル</label>
 						<br />
