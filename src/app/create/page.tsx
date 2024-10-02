@@ -64,6 +64,7 @@ const Page = () => {
 					const downloadURL = await getDownloadURL(storageRef);
 					setImageUrl(downloadURL);
 
+					// アイテムのidはuuid
 					const itemId = uuidv4();
 
 					// Firestoreに商品データを追加
@@ -118,7 +119,7 @@ const Page = () => {
 					</div>
 
 					<form onSubmit={handleSubmit}>
-						<ContentsAreaGray style={{ marginBottom: "32px" }}>
+						<ContentsAreaGray style={{margin:"0 16px 32px"}}>
 							<div style={{ padding: "16px 0px 0" }}>
 								<label>アイテム名:</label>
 								<br />
@@ -168,7 +169,7 @@ const Page = () => {
 									onChange={handleFileChange} // ファイル選択時に一時保存
 									accept='.png, .jpeg,.jpg, .webp'
 									required
-									style={{borderRadius: "6px" }}
+									style={{ borderRadius: "6px" }}
 								/>
 							</div>
 
