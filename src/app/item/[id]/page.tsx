@@ -24,8 +24,6 @@ const fetchItem = async (id: string): Promise<Item | null> => {
 const ItemDetail = async ({ params }: { params: { id: string } }) => {
 	const item = await fetchItem(params.id);
 
-
-
 	if (!item) {
 		notFound();
 	}
@@ -82,7 +80,7 @@ const ItemDetail = async ({ params }: { params: { id: string } }) => {
 				<Review itemId={item.id} />
 
 				<PrimaryButton style={{ margin: "0 auto" }}>
-					<Link href={item.url} style={{ display: "block" }}>
+					<Link href={item.url} style={{ display: "block" }} target='_blank'>
 						販売ショップへ
 					</Link>
 				</PrimaryButton>
