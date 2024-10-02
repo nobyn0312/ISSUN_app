@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { SecondaryButton } from "./Button";
 import Link from "next/link";
 import { firestore } from "@/firebase";
 import {
@@ -10,17 +9,20 @@ import {
 	where,
 	getDocs,
 	Timestamp,
+	deleteDoc,
+	doc,
 } from "firebase/firestore";
-import { Container } from "./Container";
+
 import { useRouter } from "next/navigation";
 
 type ReviewProps = {
 	itemId: string;
-	review:string
+	review: string;
 };
 
 // review型
 type ReviewData = {
+	reviewId: string;
 	title: string;
 	comment: string;
 	username: string;
@@ -32,6 +34,8 @@ type ReviewData = {
 const Review = ({ itemId, review }: ReviewProps) => {
 	console.log("アイテムID: ", itemId);
 
+	console.log(review);
+
 	const [reviews, setReviews] = useState<ReviewData[]>([]);
 
 	// レビュータイトル
@@ -41,11 +45,13 @@ const Review = ({ itemId, review }: ReviewProps) => {
 
 	const router = useRouter();
 
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		console.log("アイテムID: ", itemId);
-	};
+	// 登録
+	// const handleSubmit = (e: React.FormEvent) => {
+	// 	e.preventDefault();
+	// 	console.log("アイテムID: ", itemId);
+	// };
 
+	// レビュー取得
 	const fetchReviews = async () => {
 		try {
 			const q = query(
@@ -56,6 +62,7 @@ const Review = ({ itemId, review }: ReviewProps) => {
 			const querySnapshot = await getDocs(q);
 
 			const fetchedReviews: ReviewData[] = querySnapshot.docs.map((doc) => ({
+				reviewId: doc.data().reviewId,
 				title: doc.data().title,
 				comment: doc.data().comment,
 				username: doc.data().username,
@@ -68,13 +75,42 @@ const Review = ({ itemId, review }: ReviewProps) => {
 			console.error("Error fetching reviews: ", error);
 		}
 	};
+	// 初回レンダリング時レビュー取得
 	useEffect(() => {
 		fetchReviews();
-	}, [itemId]);
+	}, []);
 
-const handleEdit = (reviewId: string) => {
-	router.push(`/review/edit?reviewId=${reviewId}`);
-};
+	// レビュー編集ボタン
+	const handleEdit = (reviewId: string) => {
+		router.push(`/review/edit?reviewId=${reviewId}`);
+	};
+
+	// レビュー削除
+	const handleDelete = async (reviewId: string) => {
+		// 確認ダイアログを表示
+		const isConfirmed = confirm("レビューを削除しますか？");
+
+		if (isConfirmed) {
+			try {
+				const reviewRef = doc(firestore, "review", reviewId);
+				await deleteDoc(reviewRef);
+				alert("削除完了");
+				window.location.reload();
+			} catch (error) {
+				alert("エラーが発生しました");
+			}
+		} else {
+			alert("削除をキャンセルしました");
+		}
+	};
+
+	// 日付をフォーマット
+	const formatDate = (date: Date) => {
+		const y = date.getFullYear();
+		const m = ("00" + (date.getMonth() + 1)).slice(-2);
+		const d = ("00" + date.getDate()).slice(-2);
+		return `${y}/${m}/${d}`;
+	};
 
 	return (
 		<>
@@ -98,6 +134,8 @@ const handleEdit = (reviewId: string) => {
 				</div>
 
 				{reviews.map((review, index) => {
+					const formatedDate = formatDate(review.createdAt.toDate());
+
 					console.log(review.createdAt.toDate());
 					return (
 						<div
@@ -120,10 +158,15 @@ const handleEdit = (reviewId: string) => {
 									{review.title}
 								</p>
 								{/* review.id を handleEdit に渡す */}
-								<button onClick={() => handleEdit(review.id)}>編集</button>
+								<button onClick={() => handleEdit(review.reviewId)}>
+									編集
+								</button>
+								<button onClick={() => handleDelete(review.reviewId)}>
+									削除
+								</button>
 							</div>
 							<p style={{ fontWeight: "light", marginBottom: "8px" }}>
-								{review.createdAt.toDate().toString()}
+								{formatedDate}
 							</p>
 
 							<p style={{ color: "#FF5E2A", fontSize: "20px" }}>
