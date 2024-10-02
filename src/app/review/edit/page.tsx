@@ -10,7 +10,7 @@ import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
 
 const EditReview = () => {
-	const { user, username } = useAuthContext();
+	const { user } = useAuthContext();
 	const searchParams = useSearchParams();
 	const reviewId = searchParams.get("reviewId"); // 既存のレビューIDを取得
 
@@ -19,32 +19,30 @@ const EditReview = () => {
 	const [size, setSize] = useState("");
 	const [comment, setComment] = useState("");
 
-	// レビューの初期データをロード
-useEffect(() => {
-	const fetchReview = async () => {
-		if (!reviewId) return;
+	useEffect(() => {
+		const fetchReview = async () => {
+			if (!reviewId) return;
 
-		try {
-			// Firestoreからレビューのドキュメントを取得
-			const reviewDoc = await getDoc(doc(firestore, "review", reviewId));
+			try {
+				const reviewDoc = await getDoc(doc(firestore, "review", reviewId));
 
-			if (reviewDoc.exists()) {
-				const reviewData = reviewDoc.data();
-				// フォームの状態にデータを反映
-				setTitle(reviewData.title);
-				setRate(reviewData.rate);
-				setSize(reviewData.size);
-				setComment(reviewData.comment);
-			} else {
-				console.error("レビューが見つかりませんでした");
+				if (reviewDoc.exists()) {
+					const reviewData = reviewDoc.data();
+					// フォームの状態にデータを反映
+					setTitle(reviewData.title);
+					setRate(reviewData.rate);
+					setSize(reviewData.size);
+					setComment(reviewData.comment);
+				} else {
+					console.error("レビューが見つかりませんでした");
+				}
+			} catch (error) {
+				console.error("レビューの取得に失敗しました", error);
 			}
-		} catch (error) {
-			console.error("レビューの取得に失敗しました", error);
-		}
-	};
+		};
 
-	fetchReview();
-}, [reviewId]);
+		fetchReview();
+	}, [reviewId]);
 
 	// 編集後のデータを保存
 	const handleSubmit = async (e: React.FormEvent) => {
