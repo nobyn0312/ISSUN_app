@@ -18,9 +18,9 @@ export const fetchItems = async (): Promise<Item[]> => {
 	const itemsCollection = collection(firestore, "item");
 	const snapshot = await getDocs(itemsCollection);
 
-	const itemsList: Item[] = snapshot.docs.map((doc) => ({
-		id: doc.id,
-		...(doc.data() as Omit<Item, "id">),
+	const itemsList: Item[] = snapshot.docChanges().map((change) => ({
+		id: change.doc.id,
+		...(change.doc.data() as Omit<Item, "id">),
 	}));
 
 	return itemsList;

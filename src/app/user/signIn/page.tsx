@@ -118,11 +118,20 @@ export default function SignIn() {
 											/>
 										</div>
 									</ContentsAreaOrange>
+
+									<PrimaryButton style={{ marginBottom: "32px" }} type='submit'>
+										ログイン
+									</PrimaryButton>
 								</form>
-
-								<PrimaryButton style={{marginBottom:"32px"}} type='submit'>ログイン</PrimaryButton>
-
-									<p className="pt-4 pb-4 text-center" style={{borderBottom:"2px solid #fff",marginBottom:"16px"}}>Google認証の方はこちら</p>
+								<p
+									className='pt-4 pb-4 text-center'
+									style={{
+										borderBottom: "2px solid #fff",
+										marginBottom: "16px",
+									}}
+								>
+									Google認証の方はこちら
+								</p>
 
 								<SecondaryButton style={{ color: "#333" }}>
 									<SigninButton />

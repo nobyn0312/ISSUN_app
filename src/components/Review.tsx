@@ -154,16 +154,28 @@ const Review = ({ itemId, review }: ReviewProps) => {
 										fontSize: "20px",
 										marginBottom: "8px",
 									}}
+									className='flex align-middle justify-center'
 								>
 									{review.title}
 								</p>
 								{/* review.id を handleEdit に渡す */}
-								<button onClick={() => handleEdit(review.reviewId)}>
-									編集
-								</button>
-								<button onClick={() => handleDelete(review.reviewId)}>
-									削除
-								</button>
+								<div
+									className='flex align-middle justify-center'
+									style={{ gap: "8px" }}
+								>
+									<button
+										style={{ color: "#333", fontWeight: "bold" }}
+										onClick={() => handleEdit(review.reviewId)}
+									>
+										編集
+									</button>
+									<button
+										style={{ color: "#FF5E2A", fontWeight: "bold" }}
+										onClick={() => handleDelete(review.reviewId)}
+									>
+										削除
+									</button>
+								</div>
 							</div>
 							<p style={{ fontWeight: "light", marginBottom: "8px" }}>
 								{formatedDate}
