@@ -2,36 +2,35 @@
 
 // アイテム詳細ページ
 
-import { notFound } from "next/navigation";
-
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { fetchItems, Item } from "@/libs/fetchItems";
+import { fetchItemDetail } from "@/libs/fetchItemDetail";
 import Header from "@/components/Header";
 import Link from "next/link";
 import { PrimaryButton } from "@/components/Button";
 import Review from "@/components/Review";
+import { notFound } from "next/navigation";
+import { Item } from "@/libs/fetchItems";
 
-const fetchItem = async (id: string): Promise<Item | null> => {
-	try {
-		const items = await fetchItems();
-		return items.find((item) => item.id === id) || null;
-	} catch (error) {
-		console.error("Error fetching item: ", error);
-		return null;
-	}
-};
+const ItemDetail = ({ params }: { params: { id: string } }) => {
+	const [item, setItem] = useState<Item | null>(null);
 
-const ItemDetail = async ({ params }: { params: { id: string } }) => {
-	const item = await fetchItem(params.id);
-
+	useEffect(() => {
+		fetchItemDetail(params.id).then((fetchedItem) => {
+			if (!fetchedItem) {
+				notFound(); // アイテムが見つからない場合は notFound を呼び出す
+			} else {
+				setItem(fetchedItem);
+			}
+		});
+	}, [params.id]);
 	if (!item) {
-		notFound();
+		return <p>Loading...</p>; // アイテムがまだ読み込まれていない場合の表示
 	}
 
 	return (
 		<>
 			<Header />
-			{/* <p>{ item.id}</p> */}
 			<main style={{ padding: "24px" }}>
 				<Image
 					src={item.imageUrl}
@@ -80,7 +79,11 @@ const ItemDetail = async ({ params }: { params: { id: string } }) => {
 				<Review itemId={item.id} />
 
 				<PrimaryButton style={{ margin: "0 auto" }}>
-					<Link href={item.url} style={{ display: "block" }} target='_blank'>
+					<Link
+						href={item.url as string}
+						style={{ display: "block" }}
+						target='_blank'
+					>
 						販売ショップへ
 					</Link>
 				</PrimaryButton>

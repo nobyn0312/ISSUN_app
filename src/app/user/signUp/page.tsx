@@ -5,6 +5,9 @@ import { auth, firestore } from "@/firebase"; // Firebaseのインポート
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore"; // Firestore関連のインポート
 import { useRouter } from "next/navigation";
+import Header from "@/components/Header";
+import { ContentsAreaOrange } from "@/components/ContentsArea";
+import { PrimaryButton } from "@/components/Button";
 
 const handleSignUp = async (
 	email: string,
@@ -37,6 +40,10 @@ export default function SignUp() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [username, setUsername] = useState("");
+	const [shape, setShape] = useState("");
+	const [age, setAge] = useState("");
+	const [gender, setGender] = useState("");
+
 	const router = useRouter();
 
 	const onSubmit = async (e: React.FormEvent) => {
@@ -46,53 +53,102 @@ export default function SignUp() {
 	};
 
 	return (
-		<main style={{ padding: "24px" }}>
-			<section>
-				<p>新規登録</p>
-				<form onSubmit={onSubmit}>
-					<div>
-						<label htmlFor='username'>ユーザーネーム:</label>
-						<input
-							type='text'
-							id='username'
-							value={username}
-							onChange={(e) => setUsername(e.target.value)}
-							required
-						/>
+		<>
+			<Header />
+			<div style={{ padding: "16px" }}>
+				<section>
+					<div style={{ padding: "16px 0 16px" }}>
+						<p
+							style={{
+								fontSize: "16px",
+								fontWeight: "bold",
+								color: "#FF5E2A",
+							}}
+						>
+							Sign up
+						</p>
+						<h2
+							style={{
+								fontSize: "28px",
+								fontWeight: "bold",
+								color: "#FF5E2A",
+							}}
+						>
+							新規登録
+						</h2>
 					</div>
-					<div>
-						<label htmlFor='email'>Email:</label>
-						<input
-							type='email'
-							id='email'
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							required
-						/>
-					</div>
-					<div>
-						<label htmlFor='password'>Password:</label>
-						<input
-							type='password'
-							id='password'
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							required
-						/>
-					</div>
-					<button
-						type='submit'
-						style={{
-							padding: "8px",
-							border: "1px solid #333",
-							background: "#fff",
-							color: "#333",
-						}}
-					>
-						登録
-					</button>
-				</form>
-			</section>
-		</main>
+
+					<form onSubmit={onSubmit}>
+						<ContentsAreaOrange style={{ marginBottom: "32px" }}>
+							<div>
+								<label htmlFor='username'>ユーザーネーム:</label>
+								<br />
+								<input
+									type='text'
+									id='username'
+									value={username}
+									onChange={(e) => setUsername(e.target.value)}
+									required
+									style={{
+										width: "100%",
+										padding: "8px",
+										borderRadius: "6px",
+									}}
+								/>
+							</div>
+
+							<div>
+								<label htmlFor='email'>Email:</label>
+								<br />
+								<input
+									type='email'
+									id='email'
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+									required
+									style={{
+										width: "100%",
+										padding: "8px",
+										borderRadius: "6px",
+									}}
+								/>
+							</div>
+
+							<div>
+								<label htmlFor='password'>Password:</label>
+								<br />
+								<input
+									type='password'
+									id='password'
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									required
+									style={{
+										width: "100%",
+										padding: "8px",
+										borderRadius: "6px",
+									}}
+								/>
+							</div>
+						</ContentsAreaOrange>
+
+						<PrimaryButton style={{ marginBottom: "32px" }} type='submit'>
+							新規登録
+						</PrimaryButton>
+						<button
+							type='submit'
+							style={{
+								padding: "8px",
+								border: "1px solid #333",
+								background: "#fff",
+								color: "#333",
+							}}
+						>
+							登録
+						</button>
+					</form>
+				</section>
+			</div>
+		</>
 	);
 }

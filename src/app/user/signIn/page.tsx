@@ -2,17 +2,15 @@
 
 import SigninButton from "@/components/SigninButton";
 import { auth } from "@/firebase";
-
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import UserInfo from "@/components/UserInfo";
 import SignOutButton from "@/components/SignoutButton";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import Header from "@/components/Header";
-import { PrimaryButton, SecondaryButton } from "@/components/Button";
+import { PrimaryButton } from "@/components/Button";
 
 const handleLogin = async (email: string, password: string) => {
 	try {
@@ -25,6 +23,7 @@ const handleLogin = async (email: string, password: string) => {
 		console.log("User logged in:", user);
 		// ログイン成功後の処理
 	} catch (error) {
+		alert("パスワード違う")
 		console.error("Error logging in:", error);
 	}
 };
@@ -52,7 +51,6 @@ export default function SignIn() {
 			<Header />
 			<div style={{ padding: "16px" }}>
 				<section>
-					<div>
 						{user ? (
 							<>
 								<UserInfo />
@@ -60,7 +58,7 @@ export default function SignIn() {
 							</>
 						) : (
 							<>
-								<div style={{ padding: "16px" }}>
+								<div style={{ padding: "16px 0 16px" }}>
 									<p
 										style={{
 											fontSize: "16px",
@@ -122,6 +120,8 @@ export default function SignIn() {
 									<PrimaryButton style={{ marginBottom: "32px" }} type='submit'>
 										ログイン
 									</PrimaryButton>
+
+									<button type="submit">ログイン</button>
 								</form>
 								<p
 									className='pt-4 pb-4 text-center'
@@ -133,12 +133,10 @@ export default function SignIn() {
 									Google認証の方はこちら
 								</p>
 
-								<SecondaryButton style={{ color: "#333" }}>
-									<SigninButton />
-								</SecondaryButton>
+								<SigninButton />
 							</>
 						)}
-					</div>
+
 				</section>
 			</div>
 		</>

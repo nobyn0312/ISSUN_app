@@ -1,23 +1,15 @@
-"use client";
+// top/page.tsx
+"use client"; // これを追加
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-// import { storage } from "@/firebase";
-// import { ref, listAll, getDownloadURL } from "firebase/storage";
-// import UserInfo from "@/components/UserInfo";
-// import SignOutButton from "@/components/SignoutButton";
 import Link from "next/link";
 import Header from "@/components/Header";
 import SelectCategory from "@/components/SelectCategory";
-
-import { useParams } from "next/navigation";
-
 import { fetchItems, Item } from "@/libs/fetchItems";
 
 const TopPage = () => {
-	// const [imageUrls, setImageUrls] = useState<string[]>([]);
 	const [loading, setLoading] = useState(true);
-	const { id } = useParams();
 	const [items, setItems] = useState<Item[]>([]);
 	const [error, setError] = useState<string | null>(null);
 
@@ -46,9 +38,9 @@ const TopPage = () => {
 			<Header />
 			<main style={{ padding: "24px" }}>
 				<div>
-					<h1 className=''>
+					<h1>
 						<Image
-							src='/images/topLogo.webp'
+							src='/images/top_logo.svg'
 							width={480}
 							height={480}
 							alt='BOXロゴ'

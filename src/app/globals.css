@@ -2,11 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-input,textarea,select{
-  color: black;
+input,
+textarea,
+select {
+	color: black;
 }

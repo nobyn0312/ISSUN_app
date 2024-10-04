@@ -3,14 +3,12 @@
 import SigninButton from "@/components/SigninButton";
 import { auth } from "@/firebase";
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {createUserWithEmailAndPassword } from "firebase/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import UserInfo from "@/components/UserInfo";
 import SignOutButton from "@/components/SignoutButton";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 // import {error } from "console";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -46,13 +44,6 @@ const handleLogin = async (email: string, password: string) => {
 
 export default function Home() {
 	const [user] = useAuthState(auth);
-	const router = useRouter();
-
-	// useEffect(() => {
-	// 	if (user) {
-	// 		router.push("/top");
-	// 	}
-	// }, [user, router]);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");

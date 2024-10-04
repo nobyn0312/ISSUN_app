@@ -17,7 +17,6 @@ import { useRouter } from "next/navigation";
 
 type ReviewProps = {
 	itemId: string;
-	review: string;
 };
 
 // review型
@@ -31,25 +30,10 @@ type ReviewData = {
 	createdAt: Timestamp;
 };
 
-const Review = ({ itemId, review }: ReviewProps) => {
+const Review = ({ itemId }: ReviewProps) => {
 	console.log("アイテムID: ", itemId);
-
-	console.log(review);
-
 	const [reviews, setReviews] = useState<ReviewData[]>([]);
-
-	// レビュータイトル
-	// const [title, setTitle] = useState("");
-	// const [rate, setRate] = useState("");
-	// const [comment, setComment] = useState("");
-
 	const router = useRouter();
-
-	// 登録
-	// const handleSubmit = (e: React.FormEvent) => {
-	// 	e.preventDefault();
-	// 	console.log("アイテムID: ", itemId);
-	// };
 
 	// レビュー取得
 	const fetchReviews = async () => {
