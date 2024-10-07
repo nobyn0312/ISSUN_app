@@ -4,7 +4,7 @@ import Image from "next/image";
 // import SignOutButton from "./SignoutButton";
 
 import { useAuthContext } from "@/app/context/AuthContext";
-import Link from "next/link";
+// import Link from "next/link";
 
 const UserInfo = () => {
 	const defaultPhotoURL = "/images/defaultUser.svg";

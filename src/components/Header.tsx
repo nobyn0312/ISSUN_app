@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Hamburger from "./Hamburger";
+
 import HamburgerMenu from "./Hamburger";
 import UserInfo from "./UserInfo";
 
