@@ -10,7 +10,9 @@ import { PrimaryButton } from "@/components/Button";
 import { useAuthContext } from "@/app/context/AuthContext";
 
 const handleUpdateProfile = async (
-	userId: string, // ユーザーのUID
+	// userId: string,
+
+	uid: string,
 	username: string,
 	age: string,
 	height: number,
@@ -18,15 +20,16 @@ const handleUpdateProfile = async (
 ) => {
 	try {
 		// Firestoreの/profileコレクション内のユーザー情報を更新
-		const userDocRef = doc(firestore, "profile", userId);
+		const userDocRef = doc(firestore, "profile", uid);
 		await updateDoc(userDocRef, {
+			uid: uid,
 			username: username, // ユーザー名
 			age: age, // 年齢層
 			height: height, // 身長
 			shape: shape, // 体型
 		});
 
-		console.log("User profile updated:", username, age, height, shape);
+		console.log("ユーザー情報が更新", username, age, height, shape);
 	} catch (error) {
 		console.error("Error updating profile:", error);
 	}
@@ -42,10 +45,17 @@ export default function EditProfile() {
 	const router = useRouter();
 
 	const onSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
+		e.preventDefault(); // フォームのデフォルト送信を防ぐ
 		if (userId) {
-			await handleUpdateProfile(userId, username, age, height, shape);
-			router.push("/top"); // 更新成功後にリダイレクト
+			try {
+				await handleUpdateProfile(userId, username, age, height, shape);
+				// 更新成功後 リロードしてユーザーネームなど取得
+				window.location.reload();
+				// topに行けない
+				router.push("/top");
+			} catch (error) {
+				console.error("Profile update failed:", error);
+			}
 		} else {
 			console.error("User ID is not available");
 		}
@@ -71,7 +81,7 @@ export default function EditProfile() {
 
 					<form onSubmit={onSubmit}>
 						<ContentsAreaOrange style={{ marginBottom: "32px" }}>
-							<div>
+							<div style={{ padding: "16px 0px 0" }}>
 								<label htmlFor='username'>ユーザーネーム:</label>
 								<br />
 								<input
@@ -88,7 +98,7 @@ export default function EditProfile() {
 								/>
 							</div>
 
-							<div>
+							<div style={{ padding: "16px 0px 0" }}>
 								<label htmlFor='age'>年齢層:</label>
 								<br />
 								<select
@@ -119,11 +129,10 @@ export default function EditProfile() {
 								</select>
 							</div>
 
-							<div>
-								<label htmlFor='height'>身長 (cm):</label>
+							<div style={{ padding: "16px 0px 0" }}>
+								<label htmlFor='height'>身長:</label>
 								<br />
-								<input
-									type='number'
+								<select
 									id='height'
 									value={height}
 									onChange={(e) => setHeight(Number(e.target.value))}
@@ -133,10 +142,22 @@ export default function EditProfile() {
 										padding: "8px",
 										borderRadius: "6px",
 									}}
-								/>
+								>
+									<option value='' disabled>
+										選択してください
+									</option>
+									{[...Array(61)].map((_, i) => {
+										const heightValue = 140 + i;
+										return (
+											<option key={heightValue} value={heightValue}>
+												{heightValue}
+											</option>
+										);
+									})}
+								</select>
 							</div>
 
-							<div>
+							<div style={{ padding: "16px 0px 0" }}>
 								<label htmlFor='shape'>体型:</label>
 								<br />
 								<select

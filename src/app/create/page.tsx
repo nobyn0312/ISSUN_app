@@ -37,7 +37,6 @@ const Page = () => {
 	// フォーム送信時の処理
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-
 		if (!file) {
 			console.error("No file selected");
 			return;
