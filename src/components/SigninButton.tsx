@@ -18,10 +18,9 @@ function SigninButton() {
 				if (!userDocSnapshot.exists()) {
 					await setDoc(userDocRef, {
 						uid: user.uid,
-						name: user.displayName || "No Name",
 						email: user.email || "No Email",
 						password: "", // パスワードは空のまま
-						username: "", // 初期値は空にする
+						username: user.displayName || "", // 初期値は空にする
 						age: "", // 年齢層の初期値
 						height: 0, // 身長の初期値
 						shape: "", // 体型の初期値

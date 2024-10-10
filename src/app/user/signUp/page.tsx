@@ -40,9 +40,9 @@ export default function SignUp() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [username, setUsername] = useState("");
-	const [shape, setShape] = useState("");
-	const [age, setAge] = useState("");
-	const [gender, setGender] = useState("");
+	// const [shape, setShape] = useState("");
+	// const [age, setAge] = useState("");
+	// const [gender, setGender] = useState("");
 
 	const router = useRouter();
 

@@ -29,7 +29,7 @@ const handleUpdateProfile = async (
 			shape: shape, // 体型
 		});
 
-		console.log("ユーザー情報が更新", username, age, height, shape);
+		console.log("User profile updated:", username, age, height, shape);
 	} catch (error) {
 		console.error("Error updating profile:", error);
 	}
@@ -45,17 +45,10 @@ export default function EditProfile() {
 	const router = useRouter();
 
 	const onSubmit = async (e: React.FormEvent) => {
-		e.preventDefault(); // フォームのデフォルト送信を防ぐ
+		e.preventDefault();
 		if (userId) {
-			try {
-				await handleUpdateProfile(userId, username, age, height, shape);
-				// 更新成功後 リロードしてユーザーネームなど取得
-				window.location.reload();
-				// topに行けない
-				router.push("/top");
-			} catch (error) {
-				console.error("Profile update failed:", error);
-			}
+			await handleUpdateProfile(userId, username, age, height, shape);
+			router.push("/top"); // 更新成功後にリダイレクト
 		} else {
 			console.error("User ID is not available");
 		}
@@ -156,6 +149,8 @@ export default function EditProfile() {
 									})}
 								</select>
 							</div>
+
+
 
 							<div style={{ padding: "16px 0px 0" }}>
 								<label htmlFor='shape'>体型:</label>

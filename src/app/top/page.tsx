@@ -1,5 +1,4 @@
-// top/page.tsx
-"use client"; // これを追加
+"use client";
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -7,16 +6,23 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import SelectCategory from "@/components/SelectCategory";
 import { fetchItems, Item } from "@/libs/fetchItems";
+import Sort from "@/components/Sort";
+import { collection, getDoc, getDocs, getFirestore, orderBy, query } from "firebase/firestore";
+import { app } from "@/firebase";
 
 const TopPage = () => {
 	const [loading, setLoading] = useState(true);
 	const [items, setItems] = useState<Item[]>([]);
 	const [error, setError] = useState<string | null>(null);
+		// const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
+
+	// const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
 
 	useEffect(() => {
 		const getItems = async () => {
 			try {
 				const fetchedItems = await fetchItems();
+				console.log("取得したアイテム一覧:", fetchedItems);
 				setItems(fetchedItems);
 			} catch (error) {
 				setError("データ取得失敗");
@@ -29,9 +35,16 @@ const TopPage = () => {
 		getItems();
 	}, []);
 
-	if (loading) {
-		return <p>Loading...</p>;
-	}
+	// ソート
+	// ソートが変更されたときに実行される関数
+	const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const newSortOrder = e.target.value as "newest" | "oldest";
+		setSortOrder(newSortOrder);
+	};
+
+	// const handleSortChange = () => {
+	// 	console.log("sort")
+	// }
 
 	return (
 		<>
@@ -48,6 +61,8 @@ const TopPage = () => {
 						/>
 					</h1>
 				</div>
+				<Sort className='mb-4' onChange={handleSortChange} />{" "}
+				{/* onChangeを渡す */}
 				<SelectCategory className='mb-4' />
 				<section>
 					<ul className='flex justify-between flex-wrap'>

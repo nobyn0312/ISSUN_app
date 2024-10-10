@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
 import { useAuthContext } from "@/app/context/AuthContext";
+import Link from "next/link";
 
 const Page = () => {
 	// useAuthContext からユーザー情報を取得
@@ -40,7 +41,11 @@ const Page = () => {
 					<p>体型: {shape || "未設定"}</p>
 				</ContentsAreaOrange>
 			</div>
-			<PrimaryButton>ユーザー情報を更新する</PrimaryButton>
+			<PrimaryButton>
+				<Link style={{ display: "block" }} href={"/user/edit/"}>
+					ユーザー情報を更新する
+				</Link>
+			</PrimaryButton>
 		</>
 	);
 };

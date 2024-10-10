@@ -13,6 +13,7 @@ const UserInfo = () => {
 	const { username } = useAuthContext();
 
 
+
 	return (
 		<div>
 			{photoURL && (
@@ -30,12 +31,6 @@ const UserInfo = () => {
 					</div>
 				</>
 			)}
-			{/* <p>{auth.currentUser?.displayName || "ゲスト"}</p>{" "} */}
-			{/* デフォルトの名前を指定 */}
-			{/* <p>{auth.currentUser?.displayName}</p> */}
-			{/* <dl>
-				<dd id='uid'></dd>
-			</dl> */}
 		</div>
 	);
 };
