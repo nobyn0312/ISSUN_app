@@ -22,12 +22,12 @@ interface UserProfile {
 
 
 interface AuthContextType {
-	user: User;
-	username: string;
+	user: User | null;
+	username: string | null;
 	userId: string | null;
-	age: number;
-	height: number;
-	shape: string;
+	age: number | null;
+	height: number | null;
+	shape: string | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -99,7 +99,16 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 	}, []);
 
 	return (
-		<AuthContext.Provider value={{ user, userProfile, setUserProfile }}>
+		<AuthContext.Provider
+			value={{
+				user,
+				username: userProfile.username,
+				userId: userProfile.userId,
+				age: userProfile.age,
+				height: userProfile.height,
+				shape: userProfile.shape,
+			}}
+		>
 			{children}
 		</AuthContext.Provider>
 	);
