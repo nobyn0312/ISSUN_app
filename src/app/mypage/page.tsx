@@ -1,16 +1,69 @@
-import Header from '@/components/Header'
-import Head from 'next/head'
-import React from 'react'
+"use client"; // クライアントコンポーネント
+import React from "react";
+import Header from "@/components/Header";
+import { ContentsAreaOrange } from "@/components/ContentsArea";
+import { PrimaryButton } from "@/components/Button";
+import { useAuthContext } from "@/app/context/AuthContext";
+import Link from "next/link";
 
-const page = () => {
-  return (
-    <>
-      <Header />
-      <h2>マイページ</h2>
+const Page = () => {
+	// useAuthContext からユーザー情報を取得
+	const { user, username, age, height, shape } = useAuthContext();
 
-      
-    </>
-  )
-}
+	// ユーザー情報がない場合の処理
+	// if (!user) {
+	// 	return (
+	// 		<div>
+	// 			<Header />
+	// 			<div style={{ padding: "16px" }}>
+	// 				<h2
+	// 					style={{ fontSize: "28px", fontWeight: "bold", color: "#FF5E2A" }}
+	// 				>
+	// 					ユーザーがログインしていません
+	// 				</h2>
+	// 			</div>
+	// 		</div>
+	// 	);
+	// }
 
-export default page
+	return (
+		<>
+			<Header />
+			<div style={{ padding: "16px" }}>
+				<h2 style={{ fontSize: "28px", fontWeight: "bold", color: "#FF5E2A" }}>
+					マイページ：ユーザー情報
+				</h2>
+
+				<ContentsAreaOrange>
+					<p
+						style={{ fontSize: "20px", lineHeight: "1.5", fontWeight: "bold" }}
+					>
+						名前： {username || "未設定"}
+					</p>
+					<p
+						style={{ fontSize: "20px", lineHeight: "1.5", fontWeight: "bold" }}
+					>
+						年齢: {age !== null ? age : "未設定"}
+					</p>
+					<p
+						style={{ fontSize: "20px", lineHeight: "1.5", fontWeight: "bold" }}
+					>
+						身長: {height !== null ? height : "未設定"}
+					</p>
+					<p
+						style={{ fontSize: "20px", lineHeight: "1.5", fontWeight: "bold" }}
+					>
+						体型: {shape || "未設定"}
+					</p>
+				</ContentsAreaOrange>
+			</div>
+			<PrimaryButton>
+				<Link style={{ display: "block" }} href={"/user/edit/"}>
+					ユーザー情報を更新する
+				</Link>
+			</PrimaryButton>
+		</>
+	);
+};
+
+export default Page;
