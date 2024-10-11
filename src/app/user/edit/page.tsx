@@ -73,7 +73,7 @@ export default function EditProfile() {
 					</div>
 
 					<form onSubmit={onSubmit}>
-						<ContentsAreaOrange style={{ marginBottom: "32px" }}>
+						<ContentsAreaOrange style={{ marginBottom: "32px"}}>
 							<div style={{ padding: "16px 0px 0" }}>
 								<label htmlFor='username'>ユーザーネーム:</label>
 								<br />
@@ -152,7 +152,7 @@ export default function EditProfile() {
 
 
 
-							<div style={{ padding: "16px 0px 0" }}>
+							<div style={{ padding: "16px 0px 16px" }}>
 								<label htmlFor='shape'>体型:</label>
 								<br />
 								<select

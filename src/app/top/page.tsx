@@ -42,16 +42,10 @@ const TopPage = () => {
 		getItems();
 	}, []);
 
-	// ソート
-	// ソートが変更されたときに実行される関数
-	const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const newSortOrder = e.target.value as "newest" | "oldest";
-		setSortOrder(newSortOrder);
-	};
 
-	// const handleSortChange = () => {
-	// 	console.log("sort")
-	// }
+	const handleSortChange = () => {
+		console.log("sort")
+	}
 
 	return (
 		<>

@@ -8,24 +8,7 @@ import Link from "next/link";
 
 const Page = () => {
 	// useAuthContext からユーザー情報を取得
-	const { user, username, age, height, shape } = useAuthContext();
-
-	// ユーザー情報がない場合の処理
-	// if (!user) {
-	// 	return (
-	// 		<div>
-	// 			<Header />
-	// 			<div style={{ padding: "16px" }}>
-	// 				<h2
-	// 					style={{ fontSize: "28px", fontWeight: "bold", color: "#FF5E2A" }}
-	// 				>
-	// 					ユーザーがログインしていません
-	// 				</h2>
-	// 			</div>
-	// 		</div>
-	// 	);
-	// }
-
+	const { username, age, height, shape } = useAuthContext();
 	return (
 		<>
 			<Header />
@@ -36,22 +19,42 @@ const Page = () => {
 
 				<ContentsAreaOrange>
 					<p
-						style={{ fontSize: "20px", lineHeight: "1.5", fontWeight: "bold" }}
+						style={{
+							fontSize: "20px",
+							lineHeight: "1.5",
+							fontWeight: "bold",
+							marginBottom: "8px",
+						}}
 					>
 						名前： {username || "未設定"}
 					</p>
 					<p
-						style={{ fontSize: "20px", lineHeight: "1.5", fontWeight: "bold" }}
+						style={{
+							fontSize: "20px",
+							lineHeight: "1.5",
+							fontWeight: "bold",
+							marginBottom: "8px",
+						}}
 					>
 						年齢: {age !== null ? age : "未設定"}
 					</p>
 					<p
-						style={{ fontSize: "20px", lineHeight: "1.5", fontWeight: "bold" }}
+						style={{
+							fontSize: "20px",
+							lineHeight: "1.5",
+							fontWeight: "bold",
+							marginBottom: "8px",
+						}}
 					>
 						身長: {height !== null ? height : "未設定"}
 					</p>
 					<p
-						style={{ fontSize: "20px", lineHeight: "1.5", fontWeight: "bold" }}
+						style={{
+							fontSize: "20px",
+							lineHeight: "1.5",
+							fontWeight: "bold",
+							marginBottom: "8px",
+						}}
 					>
 						体型: {shape || "未設定"}
 					</p>

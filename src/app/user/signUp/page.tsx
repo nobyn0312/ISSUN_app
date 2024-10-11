@@ -80,7 +80,7 @@ export default function SignUp() {
 
 					<form onSubmit={onSubmit}>
 						<ContentsAreaOrange style={{ marginBottom: "32px" }}>
-							<div>
+							<div style={{ padding: "16px 0 0" }}>
 								<label htmlFor='username'>ユーザーネーム:</label>
 								<br />
 								<input
@@ -97,7 +97,7 @@ export default function SignUp() {
 								/>
 							</div>
 
-							<div>
+							<div style={{ padding: "16px 0 0" }}>
 								<label htmlFor='email'>Email:</label>
 								<br />
 								<input
@@ -114,7 +114,7 @@ export default function SignUp() {
 								/>
 							</div>
 
-							<div>
+							<div style={{ padding: "16px 0 16px" }}>
 								<label htmlFor='password'>Password:</label>
 								<br />
 								<input

@@ -8,23 +8,7 @@ import Link from "next/link";
 
 const Page = () => {
 	// useAuthContext からユーザー情報を取得
-	const { user, username, age, height, shape } = useAuthContext();
-
-	// ユーザー情報がない場合の処理
-	// if (!user) {
-	// 	return (
-	// 		<div>
-	// 			<Header />
-	// 			<div style={{ padding: "16px" }}>
-	// 				<h2
-	// 					style={{ fontSize: "28px", fontWeight: "bold", color: "#FF5E2A" }}
-	// 				>
-	// 					ユーザーがログインしていません
-	// 				</h2>
-	// 			</div>
-	// 		</div>
-	// 	);
-	// }
+	const { username, age, height, shape } = useAuthContext();
 
 	return (
 		<>
@@ -35,8 +19,14 @@ const Page = () => {
 				</h2>
 
 				<ContentsAreaOrange>
-					<p>名前: {username || "未設定"}</p>
-					<p>年齢: {age !== null ? age : "未設定"}</p>
+					<div style={{ padding: "16px 0 16px" }}>
+						<p>名前: {username || "未設定"}</p>
+					</div>
+					<div>
+						<p style={{ padding: "16px 0 16px" }}>
+							年齢: {age !== null ? age : "未設定"}
+						</p>
+					</div>
 					<p>身長: {height !== null ? height : "未設定"}</p>
 					<p>体型: {shape || "未設定"}</p>
 				</ContentsAreaOrange>

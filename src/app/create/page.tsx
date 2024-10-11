@@ -206,7 +206,7 @@ const Page = () => {
 								/>
 							</div>
 
-							<div style={{ padding: "16px 0px 0" }}>
+							<div style={{ padding: "16px 0px 16px" }}>
 								<label>購入先URL:</label>
 								<br />
 								<input
