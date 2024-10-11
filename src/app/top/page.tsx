@@ -7,14 +7,21 @@ import Header from "@/components/Header";
 import SelectCategory from "@/components/SelectCategory";
 import { fetchItems, Item } from "@/libs/fetchItems";
 import Sort from "@/components/Sort";
-import { collection, getDoc, getDocs, getFirestore, orderBy, query } from "firebase/firestore";
+import {
+	collection,
+	getDoc,
+	getDocs,
+	getFirestore,
+	orderBy,
+	query,
+} from "firebase/firestore";
 import { app } from "@/firebase";
 
 const TopPage = () => {
 	const [loading, setLoading] = useState(true);
 	const [items, setItems] = useState<Item[]>([]);
 	const [error, setError] = useState<string | null>(null);
-		// const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
+	// const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
 
 	// const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
 
