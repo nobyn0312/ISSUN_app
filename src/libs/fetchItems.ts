@@ -1,11 +1,11 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { firestore } from "@/firebase";
 
 // Item型を定義
 export interface Item {
 	id: string;
 	category: string;
-	createdAt?: string;
+	createdAt: string;
 	detail: string;
 	imageUrl: string;
 	name: string;
@@ -13,9 +13,13 @@ export interface Item {
 	url?: string | undefined;
 }
 
-export const fetchItems = async (): Promise<Item[]> => {
+export const fetchItems = async (sortOrder: "newest" | "oldest" = "newest")): Promise<Item[]> => {
 	const itemsCollection = collection(firestore, "item");
-	const snapshot = await getDocs(itemsCollection);
+	const sortField = "createdAt";
+	const sortDirection = sortOrder === "newest" ? "desc" : "asc";
+	const q = query(itemsCollection, orderBy(sortField, sortDirection));
+
+	const snapshot = await getDocs(q);
 
 	const itemsList: Item[] = snapshot.docChanges().map((change) => ({
 		id: change.doc.id,
@@ -27,10 +31,12 @@ export const fetchItems = async (): Promise<Item[]> => {
 
 // 特定のIDを持つアイテムを取得する関数
 export const fetchItemById = async (id: string): Promise<Item | null> => {
-    const itemsCollection = collection(firestore, "item");
-    const snapshot = await getDocs(itemsCollection);
+	const itemsCollection = collection(firestore, "item");
+	const snapshot = await getDocs(itemsCollection);
 
-    const item = snapshot.docChanges().find((change) => change.doc.id === id);
+	const item = snapshot.docChanges().find((change) => change.doc.id === id);
 
-    return item ? { id: item.doc.id, ...(item.doc.data() as Omit<Item, "id">) } : null;
+	return item
+		? { id: item.doc.id, ...(item.doc.data() as Omit<Item, "id">) }
+		: null;
 };
