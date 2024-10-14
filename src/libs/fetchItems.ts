@@ -1,11 +1,14 @@
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+// fetchItems.ts
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { firestore } from "@/firebase";
+import { Item } from "./types";
+
 
 // Item型を定義
 export interface Item {
 	id: string;
 	category: string;
-	createdAt: string;
+	createdAt?: string;
 	detail: string;
 	imageUrl: string;
 	name: string;
@@ -13,17 +16,20 @@ export interface Item {
 	url?: string | undefined;
 }
 
-export const fetchItems = async (sortOrder: "newest" | "oldest" = "newest")): Promise<Item[]> => {
+
+export const fetchItems = async (
+	sortOrder: "newest" | "oldest" = "newest"
+): Promise<Item[]> => {
 	const itemsCollection = collection(firestore, "item");
-	const sortField = "createdAt";
-	const sortDirection = sortOrder === "newest" ? "desc" : "asc";
-	const q = query(itemsCollection, orderBy(sortField, sortDirection));
+	const itemsQuery = query(
+		itemsCollection,
+		orderBy("createdAt", sortOrder === "newest" ? "desc" : "asc")
+	);
+	const snapshot = await getDocs(itemsQuery);
 
-	const snapshot = await getDocs(q);
-
-	const itemsList: Item[] = snapshot.docChanges().map((change) => ({
-		id: change.doc.id,
-		...(change.doc.data() as Omit<Item, "id">),
+	const itemsList: Item[] = snapshot.docs.map((doc) => ({
+		id: doc.id,
+		...(doc.data() as Omit<Item, "id">),
 	}));
 
 	return itemsList;

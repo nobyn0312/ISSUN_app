@@ -5,30 +5,23 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import SelectCategory from "@/components/SelectCategory";
+1;
 import { fetchItems, Item } from "@/libs/fetchItems";
 import Sort from "@/components/Sort";
-import {
-	collection,
-	getDoc,
-	getDocs,
-	getFirestore,
-	orderBy,
-	query,
-} from "firebase/firestore";
-import { app } from "@/firebase";
+// import { collection, getDocs, orderBy, query } from "firebase/firestore";
+// import { app } from "@/firebase";
 
 const TopPage = () => {
 	const [loading, setLoading] = useState(true);
 	const [items, setItems] = useState<Item[]>([]);
 	const [error, setError] = useState<string | null>(null);
-	// const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
 
-	// const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
+	const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
 
 	useEffect(() => {
 		const getItems = async () => {
 			try {
-				const fetchedItems = await fetchItems();
+				const fetchedItems = await fetchItems(sortOrder);
 				console.log("取得したアイテム一覧:", fetchedItems);
 				setItems(fetchedItems);
 			} catch (error) {
@@ -40,12 +33,11 @@ const TopPage = () => {
 		};
 
 		getItems();
-	}, []);
+	}, [sortOrder]); // sortOrder が変更されたら再実行
 
-
-	const handleSortChange = () => {
-		console.log("sort")
-	}
+	const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		setSortOrder(e.target.value as "newest" | "oldest");
+	};
 
 	return (
 		<>
