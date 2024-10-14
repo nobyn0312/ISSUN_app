@@ -10,7 +10,8 @@ import UserInfo from "@/components/UserInfo";
 import SignOutButton from "@/components/SignoutButton";
 import Image from "next/image";
 // import {error } from "console";
-import { signInWithEmailAndPassword } from "firebase/auth";
+// import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
 
 const handleRegister = async (email: string, password: string) => {
 	try {
@@ -27,20 +28,20 @@ const handleRegister = async (email: string, password: string) => {
 	}
 };
 
-const handleLogin = async (email: string, password: string) => {
-	try {
-		const userCredential = await signInWithEmailAndPassword(
-			auth,
-			email,
-			password
-		);
-		const user = userCredential.user;
-		console.log("User logged in:", user);
-		// ログイン成功後の処理
-	} catch (error) {
-		console.error("Error logging in:", error);
-	}
-};
+// const handleLogin = async (email: string, password: string) => {
+// 	try {
+// 		const userCredential = await signInWithEmailAndPassword(
+// 			auth,
+// 			email,
+// 			password
+// 		);
+// 		const user = userCredential.user;
+// 		console.log("User logged in:", user);
+// 		// ログイン成功後の処理
+// 	} catch (error) {
+// 		console.error("Error logging in:", error);
+// 	}
+// };
 
 export default function Home() {
 	const [user] = useAuthState(auth);

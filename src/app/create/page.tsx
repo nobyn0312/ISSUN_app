@@ -20,7 +20,7 @@ const Page = () => {
 	const [detail, setDetail] = useState("");
 	// ファイルアップ時
 	const [file, setFile] = useState<File | null>(null);
-	const [imageUrl, setImageUrl] = useState("");
+	// const [imageUrl, setImageUrl] = useState("");
 	// ローディング時
 	const [loading, setLoading] = useState(false);
 	const [progress, setProgress] = useState(0);
@@ -61,7 +61,7 @@ const Page = () => {
 				},
 				async () => {
 					const downloadURL = await getDownloadURL(storageRef);
-					setImageUrl(downloadURL);
+					// setImageUrl(downloadURL);
 
 					// アイテムのidはuuid
 					const itemId = uuidv4();
@@ -221,7 +221,7 @@ const Page = () => {
 							</div>
 						</ContentsAreaGray>
 
-						<PrimaryButton type='submit'>アイテムを追加</PrimaryButton>
+						<PrimaryButton type='submit' style={{marginBottom:"32px"}}>アイテムを追加</PrimaryButton>
 					</form>
 				</>
 			)}

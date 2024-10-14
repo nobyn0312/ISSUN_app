@@ -3,7 +3,6 @@ import { useState } from "react";
 import styles from "./HamburgerMenu.module.css";
 import { Container } from "./Container";
 import SignOutButton from "./SignoutButton";
-import SigninButton from "./SigninButton";
 
 const HamburgerMenu: React.FC = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -52,9 +51,6 @@ const HamburgerMenu: React.FC = () => {
 							<li style={{ padding: "15px" }}>
 								<SignOutButton />
 							</li>
-							{/* <li style={{ padding: "15px",color:"black" }}>
-								<SigninButton />
-							</li> */}
 						</ul>
 					</nav>
 				</div>

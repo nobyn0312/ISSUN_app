@@ -1,8 +1,6 @@
 // fetchItems.ts
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { firestore } from "@/firebase";
-import { Item } from "./types";
-
 
 // Item型を定義
 export interface Item {
@@ -15,6 +13,7 @@ export interface Item {
 	price: number;
 	url?: string | undefined;
 }
+
 
 
 export const fetchItems = async (

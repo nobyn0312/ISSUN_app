@@ -5,11 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import SelectCategory from "@/components/SelectCategory";
-1;
 import { fetchItems, Item } from "@/libs/fetchItems";
 import Sort from "@/components/Sort";
-// import { collection, getDocs, orderBy, query } from "firebase/firestore";
-// import { app } from "@/firebase";
 
 const TopPage = () => {
 	const [loading, setLoading] = useState(true);
@@ -38,6 +35,28 @@ const TopPage = () => {
 	const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setSortOrder(e.target.value as "newest" | "oldest");
 	};
+
+	if (loading) {
+		return (
+			<>
+				<Header />
+				<main style={{ padding: "24px" }}>
+					<p>Loading...</p>
+				</main>
+			</>
+		);
+	}
+
+	if (error) {
+		return (
+			<>
+				<Header />
+				<main style={{ padding: "24px" }}>
+					<p>{error}</p>
+				</main>
+			</>
+		);
+	}
 
 	return (
 		<>

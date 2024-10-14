@@ -28,7 +28,7 @@ export const PrimaryButton: React.FC<ButtonProps> = ({
 	children,
 	className,
 	style,
-	type = "button",
+	// type = "button",
 
 	position = "center",
 }) => {
@@ -61,7 +61,7 @@ export const SecondaryButton: React.FC<ButtonProps> = ({
 	children,
 	className,
 	style,
-	type = "button",
+	// type = "button",
 
 	position = "center",
 }) => {

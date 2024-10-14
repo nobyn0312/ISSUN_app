@@ -1,7 +1,7 @@
 "use client"; // クライアントコンポーネント
 
 import { useState } from "react";
-import { auth, firestore } from "@/firebase"; // Firebaseのインポート
+import { firestore } from "@/firebase"; // Firebaseのインポート
 import { updateDoc, doc } from "firebase/firestore"; // Firestore関連のインポート
 import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
