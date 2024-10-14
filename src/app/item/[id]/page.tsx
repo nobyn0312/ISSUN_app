@@ -2,7 +2,7 @@
 
 // アイテム詳細ページ
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import { fetchItemDetail } from "@/libs/fetchItemDetail";
 import Header from "@/components/Header";
@@ -76,7 +76,9 @@ const ItemDetail = ({ params }: { params: { id: string } }) => {
 					</p>
 				</section>
 
-				<Review itemId={item.id} />
+				<Suspense>
+					<Review itemId={item.id} />
+				</Suspense>
 
 				<PrimaryButton style={{ margin: "0 auto" }}>
 					<Link

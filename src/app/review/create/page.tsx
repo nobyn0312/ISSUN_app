@@ -1,14 +1,14 @@
 "use client";
 
+import { Suspense } from "react";
 import Header from "@/components/Header";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { firestore } from "@/firebase";
 import { useAuthContext } from "@/app/context/AuthContext";
 import { useSearchParams } from "next/navigation";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
-
 
 const ReviewCreate = () => {
 	const { user, username } = useAuthContext();
@@ -60,90 +60,93 @@ const ReviewCreate = () => {
 	return (
 		<>
 			<Header />
-			<Suspense fallback={<div>Loading...</div>}>
-				<div style={{ padding: "16px" }}>
-					<p style={{ fontSize: "16px", fontWeight: "bold", color: "#FF5E2A" }}>
-						Add review
-					</p>
-					<h2
-						style={{ fontSize: "28px", fontWeight: "bold", color: "#FF5E2A" }}
-					>
-						レビューの投稿
-					</h2>
-				</div>
+			<div style={{ padding: "16px" }}>
+				<p style={{ fontSize: "16px", fontWeight: "bold", color: "#FF5E2A" }}>
+					Add review
+				</p>
+				<h2 style={{ fontSize: "28px", fontWeight: "bold", color: "#FF5E2A" }}>
+					レビューの投稿
+				</h2>
+			</div>
 
-				<form onSubmit={handleSubmit}>
-					<ContentsAreaOrange style={{ margin: "0 16px 32px" }}>
-						<div style={{ padding: "16px 0px 0" }}>
-							<label htmlFor='title'>タイトル</label>
-							<br />
-							<input
-								type='text'
-								id='title'
-								value={title}
-								onChange={(e) => setTitle(e.target.value)}
-								style={{ width: "100%", padding: "8px", borderRadius: "6px" }}
-							/>
-						</div>
+			<form onSubmit={handleSubmit}>
+				<ContentsAreaOrange style={{ margin: "0 16px 32px" }}>
+					<div style={{ padding: "16px 0px 0" }}>
+						<label htmlFor='title'>タイトル</label>
+						<br />
+						<input
+							type='text'
+							id='title'
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
+							style={{ width: "100%", padding: "8px", borderRadius: "6px" }}
+						/>
+					</div>
 
-						<div style={{ padding: "16px 0px 0" }}>
-							<label htmlFor='rate'>評価</label>
-							<br />
-							<select
-								id='rate'
-								value={rate}
-								onChange={(e) => setRate(e.target.value)}
-								style={{ width: "100%", padding: "8px", borderRadius: "6px" }}
-							>
-								<option value=''>選択してください</option>
-								<option value='1'>★☆☆☆☆</option>
-								<option value='2'>★★☆☆☆</option>
-								<option value='3'>★★★☆☆</option>
-								<option value='4'>★★★★☆</option>
-								<option value='5'>★★★★★</option>
-							</select>
-						</div>
+					<div style={{ padding: "16px 0px 0" }}>
+						<label htmlFor='rate'>評価</label>
+						<br />
+						<select
+							id='rate'
+							value={rate}
+							onChange={(e) => setRate(e.target.value)}
+							style={{ width: "100%", padding: "8px", borderRadius: "6px" }}
+						>
+							<option value=''>選択してください</option>
+							<option value='1'>★☆☆☆☆</option>
+							<option value='2'>★★☆☆☆</option>
+							<option value='3'>★★★☆☆</option>
+							<option value='4'>★★★★☆</option>
+							<option value='5'>★★★★★</option>
+						</select>
+					</div>
 
-						<div style={{ padding: "16px 0px 0" }}>
-							<label htmlFor='size'>購入サイズ</label>
-							<br />
-							<select
-								id='size'
-								value={size}
-								onChange={(e) => setSize(e.target.value)}
-								style={{ width: "100%", padding: "8px", borderRadius: "6px" }}
-							>
-								<option value=''>選択してください</option>
-								<option value='XS'>XS</option>
-								<option value='S'>S</option>
-								<option value='M'>M</option>
-								<option value='L'>L</option>
-								<option value='XL'>XL以上</option>
-							</select>
-						</div>
+					<div style={{ padding: "16px 0px 0" }}>
+						<label htmlFor='size'>購入サイズ</label>
+						<br />
+						<select
+							id='size'
+							value={size}
+							onChange={(e) => setSize(e.target.value)}
+							style={{ width: "100%", padding: "8px", borderRadius: "6px" }}
+						>
+							<option value=''>選択してください</option>
+							<option value='XS'>XS</option>
+							<option value='S'>S</option>
+							<option value='M'>M</option>
+							<option value='L'>L</option>
+							<option value='XL'>XL以上</option>
+						</select>
+					</div>
 
-						<div style={{ padding: "16px 0px 0" }}>
-							<label htmlFor='comment'>コメント</label>
-							<br />
-							<textarea
-								id='comment'
-								value={comment}
-								onChange={(e) => setComment(e.target.value)}
-								style={{
-									width: "100%",
-									height: "250px",
-									padding: "8px",
-									borderRadius: "6px",
-								}}
-							/>
-						</div>
-					</ContentsAreaOrange>
+					<div style={{ padding: "16px 0px 0" }}>
+						<label htmlFor='comment'>コメント</label>
+						<br />
+						<textarea
+							id='comment'
+							value={comment}
+							onChange={(e) => setComment(e.target.value)}
+							style={{
+								width: "100%",
+								height: "250px",
+								padding: "8px",
+								borderRadius: "6px",
+							}}
+						/>
+					</div>
+				</ContentsAreaOrange>
 
-					<PrimaryButton type='submit'>レビューを投稿</PrimaryButton>
-				</form>
-			</Suspense>
+				<PrimaryButton type='submit'>レビューを投稿</PrimaryButton>
+			</form>
 		</>
 	);
 };
 
-export default ReviewCreate;
+// useSearchParamsをSuspenseでラップするために、以下のように外部コンポーネントを作成することもできます
+const ReviewCreateWrapper = () => (
+	<Suspense fallback={<div>Loading...</div>}>
+		<ReviewCreate />
+	</Suspense>
+);
+
+export default ReviewCreateWrapper;

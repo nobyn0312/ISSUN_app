@@ -1,7 +1,8 @@
 "use client";
 
+import { Suspense } from "react";
 import Header from "@/components/Header";
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore"; // update用に追加
 import { firestore } from "@/firebase";
 import { useAuthContext } from "@/app/context/AuthContext";
@@ -9,11 +10,10 @@ import { useSearchParams } from "next/navigation";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
 
-const EditReview = () => {
+const ReviewEdit = () => {
 	const { user } = useAuthContext();
 	const searchParams = useSearchParams();
-	const reviewId = searchParams.get("reviewId"); // 既存のレビューIDを取得
-
+	const reviewId = searchParams.get("reviewId");
 	const [title, setTitle] = useState("");
 	const [rate, setRate] = useState("");
 	const [size, setSize] = useState("");
@@ -78,7 +78,6 @@ const EditReview = () => {
 	return (
 		<>
 			<Header />
-			<Suspense>
 				<div style={{ padding: "16px" }}>
 					<p style={{ fontSize: "16px", fontWeight: "bold", color: "#FF5E2A" }}>
 						Edit review
@@ -159,9 +158,15 @@ const EditReview = () => {
 
 					<PrimaryButton type='submit'>レビューを更新</PrimaryButton>
 				</form>
-			</Suspense>
 		</>
 	);
 };
 
-export default EditReview;
+// useSearchParamsをSuspenseでラップするために、以下のように外部コンポーネントを作成することもできます
+const ReviewEditWrapper = () => (
+	<Suspense fallback={<div>Loading...</div>}>
+		<ReviewEdit />
+	</Suspense>
+);
+
+export default ReviewEditWrapper;
