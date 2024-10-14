@@ -3,7 +3,7 @@
 import SigninButton from "@/components/SigninButton";
 import { auth } from "@/firebase";
 
-import {createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import UserInfo from "@/components/UserInfo";
@@ -96,6 +96,7 @@ export default function Home() {
 											value={password}
 											onChange={(e) => setPassword(e.target.value)}
 											required
+											autoComplete='current-password'
 										/>
 									</div>
 									<button type='submit'>新規登録</button>

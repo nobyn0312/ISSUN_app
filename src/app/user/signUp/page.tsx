@@ -123,6 +123,7 @@ export default function SignUp() {
 									value={password}
 									onChange={(e) => setPassword(e.target.value)}
 									required
+									autoComplete='current-password'
 									style={{
 										width: "100%",
 										padding: "8px",

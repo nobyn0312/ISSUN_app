@@ -51,92 +51,90 @@ export default function SignIn() {
 			<Header />
 			<div style={{ padding: "16px" }}>
 				<section>
-						{user ? (
-							<>
-								<UserInfo />
-								<SignOutButton />
-							</>
-						) : (
-							<>
-								<div style={{ padding: "16px 0 16px" }}>
-									<p
-										style={{
-											fontSize: "16px",
-											fontWeight: "bold",
-											color: "#FF5E2A",
-										}}
-									>
-										Sign in
-									</p>
-									<h2
-										style={{
-											fontSize: "28px",
-											fontWeight: "bold",
-											color: "#FF5E2A",
-										}}
-									>
-										ログイン
-									</h2>
-								</div>
-
-								<form onSubmit={onSubmit}>
-									<ContentsAreaOrange style={{ marginBottom: "32px" }}>
-										<div>
-											<label htmlFor='email'>メールアドレス</label>
-											<br />
-											<input
-												type='email'
-												id='email'
-												value={email}
-												onChange={(e) => setEmail(e.target.value)}
-												required
-												style={{
-													width: "100%",
-													padding: "8px",
-													borderRadius: "6px",
-												}}
-											/>
-										</div>
-										<div
-											style={{ padding: "16px 0px 0", marginBottom: "32px" }}
-										>
-											<label htmlFor='password'>パスワード:</label>
-											<br />
-											<input
-												type='password'
-												id='password'
-												value={password}
-												onChange={(e) => setPassword(e.target.value)}
-												required
-												style={{
-													width: "100%",
-													padding: "8px",
-													borderRadius: "6px",
-												}}
-											/>
-										</div>
-									</ContentsAreaOrange>
-
-									<PrimaryButton style={{ marginBottom: "32px" }} type='submit'>
-										ログイン
-									</PrimaryButton>
-
-									<button type="submit">ログイン</button>
-								</form>
+					{user ? (
+						<>
+							<UserInfo />
+							<SignOutButton />
+						</>
+					) : (
+						<>
+							<div style={{ padding: "16px 0 16px" }}>
 								<p
-									className='pt-4 pb-4 text-center'
 									style={{
-										borderBottom: "2px solid #fff",
-										marginBottom: "16px",
+										fontSize: "16px",
+										fontWeight: "bold",
+										color: "#FF5E2A",
 									}}
 								>
-									Google認証の方はこちら
+									Sign in
 								</p>
+								<h2
+									style={{
+										fontSize: "28px",
+										fontWeight: "bold",
+										color: "#FF5E2A",
+									}}
+								>
+									ログイン
+								</h2>
+							</div>
 
-								<SigninButton />
-							</>
-						)}
+							<form onSubmit={onSubmit}>
+								<ContentsAreaOrange style={{ marginBottom: "32px" }}>
+									<div>
+										<label htmlFor='email'>メールアドレス</label>
+										<br />
+										<input
+											type='email'
+											id='email'
+											value={email}
+											onChange={(e) => setEmail(e.target.value)}
+											required
+											style={{
+												width: "100%",
+												padding: "8px",
+												borderRadius: "6px",
+											}}
+										/>
+									</div>
+									<div style={{ padding: "16px 0px 0", marginBottom: "32px" }}>
+										<label htmlFor='password'>パスワード:</label>
+										<br />
+										<input
+											type='password'
+											id='password'
+											value={password}
+											onChange={(e) => setPassword(e.target.value)}
+											required
+											autoComplete='current-password'
+											style={{
+												width: "100%",
+												padding: "8px",
+												borderRadius: "6px",
+											}}
+										/>
+									</div>
+								</ContentsAreaOrange>
 
+								<PrimaryButton style={{ marginBottom: "32px" }} type='submit'>
+									ログイン
+								</PrimaryButton>
+
+								<button type='submit'>ログイン</button>
+							</form>
+							<p
+								className='pt-4 pb-4 text-center'
+								style={{
+									borderBottom: "2px solid #fff",
+									marginBottom: "16px",
+								}}
+							>
+								Google認証の方はこちら
+							</p>
+
+							<SigninButton />
+						</>
+					)}
 				</section>
 			</div>
 		</>
