@@ -75,7 +75,7 @@ const TopPage = () => {
 				</div>
 				<Sort className='mb-4' onChange={handleSortChange} />{" "}
 				{/* onChangeを渡す */}
-				<SelectCategory className='mb-4' />
+				{/* <SelectCategory className='mb-4' /> */}
 				<section>
 					<ul className='flex justify-between flex-wrap'>
 						{items.map((item) => (
