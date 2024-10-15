@@ -7,3 +7,30 @@
 		width: 48%;
 	}
 }
+
+
+.msg_wrap{
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.msg_wrap h1{
+  width: 40%;
+}
+.msg{
+  width: 48%;
+}
+
+@media screen and (max-width:768px){
+.msg_wrap{
+  display: block;
+  margin: 0 auto;
+}
+.msg_wrap h1 img{
+  margin: 0 auto;
+}
+.msg_wrap h1,.msg{
+  width: 100%;
+}
+}

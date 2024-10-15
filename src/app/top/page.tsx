@@ -63,7 +63,7 @@ const TopPage = () => {
 		<>
 			<Header />
 			<main style={{ padding: "24px" }}>
-				<div>
+				<div className={styles.msg_wrap}>
 					<h1>
 						<Image
 							src='/images/top_logo.svg'
@@ -72,23 +72,23 @@ const TopPage = () => {
 							alt='BOXロゴ'
 							style={{ marginBottom: "32px" }}
 						/>
-						<div>
-							<p style={{ textAlign: "center", lineHeight: "1.75" }}>
-								ISSUNは、低身長でもファッションを楽しむためのアプリ。
-								<br />
-								ユニクロ、ZOZOTOWN、様々なアパレルの着用レビューを登録して、共有し、ファッションの幅を広げよう。
-							</p>
-							<p
-								style={{
-									textAlign: "center",
-									lineHeight: "1.75",
-									padding: "16px 0 16px",
-								}}
-							>
-								小さくても、一寸法師のように強くありたい
-							</p>
-						</div>
 					</h1>
+					<div className={styles.msg}>
+						<p style={{ textAlign: "center", lineHeight: "1.75" }}>
+							ISSUNは、低身長でもファッションを楽しむためのアプリ。
+							<br />
+							ユニクロ、ZOZOTOWN、様々なアパレルの着用レビューを登録して、共有し、ファッションの幅を広げよう。
+						</p>
+						<p
+							style={{
+								textAlign: "center",
+								lineHeight: "1.75",
+								padding: "16px 0 16px",
+							}}
+						>
+							小さくても、一寸法師のように強くありたい
+						</p>
+					</div>
 				</div>
 				<Sort className='mb-4' onChange={handleSortChange} />{" "}
 				<section>
