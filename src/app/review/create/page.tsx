@@ -136,7 +136,7 @@ const ReviewCreate = () => {
 					</div>
 				</ContentsAreaOrange>
 
-				<PrimaryButton type='submit'>レビューを投稿</PrimaryButton>
+				<PrimaryButton type='submit' style={{marginBottom:"32px"}}>レビューを投稿</PrimaryButton>
 			</form>
 		</>
 	);
