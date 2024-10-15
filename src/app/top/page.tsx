@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
-import SelectCategory from "@/components/SelectCategory";
+// import SelectCategory from "@/components/SelectCategory";
 import { fetchItems, Item } from "@/libs/fetchItems";
 import Sort from "@/components/Sort";
 
@@ -71,10 +71,25 @@ const TopPage = () => {
 							alt='BOXロゴ'
 							style={{ marginBottom: "32px" }}
 						/>
+						<div>
+							<p style={{ textAlign: "center", lineHeight: "1.75" }}>
+								ISSUNは、低身長でもファッションを楽しむためのアプリ。
+								<br />
+								ユニクロ、ZOZOTOWN、様々なアパレルの着用レビューを登録して、共有し、ファッションの幅を広げよう。
+							</p>
+							<p
+								style={{
+									textAlign: "center",
+									lineHeight: "1.75",
+									padding: "16px 0 16px",
+								}}
+							>
+								小さくても、一寸法師のように強くありたい
+							</p>
+						</div>
 					</h1>
 				</div>
 				<Sort className='mb-4' onChange={handleSortChange} />{" "}
-				{/* onChangeを渡す */}
 				{/* <SelectCategory className='mb-4' /> */}
 				<section>
 					<ul className='flex justify-between flex-wrap'>
