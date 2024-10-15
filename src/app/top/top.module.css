@@ -1,0 +1,9 @@
+.item_wrap li {
+	width: 28%;
+}
+
+@media screen and (max-width: 768px) {
+	.item_wrap li {
+		width: 48%;
+	}
+}

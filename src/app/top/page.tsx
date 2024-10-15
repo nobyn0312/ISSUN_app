@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 // import SelectCategory from "@/components/SelectCategory";
 import { fetchItems, Item } from "@/libs/fetchItems";
 import Sort from "@/components/Sort";
+import styles from "./top.module.css"; // .module.cssファイルをインポート
 
 const TopPage = () => {
 	const [loading, setLoading] = useState(true);
@@ -91,9 +92,9 @@ const TopPage = () => {
 				</div>
 				<Sort className='mb-4' onChange={handleSortChange} />{" "}
 				<section>
-					<ul className='flex justify-between flex-wrap'>
+					<ul className={`flex justify-between flex-wrap ${styles.item_wrap}`}>
 						{items.map((item) => (
-							<li key={item.id} style={{ marginBottom: "20px", width: "48%" }}>
+							<li key={item.id} style={{ marginBottom: "20px" }}>
 								<Link href={`/item/${item.id}`}>
 									<div
 										style={{
