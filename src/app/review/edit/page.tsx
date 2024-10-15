@@ -156,7 +156,7 @@ const ReviewEdit = () => {
 						</div>
 					</ContentsAreaOrange>
 
-					<PrimaryButton type='submit'>レビューを更新</PrimaryButton>
+					<PrimaryButton type='submit' style={{marginBottom:"32px"}}>レビューを更新</PrimaryButton>
 				</form>
 		</>
 	);

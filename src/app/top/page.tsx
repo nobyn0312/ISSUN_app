@@ -30,7 +30,7 @@ const TopPage = () => {
 		};
 
 		getItems();
-	}, [sortOrder]); // sortOrder が変更されたら再実行
+	}, [sortOrder]);
 
 	const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setSortOrder(e.target.value as "newest" | "oldest");
@@ -90,7 +90,6 @@ const TopPage = () => {
 					</h1>
 				</div>
 				<Sort className='mb-4' onChange={handleSortChange} />{" "}
-				{/* <SelectCategory className='mb-4' /> */}
 				<section>
 					<ul className='flex justify-between flex-wrap'>
 						{items.map((item) => (

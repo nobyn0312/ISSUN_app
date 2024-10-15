@@ -60,7 +60,7 @@ const Page = () => {
 					</p>
 				</ContentsAreaOrange>
 			</div>
-			<PrimaryButton>
+			<PrimaryButton style={{marginBottom:"32px"}}>
 				<Link style={{ display: "block" }} href={"/user/edit/"}>
 					ユーザー情報を更新する
 				</Link>

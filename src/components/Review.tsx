@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { firestore } from "@/firebase";
+import { firestore, auth } from "@/firebase"; // authを追加
 import {
 	collection,
 	query,
@@ -11,8 +11,11 @@ import {
 	Timestamp,
 	deleteDoc,
 	doc,
+	getDoc,
 } from "firebase/firestore";
 import { useRouter } from "next/navigation";
+// ログイン中のユーザー情報を取得できる
+import { onAuthStateChanged } from "firebase/auth";
 
 type ReviewProps = {
 	itemId: string;
@@ -30,9 +33,28 @@ type ReviewData = {
 };
 
 const Review = ({ itemId }: ReviewProps) => {
-	console.log("アイテムID: ", itemId);
 	const [reviews, setReviews] = useState<ReviewData[]>([]);
+	// 身長
+	const [height, setHeight] = useState<number | null>(null); // 身長を保存するstate
 	const router = useRouter();
+
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				const userId = user.uid;
+				const profileDocRef = doc(firestore, "profile", userId);
+				const profileDoc = await getDoc(profileDocRef);
+
+				if (profileDoc.exists()) {
+					const profileData = profileDoc.data();
+					setHeight(profileData.height);
+				}
+			} else {
+				console.log("ログインしてない");
+			}
+		});
+		return () => unsubscribe();
+	}, []);
 
 	// レビュー取得
 	const fetchReviews = useCallback(async () => {
@@ -62,7 +84,7 @@ const Review = ({ itemId }: ReviewProps) => {
 	// 初回レンダリング時レビュー取得
 	useEffect(() => {
 		fetchReviews();
-	}, [fetchReviews]); // fetchReviewsを依存性に追加
+	}, [fetchReviews]);
 
 	// レビュー編集ボタン
 	const handleEdit = (reviewId: string) => {
@@ -114,7 +136,7 @@ const Review = ({ itemId }: ReviewProps) => {
 			</div>
 
 			{reviews.map((review, index) => {
-				const formatedDate = formatDate(review.createdAt.toDate());
+				const formattedDate = formatDate(review.createdAt.toDate());
 				return (
 					<div
 						key={index}
@@ -155,7 +177,7 @@ const Review = ({ itemId }: ReviewProps) => {
 							</div>
 						</div>
 						<p style={{ fontWeight: "light", marginBottom: "8px" }}>
-							{formatedDate}
+							{formattedDate}
 						</p>
 
 						<p style={{ color: "#FF5E2A", fontSize: "20px" }}>
@@ -182,9 +204,14 @@ const Review = ({ itemId }: ReviewProps) => {
 							{review.comment}
 						</p>
 
-						<p>
-							<small>{review.username}</small>
-						</p>
+						<div className="flex gap-2">
+							<p>
+								<small>{review.username}</small>
+							</p>
+							<p>
+								<small>{height}cm</small>
+							</p>
+						</div>
 					</div>
 				);
 			})}
