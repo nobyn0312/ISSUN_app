@@ -95,12 +95,15 @@ const TopPage = () => {
 						{items.map((item) => (
 							<li key={item.id} style={{ marginBottom: "20px", width: "48%" }}>
 								<Link href={`/item/${item.id}`}>
-									<Image
-										src={item.imageUrl}
-										width={300}
-										height={200}
-										alt={item.name}
-										className='rounded-md'
+									<div
+										style={{
+											backgroundImage: `url(${item.imageUrl})`,
+											backgroundSize: "cover",
+											backgroundPosition: "center",
+											width: "100%",
+											height: "260px",
+											borderRadius: "8px",
+										}}
 									/>
 								</Link>
 								<div style={{ marginTop: "10px" }}>
