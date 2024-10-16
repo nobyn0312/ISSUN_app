@@ -102,7 +102,7 @@ const TopPage = () => {
 											backgroundSize: "cover",
 											backgroundPosition: "center",
 											width: "100%",
-											height: "260px",
+											height: "280px",
 											borderRadius: "8px",
 										}}
 									/>
