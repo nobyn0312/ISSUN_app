@@ -28,20 +28,6 @@ const handleRegister = async (email: string, password: string) => {
 	}
 };
 
-// const handleLogin = async (email: string, password: string) => {
-// 	try {
-// 		const userCredential = await signInWithEmailAndPassword(
-// 			auth,
-// 			email,
-// 			password
-// 		);
-// 		const user = userCredential.user;
-// 		console.log("User logged in:", user);
-// 		// ログイン成功後の処理
-// 	} catch (error) {
-// 		console.error("Error logging in:", error);
-// 	}
-// };
 
 export default function Home() {
 	const [user] = useAuthState(auth);
