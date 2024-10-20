@@ -45,10 +45,12 @@ Googleでのサインイン/サインアップも可能
 
 ## 使用技術
 ### ▼ Front End
-Next.js
-TypeScript
-CSS
-Tailwind.css 一部の UI へ補助的に利用  
+
+- Next.js
+- TypeScript
+- CSS
+- Tailwind.css 一部の UI へ補助的に利用
+- uid
 ### ▼ Back End / DB
 Firebase
 ### ▼ デプロイ
