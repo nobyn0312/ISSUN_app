@@ -3,15 +3,17 @@
 import { auth } from "@/firebase";
 
 function SignOutButton() {
-  const handleSignOut = () => {
-    auth.signOut().then(() => {
-      window.location.reload();
-    });
-  };
+	const handleSignOut = () => {
+		auth.signOut().then(() => {
+			window.location.reload();
+		});
+	};
 
-  return (
+	return (
 		<>
-			<button onClick={handleSignOut} className="text-black">サインアウト</button>
+			<button onClick={handleSignOut} className='text-black'>
+				サインアウト
+			</button>
 		</>
 	);
 }
