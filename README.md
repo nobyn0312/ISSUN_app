@@ -48,7 +48,7 @@ Googleでのサインイン/サインアップも可能
 Next.js
 TypeScript
 CSS
-Tailwind.css 一部の UI へ補助的に利用
+Tailwind.css 一部の UI へ補助的に利用  
 ### ▼ Back End / DB
 Firebase
 ### ▼ デプロイ
