@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## アプリ名称
 
-## Getting Started
+ISSUN
 
-First, run the development server:
+## アプリ概要
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+ファッションアプリ。
+低身長向けにレビューを記入することができる。また、ZOZOTOWNやユニクロなど、様々なサイトのアパレルを個別ではなく一堂に会することができる。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## URL
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+https://issun-app.vercel.app/top
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 制作期間
 
-## Learn More
+約 1 ヶ月間
 
-To learn more about Next.js, take a look at the following resources:
+## 画面構成
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ▼ トップページ【/top/page.tsx】
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+登録されている洋服の一覧が表示されます。
+各洋服の詳細への遷移ができ、ソートが可能です。
 
-## Deploy on Vercel
+### ▼アイテムの詳細ページ【/item/[id]/page.tsx】
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+洋服(アイテム)の詳細ページです。
+登録されたアイテム(洋服)の詳細を確認する事ができます。
+アイテムについてのレビューの投稿、閲覧、販売サイトへのリンクを見る事ができます。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### ▼ サインイン【/user/signIn/page.tsx】
+
+アプリへの新規登録のためのページ。
+Googleでのサインイン/サインアップも可能
+※サインイン済みの場合はトップページへリダイレクトされます。
+
+### ▼ ユーザー情報【/user/info/page.tsx】
+
+ユーザー名、身長・体型の確認ができ、変更したい場合はeditページへ遷移します。
+
+### ▼ アイテムの登録 【/create/page.tsx】
+
+新しくアイテムを追加する事ができます。
+アイテムの名前、価格、説明、画像、販売サイトへのURLを登録できます。
+
+## 使用技術
+### ▼ Front End
+Next.js
+TypeScript
+CSS
+Tailwind.css 一部の UI へ補助的に利用
+### ▼ Back End / DB
+Firebase
+### ▼ デプロイ
+Vercel
