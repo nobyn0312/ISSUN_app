@@ -28,7 +28,6 @@ const handleRegister = async (email: string, password: string) => {
 	}
 };
 
-
 export default function Home() {
 	const [user] = useAuthState(auth);
 

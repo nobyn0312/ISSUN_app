@@ -11,7 +11,6 @@ import { auth, firestore } from "@/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { User } from "firebase/auth";
 
-
 interface UserProfile {
 	username: string | null;
 	userId: string | null;
@@ -19,7 +18,6 @@ interface UserProfile {
 	height: number | null;
 	shape: string | null;
 }
-
 
 interface AuthContextType {
 	user: User | null;
@@ -31,7 +29,6 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 	const [user, setUser] = useState<User | null>(null);

@@ -16,8 +16,8 @@ const Sort: React.FC<SortProps> = ({ className, onChange }) => {
 				onChange={onChange} // onChangeの名前を修正
 				className='text-black p-2 rounded-md border'
 			>
-				<option value='newest'>新しい順</option>
-				<option value='oldest'>古い順</option>
+				<option value='newest'>新着順</option>
+				<option value='oldest'>おすすめ順</option>
 			</select>
 		</div>
 	);

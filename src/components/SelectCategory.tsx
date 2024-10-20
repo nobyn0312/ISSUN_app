@@ -6,9 +6,8 @@ interface SelectCategoryProps {
 	className?: string;
 }
 
-
-const SelectCategory: React.FC<SelectCategoryProps> = ({ className}) => {
-  return (
+const SelectCategory: React.FC<SelectCategoryProps> = ({ className }) => {
+	return (
 		<>
 			<div className={`flex justify-end ${className}`}>
 				<select
