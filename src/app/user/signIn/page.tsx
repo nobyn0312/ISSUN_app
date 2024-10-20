@@ -23,7 +23,7 @@ const handleLogin = async (email: string, password: string) => {
 		console.log("User logged in:", user);
 		// ログイン成功後の処理
 	} catch (error) {
-		alert("パスワード違う")
+		alert("パスワードが違います");
 		console.error("Error logging in:", error);
 	}
 };
