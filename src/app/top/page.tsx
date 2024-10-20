@@ -20,11 +20,9 @@ const TopPage = () => {
 		const getItems = async () => {
 			try {
 				const fetchedItems = await fetchItems(sortOrder);
-				console.log("取得したアイテム一覧:", fetchedItems);
 				setItems(fetchedItems);
 			} catch (error) {
 				setError("データ取得失敗");
-				console.error("エラー", error);
 			} finally {
 				setLoading(false);
 			}

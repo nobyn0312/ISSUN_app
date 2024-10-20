@@ -25,18 +25,15 @@ function SigninButton() {
 						height: 0,
 						shape: "",
 					});
-					console.log(
-						"新規ユーザーのプロフィール情報をFirestoreに保存しました:",
-						user.displayName
-					);
+					console.log(user.displayName);
 				} else {
 					console.log(
-						"既存ユーザーのデータが存在します。Firestoreへの保存はスキップされました。"
+						"既に存在します"
 					);
 				}
 			}
 		} catch (error) {
-			console.error("Google サインインエラー:", error);
+			console.error("Google サインインエラー:");
 		}
 	};
 

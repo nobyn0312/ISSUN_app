@@ -48,8 +48,6 @@ const Review = ({ itemId }: ReviewProps) => {
 					const profileData = profileDoc.data();
 					setHeight(profileData.height);
 				}
-			} else {
-				console.log("ログインしていません");
 			}
 		});
 		return () => unsubscribe();
@@ -76,7 +74,7 @@ const Review = ({ itemId }: ReviewProps) => {
 			}));
 			setReviews(fetchedReviews);
 		} catch (error) {
-			console.error("Error fetching reviews: ", error);
+			console.error(error);
 		}
 	}, [itemId]);
 

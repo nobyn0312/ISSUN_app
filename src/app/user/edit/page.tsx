@@ -28,7 +28,7 @@ const handleUpdateProfile = async (
 
 		console.log("User profile updated:", username, age, height, shape);
 	} catch (error) {
-		console.error("Error updating profile:", error);
+		console.error(error);
 	}
 };
 

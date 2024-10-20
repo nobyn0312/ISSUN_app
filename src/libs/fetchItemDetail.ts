@@ -7,8 +7,8 @@ export const fetchItemDetail = (id: string): Promise<Item | null> => {
 			const item = items.find((item) => item.id === id) || null;
 			return item; // 見つからない場合は null を返す
 		})
-		.catch((error) => {
-			console.error("Error fetching item: ", error);
+		.catch(() => {
+			console.error("アイテムフェッチエラー:");
 			return null;
 		});
 };

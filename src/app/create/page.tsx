@@ -26,11 +26,9 @@ const Page = () => {
 		}
 	};
 
-	// フォーム送信時の処理
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!file) {
-			console.error("No file selected");
 			return;
 		}
 
@@ -48,7 +46,7 @@ const Page = () => {
 					setProgress(progressPercent);
 				},
 				(err) => {
-					console.error("Upload failed", err);
+					console.error(err);
 					setLoading(false);
 				},
 				async () => {
@@ -77,12 +75,10 @@ const Page = () => {
 					setDetail("");
 					setFile(null);
 					setLoading(false);
-
-					console.log("Product added to Firestore!");
 				}
 			);
-		} catch (e) {
-			console.error("Error adding document: ", e);
+		} catch (err) {
+			console.error(err);
 			setLoading(false);
 		}
 	};
@@ -110,7 +106,7 @@ const Page = () => {
 					</div>
 
 					<form onSubmit={handleSubmit}>
-						<ContentsAreaGray style={{margin:"0 16px 32px"}}>
+						<ContentsAreaGray style={{ margin: "0 16px 32px" }}>
 							<div style={{ padding: "16px 0px 0" }}>
 								<label>アイテム名:</label>
 								<br />
@@ -148,7 +144,7 @@ const Page = () => {
 								<br />
 								<input
 									type='file'
-									onChange={handleFileChange} // ファイル選択時に一時保存
+									onChange={handleFileChange}
 									accept='.png, .jpeg,.jpg, .webp'
 									required
 									style={{ borderRadius: "6px" }}
@@ -204,7 +200,9 @@ const Page = () => {
 							</div>
 						</ContentsAreaGray>
 
-						<PrimaryButton type='submit' style={{marginBottom:"32px"}}>アイテムを追加</PrimaryButton>
+						<PrimaryButton type='submit' style={{ marginBottom: "32px" }}>
+							アイテムを追加
+						</PrimaryButton>
 					</form>
 				</>
 			)}

@@ -52,7 +52,7 @@ const ReviewCreate = () => {
 			setSize("");
 			setComment("");
 		} catch (error) {
-			console.error("レビューの送信に失敗しました", error);
+			console.error(error);
 			alert("レビューの送信に失敗しました");
 		}
 	};
@@ -136,7 +136,9 @@ const ReviewCreate = () => {
 					</div>
 				</ContentsAreaOrange>
 
-				<PrimaryButton type='submit' style={{marginBottom:"32px"}}>レビューを投稿</PrimaryButton>
+				<PrimaryButton type='submit' style={{ marginBottom: "32px" }}>
+					レビューを投稿
+				</PrimaryButton>
 			</form>
 		</>
 	);

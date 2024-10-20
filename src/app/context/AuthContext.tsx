@@ -59,24 +59,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 						height: userData.height || null,
 						shape: userData.shape || null,
 					});
-
-					console.log(
-						"ログイン中:",
-						currentUser.email,
-						"ユーザーネーム:",
-						userData.username,
-						"年齢:",
-						userData.age,
-						"身長:",
-						userData.height,
-						"体型:",
-						userData.shape,
-						"Firestore のfirestore profileコレクションID:",
-						userData.userId || authUid
-					);
-				} else {
-					console.error("firestore profileコレクションにidがなし");
-					console.log("Authentication の uid:", authUid);
 				}
 			} else {
 				// ログアウト
@@ -88,7 +70,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 					height: null,
 					shape: null,
 				});
-				console.log("ログインしていません");
 			}
 		});
 

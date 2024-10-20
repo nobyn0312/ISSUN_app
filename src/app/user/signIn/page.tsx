@@ -20,11 +20,11 @@ const handleLogin = async (email: string, password: string) => {
 			password
 		);
 		const user = userCredential.user;
-		console.log("User logged in:", user);
+		console.log(user);
 		// ログイン成功後の処理
 	} catch (error) {
 		alert("パスワードが違います");
-		console.error("Error logging in:", error);
+		console.error(error);
 	}
 };
 

@@ -9,8 +9,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import UserInfo from "@/components/UserInfo";
 import SignOutButton from "@/components/SignoutButton";
 import Image from "next/image";
-// import {error } from "console";
-// import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 
 const handleRegister = async (email: string, password: string) => {
@@ -21,7 +19,7 @@ const handleRegister = async (email: string, password: string) => {
 			password
 		);
 		const user = userCredential.user;
-		console.log("User registered:", user);
+		// console.log("User registered:", user);
 		// ユーザー登録成功後の処理
 	} catch (error) {
 		console.error("Error registering user:", error);
@@ -86,7 +84,6 @@ export default function Home() {
 									</div>
 									<button type='submit'>新規登録</button>
 								</form>
-
 								<p>Google認証</p>
 								<SigninButton />
 							</>

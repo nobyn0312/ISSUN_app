@@ -30,9 +30,9 @@ const handleSignUp = async (
 			email: email, // メールアドレス
 		});
 
-		console.log("User profile created with username:", username);
+		console.log(username);
 	} catch (error) {
-		console.error("Error during sign-up:", error);
+		console.error(error);
 	}
 };
 
