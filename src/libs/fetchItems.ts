@@ -14,8 +14,6 @@ export interface Item {
 	url?: string | undefined;
 }
 
-
-
 export const fetchItems = async (
 	sortOrder: "newest" | "oldest" = "newest"
 ): Promise<Item[]> => {

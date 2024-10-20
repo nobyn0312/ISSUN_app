@@ -10,21 +10,13 @@ import { PrimaryButton } from "@/components/Button";
 import { ContentsAreaGray } from "@/components/ContentsArea";
 
 const Page = () => {
-	// アイテム名
 	const [name, setName] = useState("");
-	// 金額
 	const [price, setPrice] = useState(0);
-	// カテゴリ
 	const [category, setCategory] = useState("");
-	// 詳細情報
 	const [detail, setDetail] = useState("");
-	// ファイルアップ時
 	const [file, setFile] = useState<File | null>(null);
-	// const [imageUrl, setImageUrl] = useState("");
-	// ローディング時
 	const [loading, setLoading] = useState(false);
 	const [progress, setProgress] = useState(0);
-
 	const [url, setUrl] = useState("");
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -136,21 +128,12 @@ const Page = () => {
 							<div style={{ padding: "16px 0px 0" }}>
 								<label>価格:</label>
 								<br />
-								{/* <input
-									type='number'
-									value={price}
-									onChange={(e) => setPrice(Number(e.target.value))}
-									required
-									className='text-black'
-									placeholder='1111'
-								/> */}
 								<input
 									type='text'
 									className='text-black'
 									placeholder='金額を入力してください'
 									value={price}
 									required
-									// onChange={handleChange}
 									onChange={(e) => setPrice(Number(e.target.value))}
 									style={{
 										padding: "8px",

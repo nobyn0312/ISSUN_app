@@ -10,8 +10,6 @@ import { PrimaryButton } from "@/components/Button";
 import { useAuthContext } from "@/app/context/AuthContext";
 
 const handleUpdateProfile = async (
-	// userId: string,
-
 	uid: string,
 	username: string,
 	age: string,
@@ -19,14 +17,13 @@ const handleUpdateProfile = async (
 	shape: string
 ) => {
 	try {
-		// Firestoreの/profileコレクション内のユーザー情報を更新
 		const userDocRef = doc(firestore, "profile", uid);
 		await updateDoc(userDocRef, {
 			uid: uid,
-			username: username, // ユーザー名
-			age: age, // 年齢層
-			height: height, // 身長
-			shape: shape, // 体型
+			username: username,
+			age: age,
+			height: height,
+			shape: shape,
 		});
 
 		console.log("User profile updated:", username, age, height, shape);
@@ -37,18 +34,17 @@ const handleUpdateProfile = async (
 
 export default function EditProfile() {
 	const [username, setUsername] = useState("");
-	const [age, setAge] = useState(""); // 年齢層
-	const [height, setHeight] = useState<number>(0); // 身長
-	const [shape, setShape] = useState(""); // 体型
-
-	const { userId } = useAuthContext(); // AuthContextからユーザーIDを取得
+	const [age, setAge] = useState("");
+	const [height, setHeight] = useState<number>(0);
+	const [shape, setShape] = useState("");
+	const { userId } = useAuthContext();
 	const router = useRouter();
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (userId) {
 			await handleUpdateProfile(userId, username, age, height, shape);
-			router.push("/top"); // 更新成功後にリダイレクト
+			router.push("/top");
 		} else {
 			console.error("User ID is not available");
 		}
@@ -73,7 +69,7 @@ export default function EditProfile() {
 					</div>
 
 					<form onSubmit={onSubmit}>
-						<ContentsAreaOrange style={{ marginBottom: "32px"}}>
+						<ContentsAreaOrange style={{ marginBottom: "32px" }}>
 							<div style={{ padding: "16px 0px 0" }}>
 								<label htmlFor='username'>ユーザーネーム:</label>
 								<br />
@@ -149,8 +145,6 @@ export default function EditProfile() {
 									})}
 								</select>
 							</div>
-
-
 
 							<div style={{ padding: "16px 0px 16px" }}>
 								<label htmlFor='shape'>体型:</label>

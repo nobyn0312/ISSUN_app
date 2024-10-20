@@ -13,7 +13,7 @@ const Sort: React.FC<SortProps> = ({ className, onChange }) => {
 			<select
 				name='sort'
 				id='sort-select'
-				onChange={onChange} // onChangeの名前を修正
+				onChange={onChange}
 				className='text-black p-2 rounded-md border'
 			>
 				<option value='newest'>新着順</option>

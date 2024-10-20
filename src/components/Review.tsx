@@ -14,7 +14,6 @@ import {
 	getDoc,
 } from "firebase/firestore";
 import { useRouter } from "next/navigation";
-// ログイン中のユーザー情報を取得できる
 import { onAuthStateChanged } from "firebase/auth";
 
 type ReviewProps = {
@@ -34,8 +33,8 @@ type ReviewData = {
 
 const Review = ({ itemId }: ReviewProps) => {
 	const [reviews, setReviews] = useState<ReviewData[]>([]);
-	// 身長
-	const [height, setHeight] = useState<number | null>(null); // 身長を保存するstate
+	// 身長を保存するstate
+	const [height, setHeight] = useState<number | null>(null);
 	const router = useRouter();
 
 	useEffect(() => {
@@ -50,7 +49,7 @@ const Review = ({ itemId }: ReviewProps) => {
 					setHeight(profileData.height);
 				}
 			} else {
-				console.log("ログインしてない");
+				console.log("ログインしていません");
 			}
 		});
 		return () => unsubscribe();
@@ -81,7 +80,6 @@ const Review = ({ itemId }: ReviewProps) => {
 		}
 	}, [itemId]);
 
-	// 初回レンダリング時レビュー取得
 	useEffect(() => {
 		fetchReviews();
 	}, [fetchReviews]);
@@ -204,7 +202,7 @@ const Review = ({ itemId }: ReviewProps) => {
 							{review.comment}
 						</p>
 
-						<div className="flex gap-2">
+						<div className='flex gap-2'>
 							<p>
 								<small>{review.username}</small>
 							</p>

@@ -19,11 +19,11 @@ function SigninButton() {
 					await setDoc(userDocRef, {
 						uid: user.uid,
 						email: user.email || "No Email",
-						password: "", // パスワードは空のまま
-						username: user.displayName || "", // 初期値は空にする
-						age: "", // 年齢層の初期値
-						height: 0, // 身長の初期値
-						shape: "", // 体型の初期値
+						password: "",
+						username: user.displayName || "",
+						age: "",
+						height: 0,
+						shape: "",
 					});
 					console.log(
 						"新規ユーザーのプロフィール情報をFirestoreに保存しました:",

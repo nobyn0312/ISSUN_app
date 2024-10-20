@@ -40,10 +40,6 @@ export default function SignUp() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [username, setUsername] = useState("");
-	// const [shape, setShape] = useState("");
-	// const [age, setAge] = useState("");
-	// const [gender, setGender] = useState("");
-
 	const router = useRouter();
 
 	const onSubmit = async (e: React.FormEvent) => {
@@ -136,17 +132,6 @@ export default function SignUp() {
 						<PrimaryButton style={{ marginBottom: "32px" }} type='submit'>
 							新規登録
 						</PrimaryButton>
-						<button
-							type='submit'
-							style={{
-								padding: "8px",
-								border: "1px solid #333",
-								background: "#fff",
-								color: "#333",
-							}}
-						>
-							登録
-						</button>
 					</form>
 				</section>
 			</div>

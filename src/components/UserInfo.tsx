@@ -12,8 +12,6 @@ const UserInfo = () => {
 	const photoURL = auth.currentUser?.photoURL || defaultPhotoURL;
 	const { username } = useAuthContext();
 
-
-
 	return (
 		<div>
 			{photoURL && (

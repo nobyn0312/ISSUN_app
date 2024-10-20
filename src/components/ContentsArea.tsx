@@ -2,8 +2,8 @@ import React, { ReactNode } from "react";
 
 type AreaProps = {
 	children: ReactNode;
-	className?: string; // 追加のクラスを受け取る
-	style?: React.CSSProperties; // styleをpropsとして追加
+	className?: string;
+	style?: React.CSSProperties;
 };
 
 export const ContentsAreaOrange: React.FC<AreaProps> = ({

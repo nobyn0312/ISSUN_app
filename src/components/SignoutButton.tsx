@@ -5,7 +5,7 @@ import { auth } from "@/firebase";
 function SignOutButton() {
   const handleSignOut = () => {
     auth.signOut().then(() => {
-      window.location.reload(); // サインアウト後にリロード
+      window.location.reload();
     });
   };
 

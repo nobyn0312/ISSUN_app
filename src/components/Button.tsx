@@ -37,7 +37,7 @@ export const PrimaryButton: React.FC<ButtonProps> = ({
 			style={{
 				display: "flex",
 				width: "100%",
-				...getPositionStyles(position), // 位置スタイルを適用
+				...getPositionStyles(position),
 			}}
 		>
 			<button
@@ -70,7 +70,7 @@ export const SecondaryButton: React.FC<ButtonProps> = ({
 			style={{
 				display: "flex",
 				width: "100%",
-				...getPositionStyles(position), // 位置スタイルを適用
+				...getPositionStyles(position),
 			}}
 		>
 			<button

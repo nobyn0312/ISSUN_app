@@ -7,7 +7,7 @@ import Header from "@/components/Header";
 // import SelectCategory from "@/components/SelectCategory";
 import { fetchItems, Item } from "@/libs/fetchItems";
 import Sort from "@/components/Sort";
-import styles from "./top.module.css"; // .module.cssファイルをインポート
+import styles from "./top.module.css";
 
 const TopPage = () => {
 	const [loading, setLoading] = useState(true);

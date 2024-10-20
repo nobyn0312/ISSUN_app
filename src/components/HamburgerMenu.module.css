@@ -30,16 +30,15 @@
 }
 
 .hamburgerContainer {
-	position: relative; /* これを追加 */
+	position: relative;
 }
-
 
 .menu {
 	max-width: 480px;
 	display: none;
 	position: absolute;
 	top: 55px;
-	left: 0; /* 変更 */
+	left: 0;
 	background: white;
 	width: 300px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -52,20 +51,19 @@
 	list-style: none;
 	padding: 0;
 	margin: 0;
-		padding: 0 12px;
+	padding: 0 12px;
 }
 
 .menu li {
-	border-bottom: 2px solid #FF5E2A;
-
+	border-bottom: 2px solid #ff5e2a;
 }
 
 .menu a {
 	display: block;
-	padding:16px 0;
+	padding: 16px 0;
 	text-decoration: none;
-		color: #FF5E2A;
-		font-weight: bold;
+	color: #ff5e2a;
+	font-weight: bold;
 }
 
 .menu a:hover {
