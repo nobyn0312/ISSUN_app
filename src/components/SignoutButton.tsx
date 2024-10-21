@@ -11,7 +11,7 @@ function SignOutButton() {
 
 	return (
 		<>
-			<button onClick={handleSignOut} className='text-black'>
+			<button onClick={handleSignOut}>
 				サインアウト
 			</button>
 		</>
