@@ -131,8 +131,12 @@ const Review = ({ itemId }: ReviewProps) => {
 				<Link href={`/review/create?itemId=${itemId}`}>レビューを書く</Link>
 			</div>
 
-			<div style={{ overflowY: "scroll",height:"620px" }}>
-
+			<div
+				style={{
+					overflowY: reviews.length >= 2 ? "scroll" : "visible",
+					height:reviews.length >= 2 ? "620px" : "auto",
+				}}
+			>
 				{reviews.map((review, index) => {
 					const formattedDate = formatDate(review.createdAt.toDate());
 					return (
@@ -143,6 +147,7 @@ const Review = ({ itemId }: ReviewProps) => {
 								background: "#E6E6E6",
 								borderRadius: "10px",
 								marginBottom: "24px",
+								minHeight:"300px"
 							}}
 						>
 							<div className='flex justify-between'>
@@ -214,8 +219,6 @@ const Review = ({ itemId }: ReviewProps) => {
 					);
 				})}
 			</div>
-
-
 		</section>
 	);
 };
