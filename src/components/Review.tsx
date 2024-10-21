@@ -131,86 +131,91 @@ const Review = ({ itemId }: ReviewProps) => {
 				<Link href={`/review/create?itemId=${itemId}`}>レビューを書く</Link>
 			</div>
 
-			{reviews.map((review, index) => {
-				const formattedDate = formatDate(review.createdAt.toDate());
-				return (
-					<div
-						key={index}
-						style={{
-							padding: "16px",
-							background: "#E6E6E6",
-							borderRadius: "10px",
-							marginBottom: "24px",
-						}}
-					>
-						<div className='flex justify-between'>
-							<p
-								style={{
-									fontWeight: "bold",
-									fontSize: "20px",
-									marginBottom: "8px",
-								}}
-								className='flex align-middle justify-center'
-							>
-								{review.title}
-							</p>
-							<div
-								className='flex align-middle justify-center'
-								style={{ gap: "8px" }}
-							>
-								<button
-									style={{ color: "#333", fontWeight: "bold" }}
-									onClick={() => handleEdit(review.reviewId)}
-								>
-									編集
-								</button>
-								<button
-									style={{ color: "#FF5E2A", fontWeight: "bold" }}
-									onClick={() => handleDelete(review.reviewId)}
-								>
-									削除
-								</button>
-							</div>
-						</div>
-						<p style={{ fontWeight: "light", marginBottom: "8px" }}>
-							{formattedDate}
-						</p>
+			<div style={{ overflowY: "scroll",height:"620px" }}>
 
-						<p style={{ color: "#FF5E2A", fontSize: "20px" }}>
-							{"★".repeat(review.rate) + "☆".repeat(5 - review.rate)}
-						</p>
-
-						<p style={{ fontSize: "20px", fontWeight: "bold" }}>
-							SIZE：{review.size}
-						</p>
+				{reviews.map((review, index) => {
+					const formattedDate = formatDate(review.createdAt.toDate());
+					return (
 						<div
+							key={index}
 							style={{
-								border: "1px solid #333",
-								width: "100%",
-								marginBottom: "8px",
-							}}
-						></div>
-						<p
-							style={{
-								lineHeight: "1.75",
-								marginBottom: "60px",
-								whiteSpace: "pre-line",
+								padding: "16px",
+								background: "#E6E6E6",
+								borderRadius: "10px",
+								marginBottom: "24px",
 							}}
 						>
-							{review.comment}
-						</p>
+							<div className='flex justify-between'>
+								<p
+									style={{
+										fontWeight: "bold",
+										fontSize: "20px",
+										marginBottom: "8px",
+									}}
+									className='flex align-middle justify-center'
+								>
+									{review.title}
+								</p>
+								<div
+									className='flex align-middle justify-center'
+									style={{ gap: "8px" }}
+								>
+									<button
+										style={{ color: "#333", fontWeight: "bold" }}
+										onClick={() => handleEdit(review.reviewId)}
+									>
+										編集
+									</button>
+									<button
+										style={{ color: "#FF5E2A", fontWeight: "bold" }}
+										onClick={() => handleDelete(review.reviewId)}
+									>
+										削除
+									</button>
+								</div>
+							</div>
+							<p style={{ fontWeight: "light", marginBottom: "8px" }}>
+								{formattedDate}
+							</p>
 
-						<div className='flex gap-2'>
-							<p>
-								<small>{review.username}</small>
+							<p style={{ color: "#FF5E2A", fontSize: "20px" }}>
+								{"★".repeat(review.rate) + "☆".repeat(5 - review.rate)}
 							</p>
-							<p>
-								<small>{height}cm</small>
+
+							<p style={{ fontSize: "20px", fontWeight: "bold" }}>
+								SIZE：{review.size}
 							</p>
+							<div
+								style={{
+									border: "1px solid #333",
+									width: "100%",
+									marginBottom: "8px",
+								}}
+							></div>
+							<p
+								style={{
+									lineHeight: "1.75",
+									marginBottom: "60px",
+									whiteSpace: "pre-line",
+								}}
+							>
+								{review.comment}
+							</p>
+
+							<div className='flex gap-2'>
+								<p>
+									<small>{review.username}</small>
+								</p>
+								<p>
+									<small>{height}cm</small>
+								</p>
+							</div>
 						</div>
-					</div>
-				);
-			})}
+					);
+				})}
+			</div>
+
+
 		</section>
 	);
 };
