@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
+import { useAuthContext } from "@/app/context/AuthContext";
 
 type ReviewProps = {
 	itemId: string;
@@ -36,6 +37,7 @@ const Review = ({ itemId }: ReviewProps) => {
 	// 身長を保存するstate
 	const [height, setHeight] = useState<number | null>(null);
 	const router = useRouter();
+	const { isLogin } = useAuthContext();
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -128,13 +130,15 @@ const Review = ({ itemId }: ReviewProps) => {
 					<h2 style={{ fontSize: "28px", fontWeight: "bold" }}>Review</h2>
 					<p>reviewer：{reviews.length}</p>
 				</div>
-				<Link href={`/review/create?itemId=${itemId}`}>レビューを書く</Link>
+				{isLogin && (
+					<Link href={`/review/create?itemId=${itemId}`}>レビューを書く</Link>
+				)}
 			</div>
 
 			<div
 				style={{
 					overflowY: reviews.length >= 2 ? "scroll" : "visible",
-					height:reviews.length >= 2 ? "620px" : "auto",
+					height: reviews.length >= 2 ? "620px" : "auto",
 				}}
 			>
 				{reviews.map((review, index) => {
@@ -147,7 +151,7 @@ const Review = ({ itemId }: ReviewProps) => {
 								background: "#E6E6E6",
 								borderRadius: "10px",
 								marginBottom: "24px",
-								minHeight:"300px"
+								minHeight: "300px",
 							}}
 						>
 							<div className='flex justify-between'>
@@ -165,18 +169,22 @@ const Review = ({ itemId }: ReviewProps) => {
 									className='flex align-middle justify-center'
 									style={{ gap: "8px" }}
 								>
-									<button
-										style={{ color: "#333", fontWeight: "bold" }}
-										onClick={() => handleEdit(review.reviewId)}
-									>
-										編集
-									</button>
-									<button
-										style={{ color: "#FF5E2A", fontWeight: "bold" }}
-										onClick={() => handleDelete(review.reviewId)}
-									>
-										削除
-									</button>
+									{isLogin && (
+										<>
+											<button
+												style={{ color: "#333", fontWeight: "bold" }}
+												onClick={() => handleEdit(review.reviewId)}
+											>
+												編集
+											</button>
+											<button
+												style={{ color: "#FF5E2A", fontWeight: "bold" }}
+												onClick={() => handleDelete(review.reviewId)}
+											>
+												削除
+											</button>
+										</>
+									)}
 								</div>
 							</div>
 							<p style={{ fontWeight: "light", marginBottom: "8px" }}>
