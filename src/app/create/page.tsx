@@ -1,13 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { firestore, storage } from "@/firebase";
-import { v4 as uuidv4 } from "uuid";
 import Header from "@/components/Header";
 import { PrimaryButton } from "@/components/Button";
 import { ContentsAreaGray } from "@/components/ContentsArea";
+
+import { useUploadFile } from "./hooks/useUploadFile";
 
 const Page = () => {
 	const [name, setName] = useState("");
@@ -15,9 +13,11 @@ const Page = () => {
 	const [category, setCategory] = useState("");
 	const [detail, setDetail] = useState("");
 	const [file, setFile] = useState<File | null>(null);
-	const [loading, setLoading] = useState(false);
-	const [progress, setProgress] = useState(0);
+	// const [loading, setLoading] = useState(false);
+	// const [progress, setProgress] = useState(0);
 	const [url, setUrl] = useState("");
+
+	const { progress, loading, uploadFile } = useUploadFile();
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const selectedFile = e.target.files?.[0];
@@ -28,59 +28,24 @@ const Page = () => {
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		if (!file) {
-			return;
-		}
+		if (!file) return;
 
-		setLoading(true);
+		const itemData = {
+			name,
+			price: Number(price),
+			category,
+			detail,
+			url,
+		};
 
-		try {
-			const storageRef = ref(storage, "images/" + file.name);
-			const uploadTask = uploadBytesResumable(storageRef, file);
+		await uploadFile(file, itemData);
 
-			uploadTask.on(
-				"state_changed",
-				(snapshot) => {
-					const progressPercent =
-						(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-					setProgress(progressPercent);
-				},
-				(err) => {
-					console.error(err);
-					setLoading(false);
-				},
-				async () => {
-					const downloadURL = await getDownloadURL(storageRef);
-					// setImageUrl(downloadURL);
-
-					// アイテムのidはuuid
-					const itemId = uuidv4();
-
-					// Firestoreに商品データを追加
-					await addDoc(collection(firestore, "item"), {
-						id: itemId, // UUID を ID として設定
-						name,
-						price: Number(price),
-						category,
-						detail,
-						imageUrl: downloadURL,
-						createdAt: Timestamp.now(),
-
-						url,
-					});
-
-					setName("");
-					setPrice(0);
-					setCategory("");
-					setDetail("");
-					setFile(null);
-					setLoading(false);
-				}
-			);
-		} catch (err) {
-			console.error(err);
-			setLoading(false);
-		}
+		setName("");
+		setPrice(0);
+		setCategory("");
+		setDetail("");
+		setFile(null);
+		setUrl("");
 	};
 
 	return (
