@@ -1,6 +1,6 @@
 "use client"; // クライアントコンポーネント
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { firestore } from "@/firebase"; // Firebaseのインポート
 import { updateDoc, doc } from "firebase/firestore"; // Firestore関連のインポート
 import { useRouter } from "next/navigation";
@@ -33,12 +33,28 @@ const handleUpdateProfile = async (
 };
 
 export default function EditProfile() {
+	const {
+		userId,
+		username: contextUsername,
+		age: contextAge,
+		height: contextHeight,
+		shape: contextShape,
+	} = useAuthContext();
+
 	const [username, setUsername] = useState("");
 	const [age, setAge] = useState("");
 	const [height, setHeight] = useState<number>(0);
 	const [shape, setShape] = useState("");
-	const { userId } = useAuthContext();
+	// const { userId } = useAuthContext();
 	const router = useRouter();
+
+	useEffect(() => {
+		// コンテキストからの初期値を設定
+		setUsername(contextUsername !== null ? contextUsername : "");
+		setAge(contextAge !== null ? String(contextAge) : "未選択");
+		setHeight(contextHeight !== null ? contextHeight : 0);
+		setShape(contextShape !== null ? contextShape : "");
+	}, [contextUsername, contextAge, contextHeight, contextShape]);
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
