@@ -2,77 +2,23 @@
 
 import { Suspense } from "react";
 import Header from "@/components/Header";
-import { useState } from "react";
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
-import { firestore } from "@/firebase";
-import { useAuthContext } from "@/app/context/AuthContext";
-import { useSearchParams } from "next/navigation";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
 
 import { useSubmitReview } from "./hooks/useSubmitReview";
 
 const ReviewCreate = () => {
-	const { user, username } = useAuthContext();
-	const searchParams = useSearchParams();
-	const itemId = searchParams.get("itemId");
-
-	const [title, setTitle] = useState("");
-	const [rate, setRate] = useState("");
-	const [size, setSize] = useState("");
-	const [comment, setComment] = useState("");
-
-	// const handleSubmit = async (e: React.FormEvent) => {
-	// 	e.preventDefault();
-
-	// 	if (!user) {
-	// 		alert("ログインが必要です");
-	// 		return;
-	// 	}
-
-	// 	try {
-	// 		const docRef = await addDoc(collection(firestore, "review"), {
-	// 			uid: user.uid,
-	// 			username: username,
-	// 			itemId: itemId,
-	// 			title: title,
-	// 			rate: rate,
-	// 			size: size,
-	// 			comment: comment,
-	// 			createdAt: new Date(),
-	// 		});
-
-	// 		await updateDoc(doc(firestore, "review", docRef.id), {
-	// 			reviewId: docRef.id,
-	// 		});
-
-	// 		alert("レビューを送信しました");
-	// 		window.location.href = "/top";
-
-	// 		setTitle("");
-	// 		setRate("");
-	// 		setSize("");
-	// 		setComment("");
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 		alert("レビューの送信に失敗しました");
-	// 	}
-	// };
-
-
-
-const ReviewCreate = () => {
-  const {
-    title,
-    setTitle,
-    rate,
-    setRate,
-    size,
-    setSize,
-    comment,
-    setComment,
-    handleSubmit,
-  } = useSubmitReview();
+	const {
+		title,
+		setTitle,
+		rate,
+		setRate,
+		size,
+		setSize,
+		comment,
+		setComment,
+		handleSubmit,
+	} = useSubmitReview();
 
 	return (
 		<>
