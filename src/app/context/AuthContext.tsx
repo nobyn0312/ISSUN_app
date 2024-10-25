@@ -21,6 +21,7 @@ interface UserProfile {
 
 interface AuthContextType {
 	user: User | null;
+	isLogin: boolean;
 	username: string | null;
 	userId: string | null;
 	age: number | null;
@@ -80,6 +81,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 		<AuthContext.Provider
 			value={{
 				user,
+				isLogin: user !== null,
 				username: userProfile.username,
 				userId: userProfile.userId,
 				age: userProfile.age,
