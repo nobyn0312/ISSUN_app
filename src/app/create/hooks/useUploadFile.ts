@@ -5,17 +5,26 @@ import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { firestore, storage } from "@/firebase";
 import { v4 as uuidv4 } from "uuid";
 
+interface UploadData {
+	name: string;
+	price: number;
+	category: string;
+	detail: string;
+	url: string;
+}
+
 interface UploadFileHook {
 	progress: number;
 	loading: boolean;
-	uploadFile: (file: File, data: any) => Promise<void>;
+	uploadFile: (file: File, data: UploadData) => Promise<void>;
 }
+
 
 export const useUploadFile = (): UploadFileHook => {
 	const [progress, setProgress] = useState(0);
 	const [loading, setLoading] = useState(false);
 
-	const uploadFile = async (file: File, data: any) => {
+	const uploadFile = async (file: File, data: UploadData) => {
 		setLoading(true);
 		const storageRef = ref(storage, "images/" + file.name);
 		const uploadTask = uploadBytesResumable(storageRef, file);
