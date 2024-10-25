@@ -10,6 +10,8 @@ import { useSearchParams } from "next/navigation";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
 
+import { useSubmitReview } from "./hooks/useSubmitReview";
+
 const ReviewCreate = () => {
 	const { user, username } = useAuthContext();
 	const searchParams = useSearchParams();
@@ -20,42 +22,57 @@ const ReviewCreate = () => {
 	const [size, setSize] = useState("");
 	const [comment, setComment] = useState("");
 
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
+	// const handleSubmit = async (e: React.FormEvent) => {
+	// 	e.preventDefault();
 
-		if (!user) {
-			alert("ログインが必要です");
-			return;
-		}
+	// 	if (!user) {
+	// 		alert("ログインが必要です");
+	// 		return;
+	// 	}
 
-		try {
-			const docRef = await addDoc(collection(firestore, "review"), {
-				uid: user.uid,
-				username: username,
-				itemId: itemId,
-				title: title,
-				rate: rate,
-				size: size,
-				comment: comment,
-				createdAt: new Date(),
-			});
+	// 	try {
+	// 		const docRef = await addDoc(collection(firestore, "review"), {
+	// 			uid: user.uid,
+	// 			username: username,
+	// 			itemId: itemId,
+	// 			title: title,
+	// 			rate: rate,
+	// 			size: size,
+	// 			comment: comment,
+	// 			createdAt: new Date(),
+	// 		});
 
-			await updateDoc(doc(firestore, "review", docRef.id), {
-				reviewId: docRef.id,
-			});
+	// 		await updateDoc(doc(firestore, "review", docRef.id), {
+	// 			reviewId: docRef.id,
+	// 		});
 
-			alert("レビューを送信しました");
-			window.location.href = "/top";
+	// 		alert("レビューを送信しました");
+	// 		window.location.href = "/top";
 
-			setTitle("");
-			setRate("");
-			setSize("");
-			setComment("");
-		} catch (error) {
-			console.error(error);
-			alert("レビューの送信に失敗しました");
-		}
-	};
+	// 		setTitle("");
+	// 		setRate("");
+	// 		setSize("");
+	// 		setComment("");
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 		alert("レビューの送信に失敗しました");
+	// 	}
+	// };
+
+
+
+const ReviewCreate = () => {
+  const {
+    title,
+    setTitle,
+    rate,
+    setRate,
+    size,
+    setSize,
+    comment,
+    setComment,
+    handleSubmit,
+  } = useSubmitReview();
 
 	return (
 		<>
