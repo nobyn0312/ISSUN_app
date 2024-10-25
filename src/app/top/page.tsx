@@ -99,7 +99,8 @@ const TopPage = () => {
 											backgroundSize: "cover",
 											backgroundPosition: "center",
 											width: "100%",
-											height: "280px",
+											height: "auto",
+											aspectRatio: "250 / 375",
 											borderRadius: "8px",
 										}}
 									/>

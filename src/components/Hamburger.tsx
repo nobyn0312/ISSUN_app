@@ -45,7 +45,7 @@ const HamburgerMenu: React.FC = () => {
 							<li>
 								<a href='/user/signUp'>新規登録</a>
 							</li>
-							<li style={{ padding: "15px" }}>
+							<li style={{ padding: "15px 0", color: "#ff5e2a", fontWeight:"bold" }}>
 								<SignOutButton />
 							</li>
 						</ul>
