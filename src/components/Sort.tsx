@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 interface SortProps {
 	className?: string;
 	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;

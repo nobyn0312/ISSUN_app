@@ -1,5 +1,5 @@
-"use client"; // クライアントコンポーネント
-import React from "react";
+"use client";
+
 import Header from "@/components/Header";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";

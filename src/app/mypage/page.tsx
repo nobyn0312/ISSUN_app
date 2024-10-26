@@ -1,5 +1,4 @@
 "use client"; // クライアントコンポーネント
-import React from "react";
 import Header from "@/components/Header";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
@@ -60,7 +59,7 @@ const Page = () => {
 					</p>
 				</ContentsAreaOrange>
 			</div>
-			<PrimaryButton style={{marginBottom:"32px"}}>
+			<PrimaryButton style={{ marginBottom: "32px" }}>
 				<Link style={{ display: "block" }} href={"/user/edit/"}>
 					ユーザー情報を更新する
 				</Link>

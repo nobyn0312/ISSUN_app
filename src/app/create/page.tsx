@@ -4,7 +4,6 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import { PrimaryButton } from "@/components/Button";
 import { ContentsAreaGray } from "@/components/ContentsArea";
-
 import { useUploadFile } from "./hooks/useUploadFile";
 
 const Page = () => {
