@@ -45,7 +45,6 @@ export default function EditProfile() {
 	const [age, setAge] = useState("");
 	const [height, setHeight] = useState<number>(0);
 	const [shape, setShape] = useState("");
-	// const { userId } = useAuthContext();
 	const router = useRouter();
 
 	useEffect(() => {

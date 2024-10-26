@@ -6,7 +6,6 @@ type ButtonProps = {
 	className?: string; // 追加のクラスを受け取る
 	type?: "button" | "submit" | "reset"; // typeプロパティを追加
 	style?: React.CSSProperties; // styleをpropsとして追加
-
 	position?: "left" | "center" | "right"; // positionオプショナル追加
 };
 
@@ -28,8 +27,6 @@ export const PrimaryButton: React.FC<ButtonProps> = ({
 	children,
 	className,
 	style,
-	// type = "button",
-
 	position = "center",
 }) => {
 	return (
@@ -61,8 +58,6 @@ export const SecondaryButton: React.FC<ButtonProps> = ({
 	children,
 	className,
 	style,
-	// type = "button",
-
 	position = "center",
 }) => {
 	return (

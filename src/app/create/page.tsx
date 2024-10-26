@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 import { PrimaryButton } from "@/components/Button";
 import { ContentsAreaGray } from "@/components/ContentsArea";
@@ -13,8 +13,6 @@ const Page = () => {
 	const [category, setCategory] = useState("");
 	const [detail, setDetail] = useState("");
 	const [file, setFile] = useState<File | null>(null);
-	// const [loading, setLoading] = useState(false);
-	// const [progress, setProgress] = useState(0);
 	const [url, setUrl] = useState("");
 
 	const { progress, loading, uploadFile } = useUploadFile();
