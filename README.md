@@ -15,6 +15,10 @@ https://issun-app.vercel.app/top
 
 約 1 ヶ月間
 
+## テストアカウント
+mail：test0312@test.com
+pass：test0312
+
 ## 画面構成
 
 ### ▼ トップページ【/app/top/page.tsx】
