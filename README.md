@@ -16,7 +16,7 @@ https://issun-app.vercel.app/top
 約 1 ヶ月間
 
 ## テストアカウント
-mail：test0312@test.com  
+mail：test0312@test.com
 pass：test0312
 
 ## 画面構成
@@ -55,6 +55,7 @@ Googleでのサインイン/サインアップも可能
 - CSS
 - Tailwind.css 一部の UI へ補助的に利用
 - uid
+- スケルトンスクリーン
 ### ▼ Back End / DB
 Firebase
 ### ▼ デプロイ
