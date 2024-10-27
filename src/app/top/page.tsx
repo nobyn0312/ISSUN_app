@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import { fetchItems, Item } from "@/libs/fetchItems";
 import Sort from "@/components/Sort";
 import styles from "./top.module.css";
+import TopLoader from "@/app/top/TopLoader";
 
 const TopPage = () => {
 	const [loading, setLoading] = useState(true);
@@ -39,7 +40,7 @@ const TopPage = () => {
 			<>
 				<Header />
 				<main style={{ padding: "24px" }}>
-					<p>Loading...</p>
+					<TopLoader onSortChange={handleSortChange} />
 				</main>
 			</>
 		);
