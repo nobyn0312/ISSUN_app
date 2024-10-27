@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
+import SigninButton from "@/components/SigninButton";
 
 const handleSignUp = async (
 	email: string,
@@ -73,7 +74,6 @@ export default function SignUp() {
 							新規登録
 						</h2>
 					</div>
-
 					<form onSubmit={onSubmit}>
 						<ContentsAreaOrange style={{ marginBottom: "32px" }}>
 							<div style={{ padding: "16px 0 0" }}>
@@ -133,6 +133,18 @@ export default function SignUp() {
 							新規登録
 						</PrimaryButton>
 					</form>
+					<p
+						className='pt-4 pb-4 text-center'
+						style={{
+							borderBottom: "2px solid #fff",
+							marginBottom: "16px",
+						}}
+					>
+						Google認証の方はこちら
+					</p>
+					<div style={{ textAlign: "center" }}>
+						<SigninButton />
+					</div>{" "}
 				</section>
 			</div>
 		</>

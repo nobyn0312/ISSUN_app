@@ -119,8 +119,6 @@ export default function SignIn() {
 								<PrimaryButton style={{ marginBottom: "32px" }} type='submit'>
 									ログイン
 								</PrimaryButton>
-
-								<button type='submit'>ログイン</button>
 							</form>
 							<p
 								className='pt-4 pb-4 text-center'
@@ -131,8 +129,9 @@ export default function SignIn() {
 							>
 								Google認証の方はこちら
 							</p>
-
-							<SigninButton />
+							<div style={{ textAlign: "center" }}>
+								<SigninButton />
+							</div>
 						</>
 					)}
 				</section>
