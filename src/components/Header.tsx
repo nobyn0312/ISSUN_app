@@ -12,7 +12,7 @@ const Header = () => {
 			>
 				<div
 					className='flex align-middle justify-between py-4'
-					style={{ height: "87px" }}
+					style={{ height: "70px" }}
 				>
 					<HamburgerMenu />
 

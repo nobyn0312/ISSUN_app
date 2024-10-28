@@ -28,7 +28,7 @@ const UserInfo = () => {
 							className='rounded-full'
 							style={{ display: "block", margin: "0 auto" }}
 						/>
-						<p style={{ fontSize: "10px", color: "black",paddingTop:"8px" }}>
+						<p style={{ fontSize: "10px", color: "black",paddingTop:"4px" }}>
 							{isLogin ? username : "ゲストユーザー"}
 						</p>
 					</div>
@@ -36,7 +36,7 @@ const UserInfo = () => {
 			</div>
 
 			{isOpen && (
-				<div style={{ position: "absolute", right: "0", top: "87px"}}>
+				<div style={{ position: "absolute", right: "0", top: "70px"}}>
 					<ul
 						style={{
 							width: "190px",

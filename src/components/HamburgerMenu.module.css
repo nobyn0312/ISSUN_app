@@ -29,15 +29,11 @@
 	transform: rotate(45deg) translate(-5px, -6px);
 }
 
-.hamburgerContainer {
-	position: relative;
-}
-
 .menu {
 	max-width: 480px;
 	display: none;
 	position: absolute;
-	top: 71px;
+	top: 70px;
 	left: 0;
 	background: white;
 	width: 300px;
