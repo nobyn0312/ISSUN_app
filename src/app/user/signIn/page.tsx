@@ -132,6 +132,19 @@ export default function SignIn() {
 							<div style={{ textAlign: "center" }}>
 								<SigninButton />
 							</div>
+
+							<p
+								className='pt-4 pb-4 text-center'
+								style={{
+									borderBottom: "2px solid #fff",
+									marginBottom: "16px",
+								}}
+							>
+								新規登録
+							</p>
+							<div style={{ textAlign: "center" }}>
+								<a href='/user/signUp'>新規登録はこちら</a>
+							</div>
 						</>
 					)}
 				</section>

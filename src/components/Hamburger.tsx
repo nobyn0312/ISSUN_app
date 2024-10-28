@@ -8,20 +8,18 @@ import { useAuthContext } from "@/app/context/AuthContext";
 
 const HamburgerMenu: React.FC = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-
-
 	const { isLogin } = useAuthContext();
-	
+
 	const toggleMenu = () => {
 		setIsOpen((prevState) => !prevState);
 	};
 
 	return (
-		<div className={styles.hamburgerContainer}>
+		<div className={styles.hamburgerContainer} style={{display:"flex"}}>
 			<button
 				onClick={toggleMenu}
 				className={styles.hamburgerButton}
-				style={{ paddingLeft: "16px" }}
+				style={{ paddingLeft: "16px" ,width:"70px"}}
 			>
 				<div className={`${styles.bar} ${isOpen ? styles.open : ""}`}></div>
 				<div className={`${styles.bar} ${isOpen ? styles.open : ""}`}></div>
