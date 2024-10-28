@@ -48,7 +48,7 @@ function SigninButton() {
 						height={20}
 						alt='googleアイコン'
 					/>
-					Googleログイン
+					Googleログイン / 新規登録
 				</span>
 			</button>
 		</>
