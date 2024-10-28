@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import Header from "@/components/Header";
-import { PrimaryButton } from "@/components/Button";
+import { PrimaryButton, SecondaryButton } from "@/components/Button";
 
 const handleLogin = async (email: string, password: string) => {
 	try {
@@ -140,10 +140,12 @@ export default function SignIn() {
 									marginBottom: "16px",
 								}}
 							>
-								新規登録
+								新規登録はこちら
 							</p>
 							<div style={{ textAlign: "center" }}>
-								<a href='/user/signUp'>新規登録はこちら</a>
+								<SecondaryButton>
+									<a href='/user/signUp'>新規登録</a>
+								</SecondaryButton>
 							</div>
 						</>
 					)}
