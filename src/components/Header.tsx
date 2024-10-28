@@ -6,7 +6,7 @@ import UserInfo from "./UserInfo";
 const Header = () => {
 	return (
 		<>
-			<header className='' style={{ background: "#D9D9D9" }}>
+			<header className='' style={{ background: "#D9D9D9",position:"relative" }}>
 				<div className='flex align-middle justify-between py-4' style={{height:"87px"}}>
 					<HamburgerMenu />
 
