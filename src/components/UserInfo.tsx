@@ -9,9 +9,9 @@ const UserInfo = () => {
 	const photoURL = auth.currentUser?.photoURL || defaultPhotoURL;
 	const { username } = useAuthContext();
 	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const { isLogin } = useAuthContext();
 
 	function toggleLogin() {
-		console.log("あああ");
 		setIsOpen((prevState) => !prevState);
 	}
 
@@ -22,26 +22,28 @@ const UserInfo = () => {
 					<div style={{ margin: "0 auto" }}>
 						<Image
 							src={photoURL}
-							width={40}
-							height={40}
+							width={30}
+							height={30}
 							alt='ユーザーアイコン'
 							className='rounded-full'
 							style={{ display: "block", margin: "0 auto" }}
 						/>
-						<p style={{ fontSize: "10px", color: "black" }}>{username}</p>
+						<p style={{ fontSize: "10px", color: "black",paddingTop:"8px" }}>
+							{isLogin ? username : "ゲストユーザー"}
+						</p>
 					</div>
 				)}
 			</div>
 
 			{isOpen && (
-				<div style={{ position: "absolute", right: "0" }}>
+				<div style={{ position: "absolute", right: "0", top: "87px"}}>
 					<ul
 						style={{
-							width: "180px",
+							width: "190px",
 							height: "130px",
 							backgroundColor: "#fff",
 							padding: "10px",
-							borderRadius: "8px",
+							borderRadius:"5px"
 						}}
 					>
 						<li
@@ -49,9 +51,10 @@ const UserInfo = () => {
 								color: "#ff5e2a",
 								fontWeight: "bold",
 								padding: "15px 0",
+								borderBottom: " 2px solid #ff5e2a",
 							}}
 						>
-							<a href='/user/signIn'>サインイン</a>
+							<a href='/user/signIn'>サインイン / 新規登録</a>
 						</li>
 						<li
 							style={{
