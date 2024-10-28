@@ -33,7 +33,7 @@ const ReviewCreate = () => {
 			</div>
 
 			<form onSubmit={handleSubmit}>
-				<ContentsAreaOrange style={{ margin: "0 16px 32px" }}>
+				<ContentsAreaOrange style={{ marginBottom: "32px" }}>
 					<div style={{ padding: "16px 0px 0" }}>
 						<label htmlFor='title'>タイトル</label>
 						<br />

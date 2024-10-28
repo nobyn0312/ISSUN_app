@@ -68,7 +68,7 @@ const Page = () => {
 					</div>
 
 					<form onSubmit={handleSubmit}>
-						<ContentsAreaGray style={{ margin: "0 16px 32px" }}>
+						<ContentsAreaGray style={{ marginBottom: "32px" }}>
 							<div style={{ padding: "16px 0px 0" }}>
 								<label>アイテム名:</label>
 								<br />
