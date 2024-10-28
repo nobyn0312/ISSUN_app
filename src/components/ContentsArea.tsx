@@ -12,7 +12,10 @@ export const ContentsAreaOrange: React.FC<AreaProps> = ({
 	style,
 }) => {
 	return (
-		<div style={{ maxWidth:"540px",margin:"0 auto",padding: "0", ...style }} className={`${className}`}>
+		<div
+			style={{ maxWidth: "540px", margin: "0 auto", padding: "0", ...style }}
+			className={`${className}`}
+		>
 			<div
 				style={{ padding: "16px", background: "#FF5E2A", borderRadius: "10px" }}
 			>
@@ -28,7 +31,10 @@ export const ContentsAreaGray: React.FC<AreaProps> = ({
 	style,
 }) => {
 	return (
-		<div style={{ maxWidth:"540px",margin:"0 auto",padding: "0", ...style }} className={`${className}`}>
+		<div
+			style={{ maxWidth: "540px", margin: "0 auto", padding: "0", ...style }}
+			className={`${className}`}
+		>
 			<div
 				style={{
 					padding: "16px",

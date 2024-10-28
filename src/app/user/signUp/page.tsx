@@ -144,7 +144,7 @@ export default function SignUp() {
 					</p>
 					<div style={{ textAlign: "center" }}>
 						<SigninButton />
-					</div>{" "}
+					</div>
 				</section>
 			</div>
 		</>
