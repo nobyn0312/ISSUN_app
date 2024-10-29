@@ -162,7 +162,6 @@ const ReviewEdit = () => {
 	);
 };
 
-// useSearchParamsをSuspenseでラップするために、以下のように外部コンポーネントを作成することもできます
 const ReviewEditWrapper = () => (
 	<Suspense fallback={<div>Loading...</div>}>
 		<ReviewEdit />
