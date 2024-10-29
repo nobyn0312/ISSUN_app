@@ -107,7 +107,7 @@ const ReviewCreate = () => {
 	);
 };
 
-// useSearchParamsをSuspenseでラップするために、以下のように外部コンポーネントを作成することもできます
+// Suspenseは非同期 フォールバック中の処理を追加する
 const ReviewCreateWrapper = () => (
 	<Suspense fallback={<div>Loading...</div>}>
 		<ReviewCreate />
