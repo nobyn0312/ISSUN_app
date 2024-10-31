@@ -28,7 +28,7 @@ const UserInfo = () => {
 							className='rounded-full'
 							style={{ display: "block", margin: "0 auto" }}
 						/>
-						<p style={{ fontSize: "10px", color: "black",paddingTop:"4px" }}>
+						<p style={{ fontSize: "10px", color: "black", paddingTop: "4px" }}>
 							{isLogin ? username : "ゲストユーザー"}
 						</p>
 					</div>
@@ -36,14 +36,14 @@ const UserInfo = () => {
 			</div>
 
 			{isOpen && (
-				<div style={{ position: "absolute", right: "0", top: "70px"}}>
+				<div style={{ position: "absolute", right: "0", top: "70px" }}>
 					<ul
 						style={{
 							width: "190px",
 							height: "130px",
 							backgroundColor: "#fff",
 							padding: "10px",
-							borderRadius:"5px"
+							borderRadius: "5px",
 						}}
 					>
 						<li
@@ -54,7 +54,7 @@ const UserInfo = () => {
 								borderBottom: " 2px solid #ff5e2a",
 							}}
 						>
-							<a href='/user/signIn'>サインイン / 新規登録</a>
+							<a href='/user/signIn'>ログイン / 新規登録</a>
 						</li>
 						<li
 							style={{

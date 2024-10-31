@@ -66,7 +66,7 @@ export default function SignIn() {
 										color: "#FF5E2A",
 									}}
 								>
-									Sign in
+									Login
 								</p>
 								<h2
 									style={{
@@ -119,33 +119,26 @@ export default function SignIn() {
 								<PrimaryButton style={{ marginBottom: "32px" }} type='submit'>
 									ログイン
 								</PrimaryButton>
-							</form>
-							<p
-								className='pt-4 pb-4 text-center'
-								style={{
-									borderBottom: "2px solid #fff",
-									marginBottom: "16px",
-								}}
-							>
-								Google認証の方はこちら
-							</p>
-							<div style={{ textAlign: "center" }}>
-								<SigninButton />
-							</div>
 
-							<p
-								className='pt-4 pb-4 text-center'
-								style={{
-									borderBottom: "2px solid #fff",
-									marginBottom: "16px",
-								}}
+								<p
+									style={{
+										fontSize: "16px",
+										textAlign: "center",
+										color: "#fff",
+										marginBottom: "16px",
+									}}
+								>
+									または
+								</p>
+							</form>
+							<SecondaryButton style={{ marginBottom: "32px" }}>
+								<a href='/user/signUp'>新規登録</a>
+							</SecondaryButton>
+							<div
+								className='pt-4'
+								style={{ textAlign: "center", borderTop: "2px solid #fff" }}
 							>
-								新規登録はこちら
-							</p>
-							<div style={{ textAlign: "center" }}>
-								<SecondaryButton>
-									<a href='/user/signUp'>新規登録</a>
-								</SecondaryButton>
+								<SigninButton />
 							</div>
 						</>
 					)}
