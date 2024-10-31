@@ -16,7 +16,8 @@ https://issun-app.vercel.app/top
 約 1 ヶ月間
 
 ## テストアカウント
-mail：test0312@test.com  
+
+mail：test0312@test.com
 pass：test0312
 
 ## 画面構成
@@ -32,11 +33,11 @@ pass：test0312
 登録されたアイテム(洋服)の詳細を確認する事ができます。
 アイテムについてのレビューの投稿、閲覧、販売サイトへのリンクを見る事ができます。
 
-### ▼ サインイン【/app/user/signIn/page.tsx】
+### ▼ ログイン【/app/user/signIn/page.tsx】
 
 アプリへの新規登録のためのページ。
-Googleでのサインイン/サインアップも可能
-※サインイン済みの場合はトップページへリダイレクトされます。
+Googleでのログイン/ログインも可能
+※ログイン済みの場合はトップページへリダイレクトされます。
 
 ### ▼ ユーザー情報【/app/user/info/page.tsx】
 
@@ -48,6 +49,7 @@ Googleでのサインイン/サインアップも可能
 アイテムの名前、価格、説明、画像、販売サイトへのURLを登録できます。
 
 ## 使用技術
+
 ### ▼ Front End
 
 - Next.js
@@ -56,7 +58,11 @@ Googleでのサインイン/サインアップも可能
 - Tailwind.css 一部の UI へ補助的に利用
 - uid
 - スケルトンスクリーン
+
 ### ▼ Back End / DB
+
 Firebase
+
 ### ▼ デプロイ
+
 Vercel

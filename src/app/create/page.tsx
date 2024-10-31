@@ -8,7 +8,7 @@ import { useUploadFile } from "./hooks/useUploadFile";
 
 const Page = () => {
 	const [name, setName] = useState("");
-	const [price, setPrice] = useState(0);
+	const [price, setPrice] = useState("");
 	const [category, setCategory] = useState("");
 	const [detail, setDetail] = useState("");
 	const [file, setFile] = useState<File | null>(null);
@@ -38,12 +38,16 @@ const Page = () => {
 		await uploadFile(file, itemData);
 
 		setName("");
-		setPrice(0);
+		setPrice("");
 		setCategory("");
 		setDetail("");
 		setFile(null);
 		setUrl("");
 	};
+
+	const test = () => {
+		console.log("テスト")
+	}
 
 	return (
 		<>
@@ -92,7 +96,7 @@ const Page = () => {
 									placeholder='金額を入力してください'
 									value={price}
 									required
-									onChange={(e) => setPrice(Number(e.target.value))}
+									onChange={(e) => setPrice(e.target.value)}
 									style={{
 										padding: "8px",
 										width: "200px",
@@ -162,7 +166,7 @@ const Page = () => {
 							</div>
 						</ContentsAreaGray>
 
-						<PrimaryButton type='submit' style={{ marginBottom: "32px" }}>
+						<PrimaryButton type='submit' onClick={()=>test()} style={{ marginBottom: "32px" }}>
 							アイテムを追加
 						</PrimaryButton>
 					</form>

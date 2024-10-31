@@ -11,9 +11,7 @@ function SignOutButton() {
 
 	return (
 		<>
-			<button onClick={handleSignOut}>
-				サインアウト
-			</button>
+			<button onClick={handleSignOut}>ログアウト</button>
 		</>
 	);
 }

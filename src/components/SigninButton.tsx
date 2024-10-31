@@ -27,13 +27,11 @@ function SigninButton() {
 					});
 					console.log(user.displayName);
 				} else {
-					console.log(
-						"既に存在します"
-					);
+					console.log("既に存在します");
 				}
 			}
 		} catch (error) {
-			console.error("Google サインインエラー:");
+			console.error("Google ログインエラー:");
 		}
 	};
 

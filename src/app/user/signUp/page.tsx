@@ -46,7 +46,7 @@ export default function SignUp() {
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		await handleSignUp(email, password, username);
-		router.push("/top"); // サインアップ成功後にリダイレクト
+		router.push("/top"); // ログイン成功後にリダイレクト
 	};
 
 	return (
@@ -55,15 +55,6 @@ export default function SignUp() {
 			<div style={{ padding: "16px" }}>
 				<section>
 					<div style={{ padding: "16px 0 16px" }}>
-						<p
-							style={{
-								fontSize: "16px",
-								fontWeight: "bold",
-								color: "#FF5E2A",
-							}}
-						>
-							Sign up
-						</p>
 						<h2
 							style={{
 								fontSize: "28px",
@@ -77,7 +68,7 @@ export default function SignUp() {
 					<form onSubmit={onSubmit}>
 						<ContentsAreaOrange style={{ marginBottom: "32px" }}>
 							<div style={{ padding: "16px 0 0" }}>
-								<label htmlFor='username'>ユーザーネーム:</label>
+								<label htmlFor='username'>ユーザーネーム：</label>
 								<br />
 								<input
 									type='text'
@@ -94,7 +85,7 @@ export default function SignUp() {
 							</div>
 
 							<div style={{ padding: "16px 0 0" }}>
-								<label htmlFor='email'>Email:</label>
+								<label htmlFor='email'>メールアドレス：</label>
 								<br />
 								<input
 									type='email'
@@ -111,7 +102,7 @@ export default function SignUp() {
 							</div>
 
 							<div style={{ padding: "16px 0 16px" }}>
-								<label htmlFor='password'>Password:</label>
+								<label htmlFor='password'>パスワード：</label>
 								<br />
 								<input
 									type='password'
@@ -133,16 +124,7 @@ export default function SignUp() {
 							新規登録
 						</PrimaryButton>
 					</form>
-					<p
-						className='pt-4 pb-4 text-center'
-						style={{
-							borderBottom: "2px solid #fff",
-							marginBottom: "16px",
-						}}
-					>
-						Google認証の方はこちら
-					</p>
-					<div style={{ textAlign: "center" }}>
+					<div className="pt-4" style={{ textAlign: "center", borderTop: "2px solid #fff" }}>
 						<SigninButton />
 					</div>
 				</section>
