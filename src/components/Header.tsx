@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HamburgerMenu from "./Hamburger";
-import UserInfo from "./UserInfo";
+import UserInfo from "./Userinfo/UserInfo";
 
 const Header = () => {
 	return (

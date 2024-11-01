@@ -4,7 +4,7 @@ import SigninButton from "@/components/SigninButton";
 import { auth } from "@/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import UserInfo from "@/components/UserInfo";
+import UserInfo from "@/components/Userinfo/UserInfo";
 import SignOutButton from "@/components/SignoutButton";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
