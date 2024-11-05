@@ -1,4 +1,4 @@
-"use client"; // クライアントコンポーネントとして明示
+"use client";
 
 import SigninButton from "@/components/SigninButton";
 import { auth } from "@/firebase";
@@ -11,8 +11,13 @@ import { useEffect, useState } from "react";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import Header from "@/components/Header";
 import { PrimaryButton, SecondaryButton } from "@/components/Button";
+import SnackbarComponentp from "@/components/Snackbar";
 
-const handleLogin = async (email: string, password: string) => {
+const handleLogin = async (
+	email: string,
+	password: string,
+	setSnackbar: (message: string, severity: "success" | "error") => void
+) => {
 	try {
 		const userCredential = await signInWithEmailAndPassword(
 			auth,
@@ -21,9 +26,9 @@ const handleLogin = async (email: string, password: string) => {
 		);
 		const user = userCredential.user;
 		console.log(user);
-		// ログイン成功後の処理
+		setSnackbar("ログイン成功！", "success");
 	} catch (error) {
-		alert("パスワードが違います");
+		setSnackbar("パスワードが違います", "error");
 		console.error(error);
 	}
 };
@@ -40,10 +45,25 @@ export default function SignIn() {
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [snackbarOpen, setSnackbarOpen] = useState(false);
+	const [snackbarMessage, setSnackbarMessage] = useState("");
+	const [snackbarSeverity, setSnackbarSeverity] = useState<"success" | "error">(
+		"success"
+	);
+
+	const setSnackbar = (message: string, severity: "success" | "error") => {
+		setSnackbarMessage(message);
+		setSnackbarSeverity(severity);
+		setSnackbarOpen(true);
+	};
+
+	const handleCloseSnackbar = () => {
+		setSnackbarOpen(false);
+	};
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		await handleLogin(email, password);
+		await handleLogin(email, password, setSnackbar);
 	};
 
 	return (
@@ -143,6 +163,12 @@ export default function SignIn() {
 						</>
 					)}
 				</section>
+				<SnackbarComponentp
+					message={snackbarMessage}
+					isOpen={snackbarOpen}
+					onClose={handleCloseSnackbar}
+					severity={snackbarSeverity}
+				/>
 			</div>
 		</>
 	);
