@@ -16,7 +16,7 @@ const getPositionStyles = (position?: "left" | "center" | "right") => {
 		case "right":
 			return { justifyContent: "flex-end" };
 		default:
-			return { justifyContent: "flex-start" }; // デフォルトは左揃え
+			return { justifyContent: "flex-start" };
 	}
 };
 

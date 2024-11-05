@@ -37,15 +37,15 @@ export default function SignIn() {
 	const [user] = useAuthState(auth);
 	const router = useRouter();
 
-    useEffect(() => {
-			if (user) {
-				setSnackbar("ログイン成功！", "success");
-				const timer = setTimeout(() => {
-					router.push("/top");
-				}, 1000);
-				return () => clearTimeout(timer);
-			}
-		}, [user, router]);
+	useEffect(() => {
+		if (user) {
+			setSnackbar("ログイン成功！", "success");
+			const timer = setTimeout(() => {
+				router.push("/top");
+			}, 1000);
+			return () => clearTimeout(timer);
+		}
+	}, [user, router]);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -159,7 +159,9 @@ export default function SignIn() {
 								</p>
 							</form>
 							<SecondaryButton style={{ marginBottom: "32px" }}>
-								<a style={{display:"block"}} href='/user/signUp'>新規登録</a>
+								<a style={{ display: "block" }} href='/user/signUp'>
+									新規登録
+								</a>
 							</SecondaryButton>
 							<div
 								className='pt-4'

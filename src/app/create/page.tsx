@@ -45,10 +45,6 @@ const Page = () => {
 		setUrl("");
 	};
 
-	const test = () => {
-		console.log("テスト")
-	}
-
 	return (
 		<>
 			{loading ? (
@@ -166,7 +162,7 @@ const Page = () => {
 							</div>
 						</ContentsAreaGray>
 
-						<PrimaryButton type='submit' onClick={()=>test()} style={{ marginBottom: "32px" }}>
+						<PrimaryButton type='submit' style={{ marginBottom: "32px" }}>
 							アイテムを追加
 						</PrimaryButton>
 					</form>

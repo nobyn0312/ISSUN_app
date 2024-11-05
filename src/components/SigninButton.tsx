@@ -14,7 +14,7 @@ function SigninButton() {
 				// 既存データがあるか確認
 				const userDocSnapshot = await getDoc(userDocRef);
 
-				// データが存在しない場合にのみ新規作成
+				// データが存在しない場合の処理
 				if (!userDocSnapshot.exists()) {
 					await setDoc(userDocRef, {
 						uid: user.uid,
@@ -27,7 +27,7 @@ function SigninButton() {
 					});
 					console.log(user.displayName);
 				} else {
-					console.log("既に存在します");
+					console.log("既に存在");
 				}
 			}
 		} catch (error) {
