@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import Header from "@/components/Header";
 import { PrimaryButton, SecondaryButton } from "@/components/Button";
-import SnackbarComponentp from "@/components/Snackbar";
+import SnackbarComponent from "@/components/Snackbar";
 
 const handleLogin = async (
 	email: string,
@@ -37,11 +37,15 @@ export default function SignIn() {
 	const [user] = useAuthState(auth);
 	const router = useRouter();
 
-	useEffect(() => {
-		if (user) {
-			router.push("/top");
-		}
-	}, [user, router]);
+    useEffect(() => {
+			if (user) {
+				setSnackbar("ログイン成功！", "success");
+				const timer = setTimeout(() => {
+					router.push("/top");
+				}, 1000);
+				return () => clearTimeout(timer);
+			}
+		}, [user, router]);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -52,12 +56,15 @@ export default function SignIn() {
 	);
 
 	const setSnackbar = (message: string, severity: "success" | "error") => {
+		console.log("Setting Snackbar:", { message, severity });
 		setSnackbarMessage(message);
 		setSnackbarSeverity(severity);
 		setSnackbarOpen(true);
 	};
 
 	const handleCloseSnackbar = () => {
+		console.log("Snackbar Closed");
+
 		setSnackbarOpen(false);
 	};
 
@@ -152,7 +159,7 @@ export default function SignIn() {
 								</p>
 							</form>
 							<SecondaryButton style={{ marginBottom: "32px" }}>
-								<a href='/user/signUp'>新規登録</a>
+								<a style={{display:"block"}} href='/user/signUp'>新規登録</a>
 							</SecondaryButton>
 							<div
 								className='pt-4'
@@ -163,11 +170,12 @@ export default function SignIn() {
 						</>
 					)}
 				</section>
-				<SnackbarComponentp
+				<SnackbarComponent
 					message={snackbarMessage}
 					isOpen={snackbarOpen}
 					onClose={handleCloseSnackbar}
 					severity={snackbarSeverity}
+					duration={1000}
 				/>
 			</div>
 		</>

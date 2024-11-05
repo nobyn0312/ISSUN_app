@@ -25,12 +25,18 @@ const SnackbarComponent: React.FC<SnackbarProps> = ({
 	severity = "info",
 	duration = 3000,
 }) => {
+	console.log("SnackbarComponent Rendered with:", {
+		message,
+		isOpen,
+		severity,
+	});
+
 	return (
 		<Snackbar
 			open={isOpen}
 			autoHideDuration={duration}
 			onClose={onClose}
-			anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+			anchorOrigin={{ vertical: "top", horizontal: "center" }}
 			sx={{ zIndex: 1300 }}
 		>
 			<Alert onClose={onClose} severity={severity} sx={{ width: "100%" }}>
