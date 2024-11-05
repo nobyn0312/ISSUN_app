@@ -1,4 +1,4 @@
-"use client"; // クライアントコンポーネントとして明示
+"use client";
 
 import SigninButton from "@/components/SigninButton";
 import { auth } from "@/firebase";
@@ -11,8 +11,13 @@ import { useEffect, useState } from "react";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import Header from "@/components/Header";
 import { PrimaryButton, SecondaryButton } from "@/components/Button";
+import SnackbarComponent from "@/components/Snackbar";
 
-const handleLogin = async (email: string, password: string) => {
+const handleLogin = async (
+	email: string,
+	password: string,
+	setSnackbar: (message: string, severity: "success" | "error") => void
+) => {
 	try {
 		const userCredential = await signInWithEmailAndPassword(
 			auth,
@@ -21,9 +26,9 @@ const handleLogin = async (email: string, password: string) => {
 		);
 		const user = userCredential.user;
 		console.log(user);
-		// ログイン成功後の処理
+		setSnackbar("ログイン成功！", "success");
 	} catch (error) {
-		alert("パスワードが違います");
+		setSnackbar("パスワードが違います", "error");
 		console.error(error);
 	}
 };
@@ -32,18 +37,40 @@ export default function SignIn() {
 	const [user] = useAuthState(auth);
 	const router = useRouter();
 
-	useEffect(() => {
-		if (user) {
-			router.push("/top");
-		}
-	}, [user, router]);
+    useEffect(() => {
+			if (user) {
+				setSnackbar("ログイン成功！", "success");
+				const timer = setTimeout(() => {
+					router.push("/top");
+				}, 1000);
+				return () => clearTimeout(timer);
+			}
+		}, [user, router]);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [snackbarOpen, setSnackbarOpen] = useState(false);
+	const [snackbarMessage, setSnackbarMessage] = useState("");
+	const [snackbarSeverity, setSnackbarSeverity] = useState<"success" | "error">(
+		"success"
+	);
+
+	const setSnackbar = (message: string, severity: "success" | "error") => {
+		console.log("Setting Snackbar:", { message, severity });
+		setSnackbarMessage(message);
+		setSnackbarSeverity(severity);
+		setSnackbarOpen(true);
+	};
+
+	const handleCloseSnackbar = () => {
+		console.log("Snackbar Closed");
+
+		setSnackbarOpen(false);
+	};
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		await handleLogin(email, password);
+		await handleLogin(email, password, setSnackbar);
 	};
 
 	return (
@@ -132,7 +159,7 @@ export default function SignIn() {
 								</p>
 							</form>
 							<SecondaryButton style={{ marginBottom: "32px" }}>
-								<a href='/user/signUp'>新規登録</a>
+								<a style={{display:"block"}} href='/user/signUp'>新規登録</a>
 							</SecondaryButton>
 							<div
 								className='pt-4'
@@ -143,6 +170,13 @@ export default function SignIn() {
 						</>
 					)}
 				</section>
+				<SnackbarComponent
+					message={snackbarMessage}
+					isOpen={snackbarOpen}
+					onClose={handleCloseSnackbar}
+					severity={snackbarSeverity}
+					duration={1000}
+				/>
 			</div>
 		</>
 	);
