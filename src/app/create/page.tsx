@@ -54,7 +54,7 @@ const Page = () => {
 			) : (
 				<>
 					<Header />
-					<div style={{ padding: "16px" }}>
+						<div style={{ padding: "16px"}}>
 						<p
 							style={{ fontSize: "16px", fontWeight: "bold", color: "#FF5E2A" }}
 						>
@@ -68,7 +68,7 @@ const Page = () => {
 					</div>
 
 					<form onSubmit={handleSubmit}>
-						<ContentsAreaGray style={{ marginBottom: "32px" }}>
+						<ContentsAreaGray style={{  margin:"0 16px",marginBottom: "32px" }}>
 							<div style={{ padding: "16px 0px 0" }}>
 								<label>アイテム名:</label>
 								<br />
