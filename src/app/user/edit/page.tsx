@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
 import { useAuthContext } from "@/app/context/AuthContext";
+import SnackbarComponent from "@/components/Snackbar";
 
 const handleUpdateProfile = async (
 	uid: string,
@@ -47,6 +48,26 @@ export default function EditProfile() {
 	const [shape, setShape] = useState("");
 	const router = useRouter();
 
+	const [snackbarOpen, setSnackbarOpen] = useState(false);
+	const [snackbarMessage, setSnackbarMessage] = useState("");
+	const [snackbarSeverity, setSnackbarSeverity] = useState<"success" | "error">(
+		"success"
+	);
+
+		const setSnackbar = (message: string, severity: "success" | "error") => {
+			console.log("Setting Snackbar:", { message, severity });
+			setSnackbarMessage(message);
+			setSnackbarSeverity(severity);
+			setSnackbarOpen(true);
+		};
+
+		const handleCloseSnackbar = () => {
+			console.log("Snackbar Closed");
+
+			setSnackbarOpen(false);
+		};
+
+
 	useEffect(() => {
 		// コンテキストからの初期値を設定
 		setUsername(contextUsername !== null ? contextUsername : "");
@@ -59,8 +80,15 @@ export default function EditProfile() {
 		e.preventDefault();
 		if (userId) {
 			await handleUpdateProfile(userId, username, age, height, shape);
-			router.push("/top");
+			// router.push("/top");
+						setSnackbar("ユーザー情報更新しました", "success");
+			const timer = setTimeout(() => {
+				router.push("/top");
+			}, 1000);
+			return () => clearTimeout(timer);
+
 		} else {
+					setSnackbar("失敗", "error");
 			console.error("User ID is not available");
 		}
 	};
@@ -190,6 +218,14 @@ export default function EditProfile() {
 						</PrimaryButton>
 					</form>
 				</section>
+
+				<SnackbarComponent
+					message={snackbarMessage}
+					isOpen={snackbarOpen}
+					onClose={handleCloseSnackbar}
+					severity={snackbarSeverity}
+					duration={1000}
+				/>
 			</div>
 		</>
 	);
