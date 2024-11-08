@@ -13,6 +13,8 @@ import Header from "@/components/Header";
 import { PrimaryButton, SecondaryButton } from "@/components/Button";
 import SnackbarComponent from "@/components/Snackbar";
 
+
+// メールとパスワードの場合
 const handleLogin = async (
 	email: string,
 	password: string,
@@ -26,9 +28,9 @@ const handleLogin = async (
 		);
 		const user = userCredential.user;
 		console.log(user);
-		setSnackbar("ログイン成功！", "success");
+		setSnackbar("ログインしました", "success");
 	} catch (error) {
-		setSnackbar("パスワードが違います", "error");
+		setSnackbar("失敗", "error");
 		console.error(error);
 	}
 };
@@ -37,9 +39,10 @@ export default function SignIn() {
 	const [user] = useAuthState(auth);
 	const router = useRouter();
 
+	// topへ遷移
 	useEffect(() => {
 		if (user) {
-			setSnackbar("ログイン成功！", "success");
+			setSnackbar("ログインしました", "success");
 			const timer = setTimeout(() => {
 				router.push("/top");
 			}, 1000);
