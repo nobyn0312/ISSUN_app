@@ -54,7 +54,7 @@ const Page = () => {
 			) : (
 				<>
 					<Header />
-						<div style={{ padding: "16px"}}>
+						<div style={{padding: "16px"}}>
 						<p
 							style={{ fontSize: "16px", fontWeight: "bold", color: "#FF5E2A" }}
 						>

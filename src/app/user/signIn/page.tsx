@@ -30,7 +30,7 @@ const handleLogin = async (
 		console.log(user);
 		setSnackbar("ログインしました", "success");
 	} catch (error) {
-		setSnackbar("失敗", "error");
+		setSnackbar("ログイン失敗", "error");
 		console.error(error);
 	}
 };

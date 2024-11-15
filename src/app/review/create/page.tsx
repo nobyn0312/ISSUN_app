@@ -36,7 +36,7 @@ const ReviewCreate = () => {
 				<ContentsAreaOrange style={{ marginBottom: "32px" }}>
 					<div style={{ padding: "16px 0px 0" }}>
 						<label htmlFor='title'>タイトル</label>
-						<br />
+						<br />　
 						<input
 							type='text'
 							id='title'
