@@ -74,6 +74,12 @@ const ItemDetail = ({ params }: { params: { id: string } }) => {
 					<p style={{ fontSize: "14px", whiteSpace: "pre-line" }}>
 						{item.detail}
 					</p>
+
+					<p>--------------------------</p>
+					<div style={{ display: "flex", gap: "20px",justifyContent:"end" }}>
+						<button style={{ fontWeight: "bold" }}>編集</button>
+						<button style={{ fontWeight: "bold" }}>削除</button>
+					</div>
 				</section>
 
 				<Suspense>

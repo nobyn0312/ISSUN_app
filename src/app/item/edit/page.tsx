@@ -5,7 +5,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import { PrimaryButton } from "@/components/Button";
 import { ContentsAreaGray } from "@/components/ContentsArea";
-import { useUploadFile } from "./hooks/useUploadFile";
+import { useUploadFile } from "@/app/create/hooks/useUploadFile";
 
 const Page = () => {
 	const [name, setName] = useState("");
@@ -55,7 +55,7 @@ const Page = () => {
 			) : (
 				<>
 					<Header />
-						<div style={{padding: "16px"}}>
+					<div style={{ padding: "16px" }}>
 						<p
 							style={{ fontSize: "16px", fontWeight: "bold", color: "#FF5E2A" }}
 						>
@@ -69,7 +69,9 @@ const Page = () => {
 					</div>
 
 					<form onSubmit={handleSubmit}>
-						<ContentsAreaGray style={{  margin:"0 16px",marginBottom: "32px" }}>
+						<ContentsAreaGray
+							style={{ margin: "0 16px", marginBottom: "32px" }}
+						>
 							<div style={{ padding: "16px 0px 0" }}>
 								<label>アイテム名:</label>
 								<br />
