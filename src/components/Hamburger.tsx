@@ -25,7 +25,7 @@ const HamburgerMenu: React.FC = () => {
 				<div className={`${styles.bar} ${isOpen ? styles.open : ""}`}></div>
 			</button>
 
-			<Container>
+			<div>
 				<div className='inner'>
 					<nav
 						className={`${styles.menu} ${isOpen ? styles.open : ""}`}
@@ -63,7 +63,7 @@ const HamburgerMenu: React.FC = () => {
 						</ul>
 					</nav>
 				</div>
-			</Container>
+			</div>
 		</div>
 	);
 };
