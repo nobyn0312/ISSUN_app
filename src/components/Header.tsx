@@ -8,7 +8,7 @@ const Header = () => {
 		<>
 			<header
 				className=''
-				style={{ background: "#D9D9D9", position: "relative" }}
+				style={{ borderBottom: "2px solid rgb(255, 94, 42)", position: "relative" }}
 			>
 				<div
 					className='flex align-middle justify-between py-4'

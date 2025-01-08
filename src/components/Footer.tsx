@@ -6,8 +6,8 @@ const Footer = () => {
 	return (
 		<Container>
 			<footer>
-				<div style={{ background: "#D9D9D9", padding: "16px" }}>
-					<p style={{ color: "#333333", textAlign: "center" }}>
+				<div style={{ padding: "16px" }}>
+					<p style={{ color: "rgb(255, 94, 42)", textAlign: "center" }}>
 						&copy;ISSUN 2024
 					</p>
 				</div>

@@ -11,7 +11,7 @@
 	display: block;
 	width: 16px;
 	height: 2px;
-	background: black;
+	background: rgb(255, 94, 42);
 	margin: 6px 0;
 	transition: 0.4s;
 	border-radius: 2px;
