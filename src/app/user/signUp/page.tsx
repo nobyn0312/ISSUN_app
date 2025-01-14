@@ -9,6 +9,7 @@ import Header from "@/components/Header";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
 import SigninButton from "@/components/SigninButton";
+import { Container } from "@/components/Container";
 
 const handleSignUp = async (
 	email: string,
@@ -52,83 +53,88 @@ export default function SignUp() {
 	return (
 		<>
 			<Header />
-			<div style={{ padding: "16px" }}>
-				<section>
-					<div style={{ padding: "16px 0 16px" }}>
-						<h2
-							style={{
-								fontSize: "28px",
-								fontWeight: "bold",
-								color: "#FF5E2A",
-							}}
+			<Container>
+				<div style={{ padding: "16px" }}>
+					<section>
+						<div style={{ padding: "16px 0 16px" }}>
+							<h2
+								style={{
+									fontSize: "28px",
+									fontWeight: "bold",
+									color: "#FF5E2A",
+								}}
+							>
+								新規登録
+							</h2>
+						</div>
+						<form onSubmit={onSubmit}>
+							<ContentsAreaOrange style={{ marginBottom: "32px" }}>
+								<div style={{ padding: "16px 0 0" }}>
+									<label htmlFor='username'>ユーザーネーム：</label>
+									<br />
+									<input
+										type='text'
+										id='username'
+										value={username}
+										onChange={(e) => setUsername(e.target.value)}
+										required
+										style={{
+											width: "100%",
+											padding: "8px",
+											borderRadius: "6px",
+										}}
+									/>
+								</div>
+
+								<div style={{ padding: "16px 0 0" }}>
+									<label htmlFor='email'>メールアドレス：</label>
+									<br />
+									<input
+										type='email'
+										id='email'
+										value={email}
+										onChange={(e) => setEmail(e.target.value)}
+										required
+										style={{
+											width: "100%",
+											padding: "8px",
+											borderRadius: "6px",
+										}}
+									/>
+								</div>
+
+								<div style={{ padding: "16px 0 16px" }}>
+									<label htmlFor='password'>パスワード：</label>
+									<br />
+									<input
+										type='password'
+										id='password'
+										value={password}
+										onChange={(e) => setPassword(e.target.value)}
+										required
+										autoComplete='current-password'
+										style={{
+											width: "100%",
+											padding: "8px",
+											borderRadius: "6px",
+										}}
+									/>
+								</div>
+							</ContentsAreaOrange>
+
+							<PrimaryButton style={{ marginBottom: "32px" }} type='submit'>
+								新規登録
+							</PrimaryButton>
+						</form>
+						<div
+							className='pt-4'
+							style={{ textAlign: "center", borderTop: "2px solid #fff" }}
 						>
-							新規登録
-						</h2>
-					</div>
-					<form onSubmit={onSubmit}>
-						<ContentsAreaOrange style={{ marginBottom: "32px" }}>
-							<div style={{ padding: "16px 0 0" }}>
-								<label htmlFor='username'>ユーザーネーム：</label>
-								<br />
-								<input
-									type='text'
-									id='username'
-									value={username}
-									onChange={(e) => setUsername(e.target.value)}
-									required
-									style={{
-										width: "100%",
-										padding: "8px",
-										borderRadius: "6px",
-									}}
-								/>
-							</div>
-
-							<div style={{ padding: "16px 0 0" }}>
-								<label htmlFor='email'>メールアドレス：</label>
-								<br />
-								<input
-									type='email'
-									id='email'
-									value={email}
-									onChange={(e) => setEmail(e.target.value)}
-									required
-									style={{
-										width: "100%",
-										padding: "8px",
-										borderRadius: "6px",
-									}}
-								/>
-							</div>
-
-							<div style={{ padding: "16px 0 16px" }}>
-								<label htmlFor='password'>パスワード：</label>
-								<br />
-								<input
-									type='password'
-									id='password'
-									value={password}
-									onChange={(e) => setPassword(e.target.value)}
-									required
-									autoComplete='current-password'
-									style={{
-										width: "100%",
-										padding: "8px",
-										borderRadius: "6px",
-									}}
-								/>
-							</div>
-						</ContentsAreaOrange>
-
-						<PrimaryButton style={{ marginBottom: "32px" }} type='submit'>
-							新規登録
-						</PrimaryButton>
-					</form>
-					<div className="pt-4" style={{ textAlign: "center", borderTop: "2px solid #fff" }}>
-						<SigninButton />
-					</div>
-				</section>
-			</div>
+							<SigninButton />
+						</div>
+					</section>
+				</div>
+			</Container>
 		</>
 	);
 }

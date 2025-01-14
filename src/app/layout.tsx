@@ -33,7 +33,7 @@ export default function RootLayout({
 				style={{ backgroundColor: "#333333", color: "#fff" }}
 			>
 				<AuthContextProvider>
-					<Container>{children}</Container>
+					{children}
 				</AuthContextProvider>
 				<Footer/>
 			</body>

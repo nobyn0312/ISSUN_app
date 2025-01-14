@@ -11,6 +11,7 @@ import { PrimaryButton } from "@/components/Button";
 import Review from "@/components/Review";
 import { notFound } from "next/navigation";
 import { Item } from "@/libs/fetchItems";
+import { Container } from "@/components/Container";
 
 const ItemDetail = ({ params }: { params: { id: string } }) => {
 	const [item, setItem] = useState<Item | null>(null);
@@ -31,65 +32,67 @@ const ItemDetail = ({ params }: { params: { id: string } }) => {
 	return (
 		<>
 			<Header />
-			<main style={{ padding: "24px" }}>
-				<Image
-					src={item.imageUrl}
-					width={450}
-					height={300}
-					alt={item.name}
-					className='rounded-md'
-					style={{ margin: "0 auto", marginBottom: "24px" }}
-				/>
-				<section
-					style={{
-						background: "#FF5E2A",
-						margin: "0 auto",
-						padding: "16px",
-						borderRadius: "15px",
-						marginBottom: "24px",
-					}}
-				>
-					<h1
+			<Container>
+				<main style={{ padding: "24px" }}>
+					<Image
+						src={item.imageUrl}
+						width={450}
+						height={300}
+						alt={item.name}
+						className='rounded-md'
+						style={{ margin: "0 auto", marginBottom: "24px" }}
+					/>
+					<section
 						style={{
-							fontSize: "30px",
-							fontWeight: "bold",
-							marginBottom: "16px",
+							background: "#FF5E2A",
+							margin: "0 auto",
+							padding: "16px",
+							borderRadius: "15px",
+							marginBottom: "24px",
 						}}
 					>
-						{item.name}
-					</h1>
+						<h1
+							style={{
+								fontSize: "30px",
+								fontWeight: "bold",
+								marginBottom: "16px",
+							}}
+						>
+							{item.name}
+						</h1>
 
-					<p style={{ fontSize: "20px", fontWeight: "bold" }}>PRICE</p>
-					<p
-						style={{
-							fontSize: "28px",
-							fontWeight: "bold",
-							marginBottom: "16px",
-						}}
-					>
-						¥{item.price}
-					</p>
+						<p style={{ fontSize: "20px", fontWeight: "bold" }}>PRICE</p>
+						<p
+							style={{
+								fontSize: "28px",
+								fontWeight: "bold",
+								marginBottom: "16px",
+							}}
+						>
+							¥{item.price}
+						</p>
 
-					<p style={{ fontSize: "20px", fontWeight: "bold" }}>DETAIL</p>
-					<p style={{ fontSize: "14px", whiteSpace: "pre-line" }}>
-						{item.detail}
-					</p>
-				</section>
+						<p style={{ fontSize: "20px", fontWeight: "bold" }}>DETAIL</p>
+						<p style={{ fontSize: "14px", whiteSpace: "pre-line" }}>
+							{item.detail}
+						</p>
+					</section>
 
-				<Suspense>
-					<Review itemId={item.id} />
-				</Suspense>
+					<Suspense>
+						<Review itemId={item.id} />
+					</Suspense>
 
-				<PrimaryButton style={{ margin: "0 auto" }}>
-					<Link
-						href={item.url as string}
-						style={{ display: "block" }}
-						target='_blank'
-					>
-						販売ショップへ
-					</Link>
-				</PrimaryButton>
-			</main>
+					<PrimaryButton style={{ margin: "0 auto" }}>
+						<Link
+							href={item.url as string}
+							style={{ display: "block" }}
+							target='_blank'
+						>
+							販売ショップへ
+						</Link>
+					</PrimaryButton>
+				</main>
+			</Container>
 		</>
 	);
 };

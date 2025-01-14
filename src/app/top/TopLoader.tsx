@@ -22,9 +22,11 @@ const TopLoader = ({ onSortChange }: TopLoaderProps) => (
 			</h1>
 			<div className={styles.msg}>
 				<p style={{ textAlign: "center", lineHeight: "1.75" }}>
-					ISSUNは、低身長でもファッションを楽しむためのアプリ。
+					ISSUNは低身長でもファッションを楽しむためのアプリです。
 					<br />
-					ユニクロ、ZOZOTOWN、様々なアパレルの着用レビューを登録して、共有し、ファッションの幅を広げよう。
+					一寸法師からその名をつけました。
+					<br/>
+					ユニクロ、ZOZOTOWN、様々なアパレルの着用レビューを登録、共有、ファッションの幅を広げよう。
 				</p>
 				<p
 					style={{
@@ -33,7 +35,7 @@ const TopLoader = ({ onSortChange }: TopLoaderProps) => (
 						padding: "16px 0 16px",
 					}}
 				>
-					小さくても、一寸法師のように強くありたい
+					一寸法師のように大きくありたい。
 				</p>
 			</div>
 		</div>
