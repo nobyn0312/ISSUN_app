@@ -9,6 +9,7 @@ import { useAuthContext } from "@/app/context/AuthContext";
 import { useSearchParams } from "next/navigation";
 import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
+import { Container } from "@/components/Container";
 
 const ReviewEdit = () => {
 	const { user } = useAuthContext();
@@ -78,7 +79,8 @@ const ReviewEdit = () => {
 	return (
 		<>
 			<Header />
-			<div style={{ padding: "16px" }}>
+			<Container>
+			<div style={{padding: "16px" }}>
 				<p style={{ fontSize: "16px", fontWeight: "bold", color: "#FF5E2A" }}>
 					Edit review
 				</p>
@@ -88,7 +90,7 @@ const ReviewEdit = () => {
 			</div>
 
 			<form onSubmit={handleSubmit}>
-				<ContentsAreaOrange style={{ margin:"0 16px", marginBottom: "32px" }}>
+				<ContentsAreaOrange style={{ margin:"0 auto 16px", marginBottom: "32px",padding:"0 16px"}}>
 					<div style={{ padding: "16px 0px 0" }}>
 						<label htmlFor='title'>タイトル</label>
 						<br />
@@ -158,6 +160,8 @@ const ReviewEdit = () => {
 					レビューを更新
 				</PrimaryButton>
 			</form>
+			</Container>
+
 		</>
 	);
 };
