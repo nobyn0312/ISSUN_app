@@ -29,7 +29,7 @@ const UserInfo = () => {
 							className='rounded-full'
 							style={{ display: "block", margin: "0 auto" }}
 						/>
-						<p style={{ fontSize: "10px", color: "black", paddingTop: "4px" }}>
+						<p style={{ fontSize: "10px", color: "white", paddingTop: "4px" }}>
 							{isLogin ? username : "ゲスト"}
 						</p>
 					</div>
