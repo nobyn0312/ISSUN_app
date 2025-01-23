@@ -9,6 +9,7 @@ import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
 import { useAuthContext } from "@/app/context/AuthContext";
 import SnackbarComponent from "@/components/Snackbar";
+import { Container } from "@/components/Container";
 
 const handleUpdateProfile = async (
 	uid: string,
@@ -96,6 +97,7 @@ export default function EditProfile() {
 	return (
 		<>
 			<Header />
+			<Container>
 			<div style={{ padding: "16px" }}>
 				<section>
 					<div style={{ padding: "16px 0 16px" }}>
@@ -227,6 +229,7 @@ export default function EditProfile() {
 					duration={1000}
 				/>
 			</div>
+			</Container>
 		</>
 	);
 }

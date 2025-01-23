@@ -4,6 +4,7 @@ import { ContentsAreaOrange } from "@/components/ContentsArea";
 import { PrimaryButton } from "@/components/Button";
 import { useAuthContext } from "@/app/context/AuthContext";
 import Link from "next/link";
+import { Container } from "@/components/Container";
 
 const Page = () => {
 	// useAuthContext からユーザー情報を取得
@@ -11,6 +12,7 @@ const Page = () => {
 	return (
 		<>
 			<Header />
+			<Container>
 			<div style={{ padding: "16px" }}>
 				<h2 style={{ fontSize: "28px", fontWeight: "bold", color: "#FF5E2A" }}>
 					マイページ：ユーザー情報
@@ -64,6 +66,7 @@ const Page = () => {
 					ユーザー情報を更新する
 				</Link>
 			</PrimaryButton>
+			</Container>
 		</>
 	);
 };
