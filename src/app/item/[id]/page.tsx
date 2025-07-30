@@ -49,6 +49,7 @@ const ItemDetail = ({ params }: { params: { id: string } }) => {
 							padding: "16px",
 							borderRadius: "15px",
 							marginBottom: "24px",
+							color: "#fff",
 						}}
 					>
 						<h1

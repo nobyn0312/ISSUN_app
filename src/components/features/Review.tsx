@@ -120,6 +120,7 @@ const Review = ({ itemId }: ReviewProps) => {
 				background: "#ffffff",
 				color: "#333333",
 				borderRadius: "15px",
+				border: "1px solid #333",
 				marginBottom: "24px",
 				padding: "16px",
 			}}
