@@ -1,4 +1,4 @@
-import { fetchItems, Item } from "@/libs/fetchItems";
+import { fetchItems, Item } from "@/lib/api/fetchItems";
 
 // 特定のIDを持つアイテムを取得する関数
 export const fetchItemDetail = (id: string): Promise<Item | null> => {

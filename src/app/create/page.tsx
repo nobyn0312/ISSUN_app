@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Header from "@/components/Header";
-import { PrimaryButton } from "@/components/Button";
-import { ContentsAreaGray } from "@/components/ContentsArea";
-import { useUploadFile } from "./hooks/useUploadFile";
-import { Container } from "@/components/Container";
+import Header from "@/components/layout/Header";
+import { PrimaryButton } from "@/components/ui/Button";
+import { ContentsAreaGray } from "@/components/features/ContentsArea";
+import { useUploadFile } from "@/hooks/useUploadFile";
+import { Container } from "@/components/ui/Container";
 
 const Page = () => {
 	const [name, setName] = useState("");

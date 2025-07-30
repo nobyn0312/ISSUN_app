@@ -1,6 +1,6 @@
 // fetchItems.ts
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
-import { firestore } from "@/firebase";
+import { firestore } from "@/lib/config/firebase";
 
 // Item型を定義
 export interface Item {

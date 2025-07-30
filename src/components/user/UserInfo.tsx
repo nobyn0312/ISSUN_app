@@ -1,9 +1,9 @@
-import { auth } from "@/firebase";
+import { auth } from "@/lib/config/firebase";
 import Image from "next/image";
 import { useAuthContext } from "@/app/context/AuthContext";
 import { useState } from "react";
-import SignOutButton from "../SignoutButton";
-import styles from './Userinfo.module.css'
+import SignOutButton from "@/components/auth/SignoutButton";
+import styles from "./Userinfo.module.css";
 
 const UserInfo = () => {
 	const defaultPhotoURL = "/images/defaultUser.svg";
@@ -29,7 +29,7 @@ const UserInfo = () => {
 							className='rounded-full'
 							style={{ display: "block", margin: "0 auto" }}
 						/>
-						<p style={{ fontSize: "10px", color: "white", paddingTop: "4px" }}>
+						<p style={{ fontSize: "10px",  paddingTop: "4px" }}>
 							{isLogin ? username : "ゲスト"}
 						</p>
 					</div>
@@ -37,7 +37,10 @@ const UserInfo = () => {
 			</div>
 
 			{isOpen && (
-				<div className={styles.bubble} style={{ position: "absolute", right: "0", top: "74px" }}>
+				<div
+					className={styles.bubble}
+					style={{ position: "absolute", right: "0", top: "74px" }}
+				>
 					<ul
 						style={{
 							width: "190px",

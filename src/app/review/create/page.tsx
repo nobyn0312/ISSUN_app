@@ -1,11 +1,11 @@
 "use client";
 
 import { Suspense } from "react";
-import Header from "@/components/Header";
-import { ContentsAreaOrange } from "@/components/ContentsArea";
-import { PrimaryButton } from "@/components/Button";
+import Header from "@/components/layout/Header";
+import { ContentsAreaOrange } from "@/components/features/ContentsArea";
+import { PrimaryButton } from "@/components/ui/Button";
 
-import { useSubmitReview } from "./hooks/useSubmitReview";
+import { useSubmitReview } from "@/hooks/useSubmitReview";
 
 const ReviewCreate = () => {
 	const {

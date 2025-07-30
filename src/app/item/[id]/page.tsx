@@ -4,14 +4,14 @@
 
 import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
-import { fetchItemDetail } from "@/libs/fetchItemDetail";
-import Header from "@/components/Header";
+import { fetchItemDetail } from "@/lib/api/fetchItemDetail";
+import Header from "@/components/layout/Header";
 import Link from "next/link";
-import { PrimaryButton } from "@/components/Button";
-import Review from "@/components/Review";
+import { PrimaryButton } from "@/components/ui/Button";
+import Review from "@/components/features/Review";
 import { notFound } from "next/navigation";
-import { Item } from "@/libs/fetchItems";
-import { Container } from "@/components/Container";
+import { Item } from "@/lib/api/fetchItems";
+import { Container } from "@/components/ui/Container";
 
 const ItemDetail = ({ params }: { params: { id: string } }) => {
 	const [item, setItem] = useState<Item | null>(null);
@@ -49,6 +49,7 @@ const ItemDetail = ({ params }: { params: { id: string } }) => {
 							padding: "16px",
 							borderRadius: "15px",
 							marginBottom: "24px",
+							color: "#fff",
 						}}
 					>
 						<h1

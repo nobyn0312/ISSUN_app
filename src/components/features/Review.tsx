@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { firestore, auth } from "@/firebase"; // authを追加
+import { firestore, auth } from "@/lib/config/firebase"; // authを追加
 import {
 	collection,
 	query,
@@ -120,6 +120,7 @@ const Review = ({ itemId }: ReviewProps) => {
 				background: "#ffffff",
 				color: "#333333",
 				borderRadius: "15px",
+				border: "1px solid #333",
 				marginBottom: "24px",
 				padding: "16px",
 			}}

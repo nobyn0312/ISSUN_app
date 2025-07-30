@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { firestore, storage } from "@/firebase";
+import { firestore, storage } from "@/lib/config/firebase";
 import { v4 as uuidv4 } from "uuid";
 
 interface UploadData {
@@ -18,7 +18,6 @@ interface UploadFileHook {
 	loading: boolean;
 	uploadFile: (file: File, data: UploadData) => Promise<void>;
 }
-
 
 export const useUploadFile = (): UploadFileHook => {
 	const [progress, setProgress] = useState(0);

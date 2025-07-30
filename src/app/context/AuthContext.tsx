@@ -7,7 +7,7 @@ import {
 	useEffect,
 	useState,
 } from "react";
-import { auth, firestore } from "@/firebase";
+import { auth, firestore } from "@/lib/config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { User } from "firebase/auth";
 
