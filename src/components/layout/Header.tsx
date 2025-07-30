@@ -39,7 +39,7 @@ const Header = () => {
 							</Link>
 						</div>
 
-						<div style={{ paddingRight: "16px" }}>
+						<div style={{ paddingRight: "16px" ,position:"relative"}}>
 							<UserInfo />
 						</div>
 					</div>

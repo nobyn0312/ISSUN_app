@@ -37,7 +37,7 @@ function SigninButton() {
 
 	return (
 		<>
-			<button onClick={signInWithGoogle} style={{ color: "#ff5e2a" }}>
+			<button onClick={signInWithGoogle} style={{ color: "#ff5e2a",border:"1px solid #ff5e2a"}}>
 				<span className='flex'>
 					<Image
 						style={{ marginRight: "8px" }}

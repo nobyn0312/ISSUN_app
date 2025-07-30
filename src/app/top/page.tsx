@@ -41,7 +41,7 @@ const TopPage = () => {
 		return (
 			<>
 				<Header />
-				<main style={{ padding: "24px" }}>
+				<main className='p-6'>
 					<p>{error}</p>
 				</main>
 			</>
@@ -52,7 +52,7 @@ const TopPage = () => {
 		<>
 			<Header />
 			<Container>
-				<main style={{ padding: "24px" }}>
+				<main className='p-6'>
 					<div className={styles.msg_wrap}>
 						<h1>
 							<Image
@@ -60,24 +60,18 @@ const TopPage = () => {
 								width={480}
 								height={480}
 								alt='BOXロゴ'
-								style={{ marginBottom: "32px" }}
+								className='mb-8'
 								priority
 							/>
 						</h1>
 						<div className={styles.msg}>
-							<p style={{ textAlign: "center", lineHeight: "1.75" }}>
-								ISSUNは、低身長でもファッションを楽しむためのアプリ。
+							<p className='text-center leading-7'>
+								ISSUNは、低身長でもファッションを楽しむためのwebサービスです。
 								<br />
-								ユニクロ、ZOZOTOWN、様々なアパレルの着用レビューを登録して、共有し、ファッションの幅を広げよう。
+								様々なファッションアイテムを共有して、自分に合う服を見つけよう。
 							</p>
-							<p
-								style={{
-									textAlign: "center",
-									lineHeight: "1.75",
-									padding: "16px 0 16px",
-								}}
-							>
-								小さくても、一寸法師のように強くありたい
+							<p className='text-center leading-7 py-4'>
+								ISSUNNは一寸法師から名付けました
 							</p>
 						</div>
 					</div>
@@ -89,70 +83,32 @@ const TopPage = () => {
 							{loading
 								? // ローディング中はスケルトンローダーを表示
 								  Array.from({ length: 8 }).map((_, index) => (
-										<li
-											key={`skeleton-${index}`}
-											style={{ marginBottom: "20px" }}
-										>
-											<div
-												style={{
-													width: "100%",
-													height: "375px",
-													backgroundColor: "#f0f0f0",
-													borderRadius: "8px",
-													animation: "pulse 1.5s ease-in-out infinite",
-												}}
-											/>
-											<div style={{ marginTop: "10px" }}>
-												<div
-													style={{
-														width: "150px",
-														height: "18px",
-														backgroundColor: "#f0f0f0",
-														borderRadius: "4px",
-														marginBottom: "8px",
-														animation: "pulse 1.5s ease-in-out infinite",
-													}}
-												/>
-												<div
-													style={{
-														width: "100px",
-														height: "16px",
-														backgroundColor: "#f0f0f0",
-														borderRadius: "4px",
-														animation: "pulse 1.5s ease-in-out infinite",
-													}}
-												/>
+										<li key={`skeleton-${index}`} className='mb-5'>
+											<div className='w-full h-[375px] bg-gray-200 rounded-lg animate-pulse' />
+											<div className='mt-2.5'>
+												<div className='w-[150px] h-[18px] bg-gray-200 rounded mb-2 animate-pulse' />
+												<div className='w-[100px] h-4 bg-gray-200 rounded animate-pulse' />
 											</div>
 										</li>
 								  ))
 								: // データ読み込み後は実際のアイテムを表示
 								  items.map((item) => (
-										<li key={item.id} style={{ marginBottom: "20px" }}>
+										<li key={item.id} className='mb-5'>
 											<Link href={`/item/${item.id}`}>
 												<div
+													className='w-full h-[375px] rounded-lg bg-cover bg-center'
 													style={{
 														backgroundImage: `url(${item.imageUrl})`,
-														backgroundSize: "cover",
-														backgroundPosition: "center",
-														width: "100%",
-														height: "375px",
-														borderRadius: "8px",
 													}}
 												/>
 											</Link>
-											<div style={{ marginTop: "10px" }}>
-												<h2 style={{ fontWeight: "bold", fontSize: "18px" }}>
+											<div className='mt-2.5'>
+												<h2 className='font-bold text-lg'>
 													{item.name.length > 10
 														? `${item.name.slice(0, 10)}...`
 														: item.name}
 												</h2>
-												<p
-													style={{
-														color: "#ff5e2a",
-														fontSize: "16px",
-														fontWeight: "bold",
-													}}
-												>
+												<p className='text-[#ff5e2a] text-base font-bold'>
 													{item.category}
 												</p>
 											</div>

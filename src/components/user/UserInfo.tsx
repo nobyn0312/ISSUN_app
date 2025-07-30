@@ -56,6 +56,8 @@ const UserInfo = () => {
 									fontWeight: "bold",
 									padding: "15px 0",
 									textAlign: "center",
+									border: "2px solid #ff5e2a",
+									borderRadius: "5px",
 								}}
 							>
 								<a href='/user/signIn'>ログイン / 新規登録</a>
