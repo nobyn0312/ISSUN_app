@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useAuthContext } from "@/app/context/AuthContext";
 import { useState } from "react";
 import SignOutButton from "@/components/auth/SignoutButton";
-import styles from "./Userinfo.module.css";
 
 const UserInfo = () => {
 	const defaultPhotoURL = "/images/defaultUser.svg";
@@ -29,7 +28,7 @@ const UserInfo = () => {
 							className='rounded-full'
 							style={{ display: "block", margin: "0 auto" }}
 						/>
-						<p style={{ fontSize: "10px",  paddingTop: "4px" }}>
+						<p style={{ fontSize: "10px", paddingTop: "4px" }}>
 							{isLogin ? username : "ゲスト"}
 						</p>
 					</div>
@@ -37,15 +36,11 @@ const UserInfo = () => {
 			</div>
 
 			{isOpen && (
-				<div
-					className={styles.bubble}
-					style={{ position: "absolute", right: "0", top: "74px" }}
-				>
+				<div style={{ position: "absolute", right: "0", top: "74px" }}>
 					<ul
 						style={{
 							width: "190px",
 							backgroundColor: "#fff",
-							padding: "10px",
 							borderRadius: "5px",
 						}}
 					>
@@ -60,7 +55,7 @@ const UserInfo = () => {
 									borderRadius: "5px",
 								}}
 							>
-								<a href='/user/signIn'>ログイン / 新規登録</a>
+								<a href='/signin'>ログイン / 新規登録</a>
 							</li>
 						) : (
 							<li
