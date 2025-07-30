@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./HamburgerMenu.module.css";
-import SignOutButton from "./SignoutButton";
+import SignOutButton from "@/components/auth/SignoutButton";
 import { useAuthContext } from "@/app/context/AuthContext";
 
 const HamburgerMenu: React.FC = () => {

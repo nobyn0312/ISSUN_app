@@ -1,6 +1,6 @@
 "use client"; // クライアントコンポーネントとして明示
 
-import { auth } from "@/firebase";
+import { auth } from "@/lib/config/firebase";
 
 function SignOutButton() {
 	const handleSignOut = () => {

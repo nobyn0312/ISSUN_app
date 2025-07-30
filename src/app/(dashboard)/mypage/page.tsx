@@ -1,10 +1,10 @@
 "use client"; // クライアントコンポーネント
-import Header from "@/components/Header";
-import { ContentsAreaOrange } from "@/components/ContentsArea";
-import { PrimaryButton } from "@/components/Button";
+import Header from "@/components/layout/Header";
+import { ContentsAreaOrange } from "@/components/features/ContentsArea";
+import { PrimaryButton } from "@/components/ui/Button";
 import { useAuthContext } from "@/app/context/AuthContext";
 import Link from "next/link";
-import { Container } from "@/components/Container";
+import { Container } from "@/components/ui/Container";
 
 const Page = () => {
 	// useAuthContext からユーザー情報を取得

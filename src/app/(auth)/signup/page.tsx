@@ -1,15 +1,15 @@
 "use client"; // クライアントコンポーネント
 
 import { useState } from "react";
-import { auth, firestore } from "@/firebase"; // Firebaseのインポート
+import { auth, firestore } from "@/lib/config/firebase"; // Firebaseのインポート
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore"; // Firestore関連のインポート
 import { useRouter } from "next/navigation";
-import Header from "@/components/Header";
-import { ContentsAreaOrange } from "@/components/ContentsArea";
-import { PrimaryButton } from "@/components/Button";
-import SigninButton from "@/components/SigninButton";
-import { Container } from "@/components/Container";
+import Header from "@/components/layout/Header";
+import { ContentsAreaOrange } from "@/components/features/ContentsArea";
+import { PrimaryButton } from "@/components/ui/Button";
+import SigninButton from "@/components/auth/SigninButton";
+import { Container } from "@/components/ui/Container";
 
 const handleSignUp = async (
 	email: string,

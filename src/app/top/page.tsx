@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Header from "@/components/Header";
-import { fetchItems, Item } from "@/libs/fetchItems";
-import Sort from "@/components/Sort";
+import Header from "@/components/layout/Header";
+import { fetchItems, Item } from "@/lib/api/fetchItems";
+import Sort from "@/components/features/Sort";
 import styles from "./top.module.css";
-import TopLoader from "@/app/top/TopLoader";
-import { Container } from "@/components/Container";
+
+import { Container } from "@/components/ui/Container";
 
 const TopPage = () => {
 	const [loading, setLoading] = useState(true);
@@ -36,17 +36,7 @@ const TopPage = () => {
 		setSortOrder(e.target.value as "newest" | "oldest");
 	};
 
-	if (loading) {
-		return (
-			<>
-				<Header />
-				<main style={{ padding: "24px" }}>
-					<TopLoader onSortChange={handleSortChange} />
-				</main>
-			</>
-		);
-	}
-
+	// エラー状態の表示
 	if (error) {
 		return (
 			<>
@@ -71,6 +61,7 @@ const TopPage = () => {
 								height={480}
 								alt='BOXロゴ'
 								style={{ marginBottom: "32px" }}
+								priority
 							/>
 						</h1>
 						<div className={styles.msg}>
@@ -90,44 +81,83 @@ const TopPage = () => {
 							</p>
 						</div>
 					</div>
-					<Sort className='mb-4' onChange={handleSortChange} />{" "}
+					<Sort className='mb-4' onChange={handleSortChange} />
 					<section>
 						<ul
 							className={`flex justify-between flex-wrap ${styles.item_wrap}`}
 						>
-							{items.map((item) => (
-								<li key={item.id} style={{ marginBottom: "20px" }}>
-									<Link href={`/item/${item.id}`}>
-										<div
-											style={{
-												backgroundImage: `url(${item.imageUrl})`,
-												backgroundSize: "cover",
-												backgroundPosition: "center",
-												width: "100%",
-												height: "auto",
-												aspectRatio: "250 / 375",
-												borderRadius: "8px",
-											}}
-										/>
-									</Link>
-									<div style={{ marginTop: "10px" }}>
-										<h2 style={{ fontWeight: "bold", fontSize: "18px" }}>
-											{item.name.length > 10
-												? `${item.name.slice(0, 10)}...`
-												: item.name}
-										</h2>
-										<p
-											style={{
-												color: "#ff5e2a",
-												fontSize: "16px",
-												fontWeight: "bold",
-											}}
+							{loading
+								? // ローディング中はスケルトンローダーを表示
+								  Array.from({ length: 8 }).map((_, index) => (
+										<li
+											key={`skeleton-${index}`}
+											style={{ marginBottom: "20px" }}
 										>
-											{item.category}
-										</p>
-									</div>
-								</li>
-							))}
+											<div
+												style={{
+													width: "100%",
+													height: "375px",
+													backgroundColor: "#f0f0f0",
+													borderRadius: "8px",
+													animation: "pulse 1.5s ease-in-out infinite",
+												}}
+											/>
+											<div style={{ marginTop: "10px" }}>
+												<div
+													style={{
+														width: "150px",
+														height: "18px",
+														backgroundColor: "#f0f0f0",
+														borderRadius: "4px",
+														marginBottom: "8px",
+														animation: "pulse 1.5s ease-in-out infinite",
+													}}
+												/>
+												<div
+													style={{
+														width: "100px",
+														height: "16px",
+														backgroundColor: "#f0f0f0",
+														borderRadius: "4px",
+														animation: "pulse 1.5s ease-in-out infinite",
+													}}
+												/>
+											</div>
+										</li>
+								  ))
+								: // データ読み込み後は実際のアイテムを表示
+								  items.map((item) => (
+										<li key={item.id} style={{ marginBottom: "20px" }}>
+											<Link href={`/item/${item.id}`}>
+												<div
+													style={{
+														backgroundImage: `url(${item.imageUrl})`,
+														backgroundSize: "cover",
+														backgroundPosition: "center",
+														width: "100%",
+														height: "375px",
+														borderRadius: "8px",
+													}}
+												/>
+											</Link>
+											<div style={{ marginTop: "10px" }}>
+												<h2 style={{ fontWeight: "bold", fontSize: "18px" }}>
+													{item.name.length > 10
+														? `${item.name.slice(0, 10)}...`
+														: item.name}
+												</h2>
+												<p
+													style={{
+														color: "#ff5e2a",
+														fontSize: "16px",
+														fontWeight: "bold",
+													}}
+												>
+													{item.category}
+												</p>
+											</div>
+										</li>
+								  ))}
 						</ul>
 					</section>
 				</main>

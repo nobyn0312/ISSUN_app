@@ -1,15 +1,15 @@
 "use client"; // クライアントコンポーネント
 
 import { useEffect, useState } from "react";
-import { firestore } from "@/firebase"; // Firebaseのインポート
+import { firestore } from "@/lib/config/firebase"; // Firebaseのインポート
 import { updateDoc, doc } from "firebase/firestore"; // Firestore関連のインポート
 import { useRouter } from "next/navigation";
-import Header from "@/components/Header";
-import { ContentsAreaOrange } from "@/components/ContentsArea";
-import { PrimaryButton } from "@/components/Button";
+import Header from "@/components/layout/Header";
+import { ContentsAreaOrange } from "@/components/features/ContentsArea";
+import { PrimaryButton } from "@/components/ui/Button";
 import { useAuthContext } from "@/app/context/AuthContext";
-import SnackbarComponent from "@/components/Snackbar";
-import { Container } from "@/components/Container";
+import SnackbarComponent from "@/components/ui/Snackbar";
+import { Container } from "@/components/ui/Container";
 
 const handleUpdateProfile = async (
 	uid: string,

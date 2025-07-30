@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import HamburgerMenu from "./Hamburger";
-import UserInfo from "./Userinfo/UserInfo";
-import { Container } from "./Container";
+import UserInfo from "@/components/user/UserInfo";
+import { Container } from "@/components/ui/Container";
 
 const Header = () => {
 	return (

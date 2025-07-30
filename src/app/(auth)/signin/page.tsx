@@ -1,18 +1,18 @@
 "use client";
 
-import SigninButton from "@/components/SigninButton";
-import { auth } from "@/firebase";
+import SigninButton from "@/components/auth/SigninButton";
+import { auth } from "@/lib/config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import UserInfo from "@/components/Userinfo/UserInfo";
-import SignOutButton from "@/components/SignoutButton";
+import UserInfo from "@/components/user/UserInfo";
+import SignOutButton from "@/components/auth/SignoutButton";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ContentsAreaOrange } from "@/components/ContentsArea";
-import Header from "@/components/Header";
-import { PrimaryButton, SecondaryButton } from "@/components/Button";
-import SnackbarComponent from "@/components/Snackbar";
-import { Container } from "@/components/Container";
+import { ContentsAreaOrange } from "@/components/features/ContentsArea";
+import Header from "@/components/layout/Header";
+import { PrimaryButton, SecondaryButton } from "@/components/ui/Button";
+import SnackbarComponent from "@/components/ui/Snackbar";
+import { Container } from "@/components/ui/Container";
 
 // メールとパスワードの場合
 const handleLogin = async (

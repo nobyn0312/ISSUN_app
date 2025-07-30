@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
-import { firestore } from "@/firebase";
+import { firestore } from "@/lib/config/firebase";
 import { useAuthContext } from "@/app/context/AuthContext";
 import { useSearchParams } from "next/navigation";
 
