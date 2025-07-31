@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import HamburgerMenu from './Hamburger';
+import Nav from './Nav';
 import UserInfo from '@/components/user/UserInfo';
 import { Container } from '@/components/ui/Container';
 
@@ -10,7 +10,7 @@ const Header = () => {
       <header className='relative border-t-2 border-b-2 border-[#ff5e2a]'>
         <Container>
           <div className='flex items-center justify-between h-[70px]'>
-            <HamburgerMenu />
+            <Nav />
 
             <div className='flex justify-center items-center'>
               <Link href='/'>

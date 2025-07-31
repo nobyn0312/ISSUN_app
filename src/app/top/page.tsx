@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import { fetchItems, Item } from '@/lib/api/fetchItems';
 import Sort from '@/components/features/Sort';
+import ItemCard from '@/components/features/ItemCard';
 import styles from './top.module.css';
 
 import { Container } from '@/components/ui/Container';
@@ -87,26 +88,13 @@ const TopPage = () => {
                   ))
                 : // データ読み込み後は実際のアイテムを表示
                   items.map(item => (
-                    <div key={item.id} className='mb-5'>
-                      <Link href={`/item/${item.id}`}>
-                        <div
-                          className='w-full aspect-[2/3] rounded-lg bg-cover bg-center'
-                          style={{
-                            backgroundImage: `url(${item.imageUrl})`,
-                          }}
-                        />
-                      </Link>
-                      <div className='mt-2.5'>
-                        <h2 className='font-bold text-sm'>
-                          {item.name.length > 10
-                            ? `${item.name.slice(0, 10)}...`
-                            : item.name}
-                        </h2>
-                        <p className='text-[#ff5e2a] text-sm font-bold'>
-                          {item.category}
-                        </p>
-                      </div>
-                    </div>
+                    <ItemCard
+                      key={item.id}
+                      id={item.id}
+                      name={item.name}
+                      category={item.category}
+                      imageUrl={item.imageUrl}
+                    />
                   ))}
             </div>
           </section>
