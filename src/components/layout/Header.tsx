@@ -1,52 +1,36 @@
-import Image from "next/image";
-import Link from "next/link";
-import HamburgerMenu from "./Hamburger";
-import UserInfo from "@/components/user/UserInfo";
-import { Container } from "@/components/ui/Container";
+import Image from 'next/image';
+import Link from 'next/link';
+import HamburgerMenu from './Hamburger';
+import UserInfo from '@/components/user/UserInfo';
+import { Container } from '@/components/ui/Container';
 
 const Header = () => {
-	return (
-		<>
-			<header
-				className=''
-				style={{
-					position: "relative",
-					borderTop: "2px solid rgb(255, 94, 42)",
-					borderBottom: "2px solid rgb(255, 94, 42)",
-				}}
-			>
-				<Container>
-					<div
-						className='flex align-middle justify-between py-4'
-						style={{ height: "70px" }}
-					>
-						<HamburgerMenu />
+  return (
+    <>
+      <header className='relative border-t-2 border-b-2 border-[#ff5e2a]'>
+        <Container>
+          <div className='flex items-center justify-between h-[70px]'>
+            <HamburgerMenu />
 
-						<div
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-							}}
-						>
-							<Link href='/'>
-								<Image
-									src='/images/headerLogo2.svg'
-									alt='ヘッダーロゴ'
-									width={100}
-									height={30}
-								/>
-							</Link>
-						</div>
+            <div className='flex justify-center items-center'>
+              <Link href='/'>
+                <Image
+                  src='/images/headerLogo2.svg'
+                  alt='ヘッダーロゴ'
+                  width={100}
+                  height={30}
+                />
+              </Link>
+            </div>
 
-						<div style={{ paddingRight: "16px", position: "relative" }}>
-							<UserInfo />
-						</div>
-					</div>
-				</Container>
-			</header>
-		</>
-	);
+            <div className='pr-4 relative'>
+              <UserInfo />
+            </div>
+          </div>
+        </Container>
+      </header>
+    </>
+  );
 };
 
 export default Header;
