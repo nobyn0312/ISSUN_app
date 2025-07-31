@@ -63,7 +63,7 @@ const Nav: React.FC = () => {
               <li
                 style={{
                   padding: '15px 0',
-                  color: '#ff5e2a',
+                  color: 'var(--primary-orange)',
                   fontWeight: 'bold',
                 }}
               >

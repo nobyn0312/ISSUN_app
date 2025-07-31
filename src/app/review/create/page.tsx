@@ -24,10 +24,10 @@ const ReviewCreate = () => {
     <>
       <Header />
       <div style={{ padding: '16px' }}>
-        <p style={{ fontSize: '16px', fontWeight: 'bold', color: '#FF5E2A' }}>
+        <p style={{ fontSize: '16px', fontWeight: 'bold', color: 'var(--primary-orange)' }}>
           Add review
         </p>
-        <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#FF5E2A' }}>
+        <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: 'var(--primary-orange)' }}>
           レビューの投稿
         </h2>
       </div>

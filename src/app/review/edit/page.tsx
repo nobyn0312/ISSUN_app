@@ -81,11 +81,11 @@ const ReviewEdit = () => {
       <Header />
       <Container>
         <div style={{ padding: '16px' }}>
-          <p style={{ fontSize: '16px', fontWeight: 'bold', color: '#FF5E2A' }}>
+          <p style={{ fontSize: '16px', fontWeight: 'bold', color: 'var(--primary-orange)' }}>
             Edit review
           </p>
           <h2
-            style={{ fontSize: '28px', fontWeight: 'bold', color: '#FF5E2A' }}
+            style={{ fontSize: '28px', fontWeight: 'bold', color: 'var(--primary-orange)' }}
           >
             レビューを編集する
           </h2>

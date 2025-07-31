@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS変数の定義 */
+:root {
+  --primary-orange: #ff5e2a;
+}
+
 /* フォントの読み込み最適化 */
 * {
   box-sizing: border-box;

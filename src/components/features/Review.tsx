@@ -120,7 +120,7 @@ const Review = ({ itemId }: ReviewProps) => {
         background: '#ffffff',
         color: '#333333',
         borderRadius: '15px',
-        border: '2px solid #ff5e2a',
+        border: '2px solid var(--primary-orange)',
         marginBottom: '24px',
         padding: '16px',
       }}
@@ -179,7 +179,7 @@ const Review = ({ itemId }: ReviewProps) => {
                         編集
                       </button>
                       <button
-                        style={{ color: '#FF5E2A', fontWeight: 'bold' }}
+                        style={{ color: 'var(--primary-orange)', fontWeight: 'bold' }}
                         onClick={() => handleDelete(review.reviewId)}
                       >
                         削除
@@ -192,7 +192,7 @@ const Review = ({ itemId }: ReviewProps) => {
                 {formattedDate}
               </p>
 
-              <p style={{ color: '#FF5E2A', fontSize: '20px' }}>
+              <p style={{ color: 'var(--primary-orange)', fontSize: '20px' }}>
                 {'★'.repeat(review.rate) + '☆'.repeat(5 - review.rate)}
               </p>
 

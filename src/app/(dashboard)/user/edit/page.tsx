@@ -103,7 +103,7 @@ export default function EditProfile() {
                 style={{
                   fontSize: '16px',
                   fontWeight: 'bold',
-                  color: '#FF5E2A',
+                  color: 'var(--primary-orange)',
                 }}
               >
                 edit
@@ -112,7 +112,7 @@ export default function EditProfile() {
                 style={{
                   fontSize: '28px',
                   fontWeight: 'bold',
-                  color: '#FF5E2A',
+                  color: 'var(--primary-orange)',
                 }}
               >
                 ユーザー情報の更新

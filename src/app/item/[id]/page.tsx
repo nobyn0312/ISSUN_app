@@ -44,7 +44,7 @@ const ItemDetail = ({ params }: { params: { id: string } }) => {
           />
           <section
             style={{
-              background: '#FF5E2A',
+              background: 'var(--primary-orange)',
               margin: '0 auto',
               padding: '16px',
               borderRadius: '15px',

@@ -22,7 +22,7 @@ const ItemCard = ({ id, name, category, imageUrl }: ItemCardProps) => {
         <h2 className='font-bold text-sm'>
           {name.length > 10 ? `${name.slice(0, 10)}...` : name}
         </h2>
-        <p className='text-[#ff5e2a] text-xs font-bold'>{category}</p>
+        <p className='text-[var(--primary-orange)] text-xs font-bold'>{category}</p>
       </div>
     </div>
   );

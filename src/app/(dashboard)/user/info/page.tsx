@@ -14,7 +14,7 @@ const Page = () => {
     <>
       <Header />
       <div style={{ padding: '16px' }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#FF5E2A' }}>
+        <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: 'var(--primary-orange)' }}>
           ユーザー情報
         </h2>
 

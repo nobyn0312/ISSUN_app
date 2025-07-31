@@ -47,11 +47,11 @@ const UserInfo = () => {
             {!isLogin ? (
               <li
                 style={{
-                  color: '#ff5e2a',
+                  color: 'var(--primary-orange)',
                   fontWeight: 'bold',
                   padding: '15px 0',
                   textAlign: 'center',
-                  border: '2px solid #ff5e2a',
+                  border: '2px solid var(--primary-orange)',
                   borderRadius: '5px',
                 }}
               >
@@ -61,7 +61,7 @@ const UserInfo = () => {
               <li
                 style={{
                   padding: '15px 0',
-                  color: '#ff5e2a',
+                  color: 'var(--primary-orange)',
                   fontWeight: 'bold',
                   textAlign: 'center',
                 }}
