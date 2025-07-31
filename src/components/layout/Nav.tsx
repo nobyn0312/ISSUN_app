@@ -6,7 +6,7 @@ import { useAuthContext } from '@/app/context/AuthContext';
 
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { isLogin } = useAuthContext();
+  const { isLogin, username } = useAuthContext();
 
   const toggleMenu = () => {
     setIsOpen(prevState => !prevState);
@@ -17,11 +17,11 @@ const Nav: React.FC = () => {
       <button
         onClick={toggleMenu}
         className={styles.navButton}
-        style={{ paddingLeft: '16px', width: '70px' }}
+        style={{width: '70px' }}
       >
-        <div className={`${styles.bar} ${isOpen ? styles.open : ''}`}></div>
-        <div className={`${styles.bar} ${isOpen ? styles.open : ''}`}></div>
-        <div className={`${styles.bar} ${isOpen ? styles.open : ''}`}></div>
+        <div className={`${styles.bar}`}></div>
+        <div className={`${styles.bar}`}></div>
+        <div className={`${styles.bar}`}></div>
       </button>
 
       {isOpen && (
@@ -37,6 +37,9 @@ const Nav: React.FC = () => {
             className={`${styles.menu} ${isOpen ? styles.open : ''}`}
             style={{ height: '100vh' }}
           >
+            {/* <div className='flex justify-start pl-2 mb-2'>
+              <p>{isLogin ? username : 'ゲスト'}</p>
+            </div> */}
             <ul>
               <li>
                 <a href='/'>TOP</a>
