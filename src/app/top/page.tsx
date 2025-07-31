@@ -14,7 +14,6 @@ const TopPage = () => {
 	const [loading, setLoading] = useState(true);
 	const [items, setItems] = useState<Item[]>([]);
 	const [error, setError] = useState<string | null>(null);
-
 	const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
 
 	useEffect(() => {
@@ -65,56 +64,51 @@ const TopPage = () => {
 							/>
 						</h1>
 						<div className={styles.msg}>
-							<p className='text-center leading-7'>
+							<p className='text-center leading-7 text-sm font-bold mt-2'>
 								ISSUNは、低身長でもファッションを楽しむためのwebサービスです。
 								<br />
 								様々なファッションアイテムを共有して、自分に合う服を見つけよう。
-							</p>
-							<p className='text-center leading-7 py-4'>
-								ISSUNNは一寸法師から名付けました
 							</p>
 						</div>
 					</div>
 					<Sort className='mb-4' onChange={handleSortChange} />
 					<section>
-						<ul
-							className={`flex justify-between flex-wrap ${styles.item_wrap}`}
-						>
+						<div className={`flex flex-wrap ${styles.item_wrap}`}>
 							{loading
 								? // ローディング中はスケルトンローダーを表示
 								  Array.from({ length: 8 }).map((_, index) => (
-										<li key={`skeleton-${index}`} className='mb-5'>
-											<div className='w-full h-[375px] bg-gray-200 rounded-lg animate-pulse' />
+										<div key={`skeleton-${index}`} className='mb-5'>
+											<div className='w-full aspect-[2/3] bg-gray-200 rounded-lg animate-pulse' />
 											<div className='mt-2.5'>
-												<div className='w-[150px] h-[18px] bg-gray-200 rounded mb-2 animate-pulse' />
-												<div className='w-[100px] h-4 bg-gray-200 rounded animate-pulse' />
+												<div className='w-[150px] h-[18px] bg-gray-200 mb-2 animate-pulse' />
+												<div className='w-[100px] h-4 bg-gray-200 animate-pulse' />
 											</div>
-										</li>
+										</div>
 								  ))
 								: // データ読み込み後は実際のアイテムを表示
 								  items.map((item) => (
-										<li key={item.id} className='mb-5'>
+										<div key={item.id} className='mb-5'>
 											<Link href={`/item/${item.id}`}>
 												<div
-													className='w-full h-[375px] rounded-lg bg-cover bg-center'
+													className='w-full aspect-[2/3] rounded-lg bg-cover bg-center'
 													style={{
 														backgroundImage: `url(${item.imageUrl})`,
 													}}
 												/>
 											</Link>
 											<div className='mt-2.5'>
-												<h2 className='font-bold text-lg'>
+												<h2 className='font-bold text-sm'>
 													{item.name.length > 10
 														? `${item.name.slice(0, 10)}...`
 														: item.name}
 												</h2>
-												<p className='text-[#ff5e2a] text-base font-bold'>
+												<p className='text-[#ff5e2a] text-sm font-bold'>
 													{item.category}
 												</p>
 											</div>
-										</li>
+										</div>
 								  ))}
-						</ul>
+						</div>
 					</section>
 				</main>
 			</Container>
