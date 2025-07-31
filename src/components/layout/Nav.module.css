@@ -34,7 +34,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: left 0.3s ease-in-out;
   z-index: 1000;
-  padding-top:100px;
+  padding-top:50px;
 }
 
 .menu.open {
@@ -45,7 +45,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  padding: 0 12px;
+  padding: 0 8px;
 }
 
 .menu li {
