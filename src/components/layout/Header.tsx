@@ -4,13 +4,17 @@ import Nav from './Nav';
 import UserInfo from '@/components/user/UserInfo';
 import { Container } from '@/components/ui/Container';
 
-const Header = () => {
+type HeaderProps = {
+  onMenuToggle?: (isOpen: boolean) => void;
+};
+
+const Header = ({ onMenuToggle }: HeaderProps) => {
   return (
     <>
       <header className='relative border-t-2 border-b-2 border-[#ff5e2a]'>
         <Container>
           <div className='flex items-center justify-between h-[70px]'>
-            <Nav />
+            <Nav onMenuToggle={onMenuToggle} />
 
             <div className='flex justify-center items-center'>
               <Link href='/'>
