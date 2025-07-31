@@ -1,71 +1,81 @@
 .hamburgerButton {
-	background: transparent;
-	border: none;
-	cursor: pointer;
-	padding: 0;
-	position: relative;
-	z-index: 10;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .bar {
-	display: block;
-	width: 16px;
-	height: 2px;
-	background: rgb(255, 94, 42);
-	margin: 6px 0;
-	transition: 0.4s;
-	border-radius: 2px;
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: rgb(255, 94, 42);
+  margin: 2px 0;
+  transition: 0.4s;
+  border-radius: 2px;
 }
 
 .open.bar:nth-child(1) {
-	transform: rotate(-45deg) translate(-5px, 6px);
+  transform: rotate(-45deg) translate(-5px, 6px);
 }
 
 .open.bar:nth-child(2) {
-	opacity: 0;
+  opacity: 0;
 }
 
 .open.bar:nth-child(3) {
-	transform: rotate(45deg) translate(-5px, -6px);
+  transform: rotate(45deg) translate(-5px, -6px);
 }
 
 .hamburgerContainer {
-	position: relative;
+  position: relative;
 }
 
 .menu {
-	max-width: 480px;
-	display: none;
-	position: absolute;
-	top: 55px;
-	left: 0;
-	background: white;
-	width: 300px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-width: 480px;
+  position: absolute;
+  top: -28px;
+  left: -300px;
+  background: white;
+  width: 300px;
+  height: auto;
+  min-height: 300px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+  padding-top: 48px;
 }
+
 .menu.open {
-	display: block;
+  left: 0;
 }
 
 .menu ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	padding: 0 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding: 0 12px;
 }
 
 .menu li {
-	border-bottom: 2px solid #ff5e2a;
+  border-bottom: 2px solid #ff5e2a;
 }
 
 .menu a {
-	display: block;
-	padding: 16px 0;
-	text-decoration: none;
-	color: #ff5e2a;
-	font-weight: bold;
+  display: block;
+  padding: 16px 0;
+  text-decoration: none;
+  color: #ff5e2a;
+  font-weight: bold;
 }
 
 .menu a:hover {
-	background: #f4f4f4;
+  background: #f4f4f4;
 }
