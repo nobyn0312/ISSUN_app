@@ -94,7 +94,7 @@ export default function SignIn() {
                     style={{
                       fontSize: '16px',
                       fontWeight: 'bold',
-                      color: '#FF5E2A',
+                      color: 'var(--primary-orange)',
                     }}
                   >
                     Login
@@ -103,7 +103,7 @@ export default function SignIn() {
                     style={{
                       fontSize: '28px',
                       fontWeight: 'bold',
-                      color: '#FF5E2A',
+                      color: 'var(--primary-orange)',
                     }}
                   >
                     ログイン

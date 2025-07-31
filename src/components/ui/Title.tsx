@@ -1,11 +1,13 @@
-const Title = () => {
+import React from 'react';
+
+const Title: React.FC = () => {
   return (
     <div>
-      <p style={{ fontSize: '16px', fontWeight: 'bold', color: '#FF5E2A' }}>
-        Add item
+      <p style={{ fontSize: '16px', fontWeight: 'bold', color: 'var(--primary-orange)' }}>
+        アイテムの追加
       </p>
-      <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#FF5E2A' }}>
-        商品の追加
+      <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: 'var(--primary-orange)' }}>
+        アイテムの追加
       </h2>
     </div>
   );

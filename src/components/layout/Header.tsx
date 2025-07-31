@@ -8,7 +8,7 @@ import { Container } from '@/components/ui/Container';
 const Header = () => {
   return (
     <>
-      <header className='relative border-t-2 border-b-2 border-[#ff5e2a]'>
+      <header className='relative border-t-2 border-b-2 border-[var(--primary-orange)]'>
         <Container>
           <div className='flex items-center justify-between h-[70px]'>
             <Nav />

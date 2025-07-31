@@ -59,9 +59,9 @@ const Page = () => {
             <div style={{ padding: '16px' }}>
               <p
                 style={{
-                  fontSize: '16px',
+                  color: 'var(--primary-orange)',
                   fontWeight: 'bold',
-                  color: '#FF5E2A',
+                  fontSize: '16px',
                 }}
               >
                 Add item
@@ -70,7 +70,7 @@ const Page = () => {
                 style={{
                   fontSize: '28px',
                   fontWeight: 'bold',
-                  color: '#FF5E2A',
+                  color: 'var(--primary-orange)',
                 }}
               >
                 アイテムの追加

@@ -15,7 +15,7 @@ const Page = () => {
       <Container>
         <div style={{ padding: '16px' }}>
           <h2
-            style={{ fontSize: '28px', fontWeight: 'bold', color: '#FF5E2A' }}
+            style={{ fontSize: '28px', fontWeight: 'bold', color: 'var(--primary-orange)' }}
           >
             マイページ：ユーザー情報
           </h2>
