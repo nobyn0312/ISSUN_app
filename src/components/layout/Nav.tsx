@@ -6,7 +6,7 @@ import { useAuthContext } from '@/app/context/AuthContext';
 
 const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { isLogin, username } = useAuthContext();
+  const { isLogin } = useAuthContext();
 
   const toggleMenu = () => {
     setIsOpen(prevState => !prevState);
