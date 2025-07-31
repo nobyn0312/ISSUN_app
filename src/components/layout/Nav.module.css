@@ -26,7 +26,7 @@
   max-width: 200px;
   position: absolute;
   top: -28px;
-  left: -300px;
+  left: -350px; /* より確実に隠すために値を大きく */
   background: white;
   width: 300px;
   height: auto;
@@ -34,11 +34,16 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: left 0.3s ease-in-out;
   z-index: 1000;
-  padding-top:50px;
+  padding-top: 50px;
+  /* 本番環境でも確実に隠すための追加設定 */
+  transform: translateX(-100%);
+  visibility: hidden;
 }
 
 .menu.open {
   left: 0;
+  transform: translateX(0);
+  visibility: visible;
 }
 
 .menu ul {
