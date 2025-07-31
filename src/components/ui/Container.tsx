@@ -8,7 +8,7 @@ export const Container = ({ children }: Props) => {
   const style = {
     maxWidth: '768px',
     margin: '0 auto',
-    overflow: 'hidden',
+    // overflow: 'hidden',
   };
 
   return <div style={style}>{children}</div>;
