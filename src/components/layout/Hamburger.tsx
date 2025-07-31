@@ -45,10 +45,10 @@ const HamburgerMenu: React.FC = () => {
 								</>
 							)}
 							<li>
-								<a href='/user/signIn'>ログイン</a>
+								<a href='/signin'>ログイン</a>
 							</li>
 							<li>
-								<a href='/user/signUp'>新規登録</a>
+								<a href='/signup'>新規登録</a>
 							</li>
 							<li
 								style={{

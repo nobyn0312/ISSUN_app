@@ -165,7 +165,7 @@ export default function SignIn() {
 									</p>
 								</form>
 								<SecondaryButton style={{ marginBottom: "32px" }}>
-									<a style={{ display: "block" }} href='/user/signUp'>
+									<a style={{ display: "block" }} href='/signup'>
 										新規登録
 									</a>
 								</SecondaryButton>

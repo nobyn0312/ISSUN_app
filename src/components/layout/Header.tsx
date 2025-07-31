@@ -10,9 +10,9 @@ const Header = () => {
 			<header
 				className=''
 				style={{
+					position: "relative",
 					borderTop: "2px solid rgb(255, 94, 42)",
 					borderBottom: "2px solid rgb(255, 94, 42)",
-					position: "relative",
 				}}
 			>
 				<Container>
@@ -39,7 +39,7 @@ const Header = () => {
 							</Link>
 						</div>
 
-						<div style={{ paddingRight: "16px" }}>
+						<div style={{ paddingRight: "16px", position: "relative" }}>
 							<UserInfo />
 						</div>
 					</div>

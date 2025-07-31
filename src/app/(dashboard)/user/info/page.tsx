@@ -32,7 +32,7 @@ const Page = () => {
 				</ContentsAreaOrange>
 			</div>
 			<PrimaryButton>
-				<Link style={{ display: "block" }} href={"/user/edit/"}>
+				<Link style={{ display: "block" }} href={"/user/edit"}>
 					ユーザー情報を更新する
 				</Link>
 			</PrimaryButton>
