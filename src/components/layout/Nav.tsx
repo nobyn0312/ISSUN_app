@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
-import styles from './HamburgerMenu.module.css';
+import styles from './Nav.module.css';
 import SignOutButton from '@/components/auth/SignoutButton';
 import { useAuthContext } from '@/app/context/AuthContext';
 
-const HamburgerMenu: React.FC = () => {
+const Nav: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isLogin } = useAuthContext();
 
@@ -13,10 +13,10 @@ const HamburgerMenu: React.FC = () => {
   };
 
   return (
-    <div className={`${styles.hamburgerContainer} flex`}>
+    <div className={`${styles.navContainer} flex`}>
       <button
         onClick={toggleMenu}
-        className={styles.hamburgerButton}
+        className={styles.navButton}
         style={{ paddingLeft: '16px', width: '70px' }}
       >
         <div className={`${styles.bar} ${isOpen ? styles.open : ''}`}></div>
@@ -74,4 +74,4 @@ const HamburgerMenu: React.FC = () => {
   );
 };
 
-export default HamburgerMenu;
+export default Nav;

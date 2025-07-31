@@ -1,4 +1,4 @@
-.hamburgerButton {
+.navButton {
   background: transparent;
   border: none;
   cursor: pointer;
@@ -22,24 +22,8 @@
   border-radius: 2px;
 }
 
-.open.bar:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.open.bar:nth-child(2) {
-  opacity: 0;
-}
-
-.open.bar:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -6px);
-}
-
-.hamburgerContainer {
-  position: relative;
-}
-
 .menu {
-  max-width: 480px;
+  max-width: 200px;
   position: absolute;
   top: -28px;
   left: -300px;
@@ -50,7 +34,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: left 0.3s ease-in-out;
   z-index: 1000;
-  padding-top: 48px;
+  padding-top:100px;
 }
 
 .menu.open {
