@@ -46,6 +46,7 @@ export const PrimaryButton: React.FC<ButtonProps> = ({
           fontSize: '16px',
           fontWeight: 'bold',
           background: 'var(--primary-orange)',
+          ...style,
           color: 'white',
           transition: 'all 0.3s ease',
         }}
