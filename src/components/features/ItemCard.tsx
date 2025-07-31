@@ -12,7 +12,7 @@ const ItemCard = ({ id, name, category, imageUrl }: ItemCardProps) => {
     <div className='mb-5'>
       <Link href={`/item/${id}`}>
         <div
-          className='w-full aspect-[2/3] rounded-lg bg-cover bg-center'
+          className='w-full aspect-[2/3] bg-cover bg-center'
           style={{
             backgroundImage: `url(${imageUrl})`,
           }}
