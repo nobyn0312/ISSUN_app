@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import { fetchItems, Item } from '@/lib/api/fetchItems';
 import Sort from '@/components/features/Sort';
