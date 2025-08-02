@@ -37,15 +37,17 @@ export const PrimaryButton: React.FC<ButtonProps> = ({
     >
       <button
         onClick={onClick}
-        className={`text-white font-bold rounded-full block w-full text-center p-3  ${className}`}
+        className={`text-white font-bold rounded-full block w-full text-center p-3 ${className}`}
         style={{
           padding: '12px 24px',
-          borderRadius: '8px',
+          borderRadius: '25px',
           border: 'none',
           cursor: 'pointer',
           fontSize: '16px',
           fontWeight: 'bold',
           background: 'var(--primary-orange)',
+          maxWidth: '320px',
+          height: '50px',
           ...style,
           color: 'white',
           transition: 'all 0.3s ease',
@@ -78,6 +80,7 @@ export const SecondaryButton: React.FC<ButtonProps> = ({
         style={{
           color: 'var(--primary-orange)',
           border: 'var(--primary-orange) solid 2px',
+          borderRadius: '25px',
           maxWidth: '320px',
           height: '50px',
           ...style,

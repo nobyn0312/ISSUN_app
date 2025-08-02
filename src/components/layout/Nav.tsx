@@ -54,12 +54,19 @@ const Nav: React.FC = () => {
                   </li>
                 </>
               )}
+              {!isLogin && (
+                <>
               <li>
                 <a href='/signin'>ログイン</a>
               </li>
+                </>
+              )}
+
               <li>
                 <a href='/signup'>新規登録</a>
               </li>
+              {isLogin && (
+                <>
               <li
                 style={{
                   padding: '15px 0',
@@ -69,6 +76,9 @@ const Nav: React.FC = () => {
               >
                 <SignOutButton />
               </li>
+                </>
+              )}
+
             </ul>
           </nav>
         </div>

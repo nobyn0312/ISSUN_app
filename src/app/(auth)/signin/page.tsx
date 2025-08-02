@@ -148,11 +148,7 @@ export default function SignIn() {
                       />
                     </div>
                   </ContentsAreaOrange>
-
-                  <PrimaryButton style={{ marginBottom: '32px' }} type='submit'>
-                    ログイン
-                  </PrimaryButton>
-
+                    <PrimaryButton type='submit'>ログイン</PrimaryButton>
                   <p
                     style={{
                       fontSize: '16px',
@@ -178,7 +174,7 @@ export default function SignIn() {
               </>
             )}
           </section>
-          <SnackbarComponent
+            <SnackbarComponent
             message={snackbarMessage}
             isOpen={snackbarOpen}
             onClose={handleCloseSnackbar}
