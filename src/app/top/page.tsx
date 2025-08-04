@@ -78,9 +78,9 @@ const TopPage = () => {
                 ? // ローディング中はスケルトンローダーを表示
                   Array.from({ length: 8 }).map((_, index) => (
                     <div key={`skeleton-${index}`} className='mb-5'>
-                      <div className='w-full aspect-[2/3] bg-gray-200 rounded-lg animate-pulse' />
+                      <div className='w-full aspect-[2/3] bg-gray-200  animate-pulse' />
                       <div className='mt-2.5'>
-                        <div className='w-[150px] h-[18px] bg-gray-200 mb-2 animate-pulse' />
+                        <div className='w-[100px] h-[18px] bg-gray-200 mb-2 animate-pulse' />
                         <div className='w-[100px] h-4 bg-gray-200 animate-pulse' />
                       </div>
                     </div>
