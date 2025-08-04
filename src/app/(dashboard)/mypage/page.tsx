@@ -14,8 +14,22 @@ const Page = () => {
       <Header />
       <Container>
         <div style={{ padding: '16px' }}>
+          <p
+            style={{
+              color: 'var(--primary-orange)',
+              fontWeight: 'bold',
+              fontSize: '16px',
+            }}
+          >
+            My page
+          </p>
           <h2
-            style={{ fontSize: '28px', fontWeight: 'bold', color: 'var(--primary-orange)' }}
+            style={{
+              fontSize: '28px',
+              fontWeight: 'bold',
+              color: 'var(--primary-orange)',
+            }}
+            className={'pb-4'}
           >
             マイページ：ユーザー情報
           </h2>
