@@ -86,15 +86,13 @@ const Page = () => {
                 }}
               >
                 <div style={{ padding: '16px 0px 0' }}>
-                  <label>アイテム名:</label>
-                  <br />
                   <input
                     type='text'
                     value={name}
                     onChange={e => setName(e.target.value)}
                     required
                     className='text-black'
-                    placeholder='商品名を入力'
+                    placeholder='アイテム名を入力'
                     style={{
                       width: '100%',
                       padding: '8px',
@@ -104,12 +102,10 @@ const Page = () => {
                 </div>
 
                 <div style={{ padding: '16px 0px 0' }}>
-                  <label>価格:</label>
-                  <br />
                   <input
                     type='text'
                     className='text-black'
-                    placeholder='金額を入力してください'
+                    placeholder='価格を入力してください'
                     value={price}
                     required
                     onChange={e => setPrice(e.target.value)}
@@ -122,8 +118,6 @@ const Page = () => {
                 </div>
 
                 <div style={{ padding: '16px 0px 0' }}>
-                  <label>画像:</label>
-                  <br />
                   <input
                     type='file'
                     onChange={handleFileChange}
@@ -134,8 +128,6 @@ const Page = () => {
                 </div>
 
                 <div style={{ padding: '16px 0px 0' }}>
-                  <label>カテゴリー</label>
-                  <br />
                   <select
                     value={category}
                     onChange={e => setCategory(e.target.value)}
@@ -150,14 +142,13 @@ const Page = () => {
                 </div>
 
                 <div style={{ padding: '16px 0px 0' }}>
-                  <label>詳細:</label>
-                  <br />
                   <textarea
                     value={detail}
                     onChange={e => setDetail(e.target.value)}
                     required
                     aria-multiline
                     className='text-black'
+                    placeholder='詳細を入力してください'
                     style={{
                       width: '100%',
                       height: '250px',
@@ -168,16 +159,18 @@ const Page = () => {
                 </div>
 
                 <div style={{ padding: '16px 0px 16px' }}>
-                  <label>購入先URL:</label>
-                  <br />
                   <input
                     type='text'
                     value={url}
                     onChange={e => setUrl(e.target.value)}
                     required
                     className='text-black'
-                    placeholder='https://'
-                    style={{ padding: '8px', borderRadius: '6px' }}
+                    placeholder='購入先URLを入力してください'
+                    style={{
+                      width: '100%',
+                      padding: '8px',
+                      borderRadius: '6px',
+                    }}
                   />
                 </div>
               </ContentsAreaGray>
