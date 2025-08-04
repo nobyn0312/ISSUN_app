@@ -33,48 +33,22 @@ const ItemDetail = ({ params }: { params: { id: string } }) => {
     <>
       <Header />
       <Container>
-        <main style={{ padding: '24px' }}>
+        <main className='p-6'>
           <Image
             src={item.imageUrl}
             width={450}
             height={300}
             alt={item.name}
-            className='rounded-md'
-            style={{ margin: '0 auto', marginBottom: '24px' }}
+            className='rounded-md mx-auto mb-6'
           />
-          <section
-            style={{
-              background: 'var(--primary-orange)',
-              margin: '0 auto',
-              padding: '16px',
-              borderRadius: '15px',
-              marginBottom: '24px',
-              color: '#fff',
-            }}
-          >
-            <h1
-              style={{
-                fontSize: '30px',
-                fontWeight: 'bold',
-                marginBottom: '16px',
-              }}
-            >
-              {item.name}
-            </h1>
+          <section className='bg-[var(--primary-orange)] mx-auto p-4 rounded-2xl mb-6 text-white'>
+            <h1 className='text-3xl font-bold mb-4'>{item.name}</h1>
 
-            <p style={{ fontSize: '20px', fontWeight: 'bold' }}>PRICE</p>
-            <p
-              style={{
-                fontSize: '28px',
-                fontWeight: 'bold',
-                marginBottom: '16px',
-              }}
-            >
-              ¥{item.price}
-            </p>
+            <p className='text-xl font-bold'>PRICE</p>
+            <p className='text-2xl font-bold mb-4'>¥{item.price}</p>
 
-            <p style={{ fontSize: '20px', fontWeight: 'bold' }}>DETAIL</p>
-            <p style={{ fontSize: '14px', whiteSpace: 'pre-line' }}>
+            <p className='text-xl font-bold'>DETAIL</p>
+            <p className='text-sm whitespace-pre-line leading-8'>
               {item.detail}
             </p>
           </section>
@@ -83,12 +57,8 @@ const ItemDetail = ({ params }: { params: { id: string } }) => {
             <Review itemId={item.id} />
           </Suspense>
 
-          <PrimaryButton style={{ margin: '0 auto' }}>
-            <Link
-              href={item.url as string}
-              style={{ display: 'block' }}
-              target='_blank'
-            >
+          <PrimaryButton className='mx-auto'>
+            <Link href={item.url as string} className='block' target='_blank'>
               販売ショップへ
             </Link>
           </PrimaryButton>
