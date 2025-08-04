@@ -25,7 +25,6 @@ const handleSignUp = async (
     );
     const user = userCredential.user;
 
-    // Firestoreの/profileコレクションにユーザー情報を保存
     await setDoc(doc(firestore, 'profile', user.uid), {
       uid: user.uid, // ユーザーのUID
       username: username, // ユーザー名

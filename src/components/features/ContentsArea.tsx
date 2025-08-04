@@ -13,7 +13,7 @@ export const ContentsAreaOrange: React.FC<AreaProps> = ({
 }) => {
   return (
     <div
-      style={{ maxWidth: '540px', margin: '0 auto', padding: '0', ...style }}
+      style={{ maxWidth: '540px', margin: '0 auto', padding: '0',color: '#fff', ...style }}
       className={`${className}`}
     >
       <div

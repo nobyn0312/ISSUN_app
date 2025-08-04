@@ -17,7 +17,7 @@ const Nav: React.FC = () => {
       <button
         onClick={toggleMenu}
         className={styles.navButton}
-        style={{width: '70px' }}
+        style={{ width: '70px' }}
       >
         <div className={`${styles.bar}`}></div>
         <div className={`${styles.bar}`}></div>
@@ -41,9 +41,16 @@ const Nav: React.FC = () => {
               <p>{isLogin ? username : 'ゲスト'}</p>
             </div> */}
             <ul>
-              <li>
-                <a href='/'>TOP</a>
-              </li>
+              {!isLogin && (
+                <>
+                  <li>
+                    <a href='/signin'>ログイン</a>
+                  </li>
+                  <li>
+                    <a href='/signup'>新規登録</a>
+                  </li>
+                </>
+              )}
               {isLogin && (
                 <>
                   <li>
@@ -52,33 +59,17 @@ const Nav: React.FC = () => {
                   <li>
                     <a href='/create/'>アイテムの追加</a>
                   </li>
+                  <li
+                    style={{
+                      padding: '15px 0',
+                      color: 'var(--primary-orange)',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    <SignOutButton />
+                  </li>
                 </>
               )}
-              {!isLogin && (
-                <>
-              <li>
-                <a href='/signin'>ログイン</a>
-              </li>
-                </>
-              )}
-
-              <li>
-                <a href='/signup'>新規登録</a>
-              </li>
-              {isLogin && (
-                <>
-              <li
-                style={{
-                  padding: '15px 0',
-                  color: 'var(--primary-orange)',
-                  fontWeight: 'bold',
-                }}
-              >
-                <SignOutButton />
-              </li>
-                </>
-              )}
-
             </ul>
           </nav>
         </div>
