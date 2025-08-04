@@ -65,7 +65,7 @@ const TopPage = () => {
             </h1>
             <div className={styles.msg}>
               <p className='text-center leading-7 text-sm font-bold mt-2'>
-                ISSUNは、低身長でもファッションを楽しむためのwebサービスです。
+                ISSUNは、低身長向けファッションアプリです。
                 <br />
                 様々なファッションアイテムを共有して、自分に合う服を見つけよう。
               </p>
