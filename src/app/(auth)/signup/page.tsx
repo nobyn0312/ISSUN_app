@@ -1,9 +1,7 @@
-'use client'; // クライアントコンポーネント
+'use client';
 
 import { useState } from 'react';
-import { auth, firestore } from '@/lib/config/firebase'; // Firebaseのインポート
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore'; // Firestore関連のインポート
+import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import { ContentsAreaOrange } from '@/components/features/ContentsArea';
@@ -16,24 +14,18 @@ const handleSignUp = async (
   password: string,
   username: string
 ) => {
-  try {
-    // Firebase Authenticationでユーザーを作成
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    const user = userCredential.user;
+  const supabase = createClient();
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { username },
+      emailRedirectTo: `${window.location.origin}/auth/callback`,
+    },
+  });
 
-    await setDoc(doc(firestore, 'profile', user.uid), {
-      uid: user.uid, // ユーザーのUID
-      username: username, // ユーザー名
-      email: email, // メールアドレス
-    });
-
-    console.log(username);
-  } catch (error) {
-    console.error(error);
+  if (error) {
+    throw error;
   }
 };
 
@@ -45,8 +37,18 @@ export default function SignUp() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await handleSignUp(email, password, username);
-    router.push('/top'); // ログイン成功後にリダイレクト
+    try {
+      await handleSignUp(email, password, username);
+      alert(
+        '登録しました。メール確認がオンの場合は、届いたリンクを開いてからログインしてください。'
+      );
+      router.push('/signin');
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : '新規登録に失敗しました';
+      console.error(error);
+      alert(message);
+    }
   };
 
   return (

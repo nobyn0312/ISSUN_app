@@ -1,9 +1,5 @@
-// hooks/useUploadFile.ts
 import { useState } from 'react';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
-import { firestore, storage } from '@/lib/config/firebase';
-import { v4 as uuidv4 } from 'uuid';
+import { createClient } from '@/lib/supabase/client';
 
 interface UploadData {
   name: string;
@@ -25,31 +21,44 @@ export const useUploadFile = (): UploadFileHook => {
 
   const uploadFile = async (file: File, data: UploadData) => {
     setLoading(true);
-    const storageRef = ref(storage, 'images/' + file.name);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+    setProgress(10);
 
-    uploadTask.on(
-      'state_changed',
-      snapshot => {
-        const progressPercent =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setProgress(progressPercent);
-      },
-      err => {
-        console.error(err);
-        setLoading(false);
-      },
-      async () => {
-        const downloadURL = await getDownloadURL(storageRef);
-        await addDoc(collection(firestore, 'item'), {
-          ...data,
-          id: uuidv4(),
-          imageUrl: downloadURL,
-          createdAt: Timestamp.now(),
-        });
-        setLoading(false);
-      }
-    );
+    const supabase = createClient();
+    const filePath = `images/${Date.now()}-${file.name}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('item-images')
+      .upload(filePath, file);
+
+    if (uploadError) {
+      console.error(uploadError);
+      setLoading(false);
+      throw new Error(uploadError.message);
+    }
+
+    setProgress(70);
+
+    const {
+      data: { publicUrl },
+    } = supabase.storage.from('item-images').getPublicUrl(filePath);
+
+    const { error: insertError } = await supabase.from('items').insert({
+      name: data.name,
+      price: data.price,
+      category: data.category,
+      detail: data.detail,
+      url: data.url,
+      image_url: publicUrl,
+    });
+
+    if (insertError) {
+      console.error(insertError);
+      setLoading(false);
+      throw new Error(insertError.message);
+    }
+
+    setProgress(100);
+    setLoading(false);
   };
 
   return { progress, loading, uploadFile };

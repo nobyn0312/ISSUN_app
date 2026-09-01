@@ -7,24 +7,28 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { auth, firestore } from '@/lib/config/firebase';
-import { doc, getDoc } from 'firebase/firestore';
-import { User } from 'firebase/auth';
+import { createClient } from '@/lib/supabase/client';
+
+export type AuthUser = {
+  id: string;
+  email: string | null;
+  photoURL: string | null;
+};
 
 interface UserProfile {
   username: string | null;
   userId: string | null;
-  age: number | null;
+  age: string | null;
   height: number | null;
   shape: string | null;
 }
 
 interface AuthContextType {
-  user: User | null;
+  user: AuthUser | null;
   isLogin: boolean;
   username: string | null;
   userId: string | null;
-  age: number | null;
+  age: string | null;
   height: number | null;
   shape: string | null;
 }
@@ -32,37 +36,55 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile>({
     username: null,
     userId: '',
-    age: 0,
+    age: null,
     height: 0,
     shape: '',
   });
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async currentUser => {
-      if (currentUser) {
-        setUser(currentUser);
+    const supabase = createClient();
 
-        const authUid = currentUser.uid;
-        const userDocRef = doc(firestore, 'profile', authUid);
-        const userDocSnap = await getDoc(userDocRef);
+    const loadProfile = async (userId: string) => {
+      const { data } = await supabase
+        .from('profiles')
+        .select('username, age, height, shape')
+        .eq('id', userId)
+        .maybeSingle();
 
-        if (userDocSnap.exists()) {
-          const userData = userDocSnap.data();
-
-          setUserProfile({
-            username: userData.username || null,
-            userId: userData.userId || authUid,
-            age: userData.age || null,
-            height: userData.height || null,
-            shape: userData.shape || null,
-          });
-        }
+      if (data) {
+        setUserProfile({
+          username: data.username || null,
+          userId,
+          age: data.age || null,
+          height: data.height ?? null,
+          shape: data.shape || null,
+        });
       } else {
-        // ログアウト
+        setUserProfile({
+          username: null,
+          userId,
+          age: null,
+          height: null,
+          shape: null,
+        });
+      }
+    };
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        setUser({
+          id: session.user.id,
+          email: session.user.email ?? null,
+          photoURL: session.user.user_metadata?.avatar_url ?? null,
+        });
+        void loadProfile(session.user.id);
+      } else {
         setUser(null);
         setUserProfile({
           username: null,
@@ -74,7 +96,9 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       }
     });
 
-    return () => unsubscribe();
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   return (

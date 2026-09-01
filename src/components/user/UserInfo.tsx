@@ -1,12 +1,12 @@
-import { auth } from '@/lib/config/firebase';
 import Image from 'next/image';
 import { useAuthContext } from '@/app/context/AuthContext';
 import { useState } from 'react';
 import SignOutButton from '@/components/auth/SignoutButton';
 
 const UserInfo = () => {
+  const { user } = useAuthContext();
   const defaultPhotoURL = '/images/defaultUser.svg';
-  const photoURL = auth.currentUser?.photoURL || defaultPhotoURL;
+  const photoURL = user?.photoURL || defaultPhotoURL;
   // const { username } = useAuthContext();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isLogin, username } = useAuthContext();

@@ -1,8 +1,5 @@
-// fetchItems.ts
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
-import { firestore } from '@/lib/config/firebase';
+import { createClient } from '@/lib/supabase/client';
 
-// Item型を定義
 export interface Item {
   id: string;
   category: string;
@@ -14,32 +11,57 @@ export interface Item {
   url?: string | undefined;
 }
 
+type ItemRow = {
+  id: string;
+  name: string;
+  price: number;
+  category: string;
+  detail: string;
+  image_url: string | null;
+  url: string;
+  created_at: string;
+};
+
+const mapItem = (row: ItemRow): Item => ({
+  id: row.id,
+  name: row.name,
+  price: row.price,
+  category: row.category,
+  detail: row.detail,
+  imageUrl: row.image_url ?? '',
+  url: row.url,
+  createdAt: row.created_at,
+});
+
 export const fetchItems = async (
   sortOrder: 'newest' | 'oldest' = 'newest'
 ): Promise<Item[]> => {
-  const itemsCollection = collection(firestore, 'item');
-  const itemsQuery = query(
-    itemsCollection,
-    orderBy('createdAt', sortOrder === 'newest' ? 'desc' : 'asc')
-  );
-  const snapshot = await getDocs(itemsQuery);
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from('items')
+    .select('*')
+    .order('created_at', { ascending: sortOrder === 'oldest' });
 
-  const itemsList: Item[] = snapshot.docs.map(doc => ({
-    id: doc.id,
-    ...(doc.data() as Omit<Item, 'id'>),
-  }));
+  if (error) {
+    console.error(error);
+    throw error;
+  }
 
-  return itemsList;
+  return (data ?? []).map(row => mapItem(row as ItemRow));
 };
 
-// 特定のIDを持つアイテムを取得する関数
 export const fetchItemById = async (id: string): Promise<Item | null> => {
-  const itemsCollection = collection(firestore, 'item');
-  const snapshot = await getDocs(itemsCollection);
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from('items')
+    .select('*')
+    .eq('id', id)
+    .maybeSingle();
 
-  const item = snapshot.docChanges().find(change => change.doc.id === id);
+  if (error) {
+    console.error(error);
+    return null;
+  }
 
-  return item
-    ? { id: item.doc.id, ...(item.doc.data() as Omit<Item, 'id'>) }
-    : null;
+  return data ? mapItem(data as ItemRow) : null;
 };

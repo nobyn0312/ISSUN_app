@@ -36,14 +36,21 @@ const Page = () => {
       url,
     };
 
-    await uploadFile(file, itemData);
-
-    setName('');
-    setPrice('');
-    setCategory('');
-    setDetail('');
-    setFile(null);
-    setUrl('');
+    try {
+      await uploadFile(file, itemData);
+      alert('アイテムを追加しました');
+      setName('');
+      setPrice('');
+      setCategory('');
+      setDetail('');
+      setFile(null);
+      setUrl('');
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : 'アイテムの登録に失敗しました';
+      alert(message);
+      console.error(error);
+    }
   };
 
   return (
@@ -132,6 +139,7 @@ const Page = () => {
                     value={category}
                     onChange={e => setCategory(e.target.value)}
                     className='text-black'
+                    required
                     style={{ padding: '8px' }}
                   >
                     <option value=''>カテゴリーを選択</option>

@@ -2,26 +2,14 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
-import { firestore, auth } from '@/lib/config/firebase'; // authを追加
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  Timestamp,
-  deleteDoc,
-  doc,
-  getDoc,
-} from 'firebase/firestore';
+import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
-import { onAuthStateChanged } from 'firebase/auth';
 import { useAuthContext } from '@/app/context/AuthContext';
 
 type ReviewProps = {
   itemId: string;
 };
 
-// review型
 type ReviewData = {
   reviewId: string;
   title: string;
@@ -29,50 +17,36 @@ type ReviewData = {
   username: string;
   rate: number;
   size: string;
-  createdAt: Timestamp;
+  createdAt: Date;
 };
 
 const Review = ({ itemId }: ReviewProps) => {
   const [reviews, setReviews] = useState<ReviewData[]>([]);
-  // 身長を保存するstate
-  const [height, setHeight] = useState<number | null>(null);
   const router = useRouter();
-  const { isLogin } = useAuthContext();
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async user => {
-      if (user) {
-        const userId = user.uid;
-        const profileDocRef = doc(firestore, 'profile', userId);
-        const profileDoc = await getDoc(profileDocRef);
-
-        if (profileDoc.exists()) {
-          const profileData = profileDoc.data();
-          setHeight(profileData.height);
-        }
-      }
-    });
-    return () => unsubscribe();
-  }, []);
+  const { isLogin, height } = useAuthContext();
 
   // レビュー取得
   const fetchReviews = useCallback(async () => {
     try {
-      const q = query(
-        collection(firestore, 'review'),
-        where('itemId', '==', itemId)
-      );
+      const supabase = createClient();
+      const { data, error } = await supabase
+        .from('reviews')
+        .select('*')
+        .eq('item_id', itemId)
+        .order('created_at', { ascending: false });
 
-      const querySnapshot = await getDocs(q);
+      if (error) {
+        throw error;
+      }
 
-      const fetchedReviews: ReviewData[] = querySnapshot.docs.map(doc => ({
-        reviewId: doc.data().reviewId,
-        title: doc.data().title,
-        comment: doc.data().comment,
-        username: doc.data().username,
-        rate: doc.data().rate,
-        size: doc.data().size,
-        createdAt: doc.data().createdAt,
+      const fetchedReviews: ReviewData[] = (data ?? []).map(row => ({
+        reviewId: row.id,
+        title: row.title,
+        comment: row.comment,
+        username: row.username,
+        rate: Number(row.rate),
+        size: row.size,
+        createdAt: new Date(row.created_at),
       }));
       setReviews(fetchedReviews);
     } catch (error) {
@@ -94,8 +68,16 @@ const Review = ({ itemId }: ReviewProps) => {
     const isConfirmed = confirm('レビューを削除しますか？');
     if (isConfirmed) {
       try {
-        const reviewRef = doc(firestore, 'review', reviewId);
-        await deleteDoc(reviewRef);
+        const supabase = createClient();
+        const { error } = await supabase
+          .from('reviews')
+          .delete()
+          .eq('id', reviewId);
+
+        if (error) {
+          throw error;
+        }
+
         alert('削除完了');
         window.location.reload();
       } catch (error) {
@@ -143,7 +125,7 @@ const Review = ({ itemId }: ReviewProps) => {
         }}
       >
         {reviews.map((review, index) => {
-          const formattedDate = formatDate(review.createdAt.toDate());
+          const formattedDate = formatDate(review.createdAt);
           return (
             <div
               key={index}

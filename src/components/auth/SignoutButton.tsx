@@ -1,12 +1,12 @@
-'use client'; // クライアントコンポーネントとして明示
+'use client';
 
-import { auth } from '@/lib/config/firebase';
+import { createClient } from '@/lib/supabase/client';
 
 function SignOutButton() {
-  const handleSignOut = () => {
-    auth.signOut().then(() => {
-      window.location.reload();
-    });
+  const handleSignOut = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    window.location.reload();
   };
 
   return (

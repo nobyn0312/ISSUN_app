@@ -1,9 +1,8 @@
 'use client';
 
 import SigninButton from '@/components/auth/SigninButton';
-import { auth } from '@/lib/config/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { createClient } from '@/lib/supabase/client';
+import { useAuthContext } from '@/app/context/AuthContext';
 import UserInfo from '@/components/user/UserInfo';
 import SignOutButton from '@/components/auth/SignoutButton';
 import { useRouter } from 'next/navigation';
@@ -14,29 +13,33 @@ import { PrimaryButton, SecondaryButton } from '@/components/ui/Button';
 import SnackbarComponent from '@/components/ui/Snackbar';
 import { Container } from '@/components/ui/Container';
 
-// メールとパスワードの場合
 const handleLogin = async (
   email: string,
   password: string,
   setSnackbar: (message: string, severity: 'success' | 'error') => void
 ) => {
   try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithPassword({
       email,
-      password
-    );
-    const user = userCredential.user;
-    console.log(user);
+      password,
+    });
+
+    if (error) {
+      throw error;
+    }
+
     setSnackbar('ログインしました', 'success');
   } catch (error) {
-    setSnackbar('ログイン失敗', 'error');
+    const message =
+      error instanceof Error ? error.message : 'ログイン失敗';
+    setSnackbar(message, 'error');
     console.error(error);
   }
 };
 
 export default function SignIn() {
-  const [user] = useAuthState(auth);
+  const { user } = useAuthContext();
   const router = useRouter();
 
   // topへ遷移

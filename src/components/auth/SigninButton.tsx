@@ -1,37 +1,27 @@
-import { auth, provider, firestore } from '@/lib/config/firebase';
-import { signInWithPopup } from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore'; // getDocを追加
+'use client';
+
 import Image from 'next/image';
+import { createClient } from '@/lib/supabase/client';
 
 function SigninButton() {
   const signInWithGoogle = async () => {
     try {
-      if (typeof window !== 'undefined') {
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-        const userDocRef = doc(firestore, 'profile', user.uid);
+      const supabase = createClient();
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        },
+      });
 
-        // 既存データがあるか確認
-        const userDocSnapshot = await getDoc(userDocRef);
-
-        // データが存在しない場合の処理
-        if (!userDocSnapshot.exists()) {
-          await setDoc(userDocRef, {
-            uid: user.uid,
-            email: user.email || 'No Email',
-            password: '',
-            username: user.displayName || '',
-            age: '',
-            height: 0,
-            shape: '',
-          });
-          console.log(user.displayName);
-        } else {
-          console.log('既に存在');
-        }
+      if (error) {
+        throw error;
       }
     } catch (error) {
-      console.error('Google ログインエラー:');
+      const message =
+        error instanceof Error ? error.message : 'Google ログインに失敗しました';
+      alert(message);
+      console.error('Google ログインエラー:', error);
     }
   };
 

@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
-import { firestore } from '@/lib/config/firebase';
+import { createClient } from '@/lib/supabase/client';
 import { useAuthContext } from '@/app/context/AuthContext';
 import { useSearchParams } from 'next/navigation';
 
@@ -22,26 +21,30 @@ export const useSubmitReview = () => {
       return;
     }
 
+    if (!itemId) {
+      alert('アイテムIDが無効です');
+      return;
+    }
+
     try {
-      const docRef = await addDoc(collection(firestore, 'review'), {
-        uid: user.uid,
+      const supabase = createClient();
+      const { error } = await supabase.from('reviews').insert({
+        user_id: user.id,
+        item_id: itemId,
         username: username,
-        itemId: itemId,
-        title: title,
-        rate: rate,
-        size: size,
-        comment: comment,
-        createdAt: new Date(),
+        title,
+        rate: Number(rate),
+        size,
+        comment,
       });
 
-      await updateDoc(doc(firestore, 'review', docRef.id), {
-        reviewId: docRef.id,
-      });
+      if (error) {
+        throw error;
+      }
 
       alert('レビューを送信しました');
       window.location.href = '/top';
 
-      // フォームのリセット
       setTitle('');
       setRate('');
       setSize('');

@@ -3,8 +3,7 @@
 import { Suspense } from 'react';
 import Header from '@/components/layout/Header';
 import { useState, useEffect } from 'react';
-import { doc, getDoc, updateDoc } from 'firebase/firestore'; // update用に追加
-import { firestore } from '@/lib/config/firebase';
+import { createClient } from '@/lib/supabase/client';
 import { useAuthContext } from '@/app/context/AuthContext';
 import { useSearchParams } from 'next/navigation';
 import { ContentsAreaOrange } from '@/components/features/ContentsArea';
@@ -25,15 +24,22 @@ const ReviewEdit = () => {
       if (!reviewId) return;
 
       try {
-        const reviewDoc = await getDoc(doc(firestore, 'review', reviewId));
+        const supabase = createClient();
+        const { data, error } = await supabase
+          .from('reviews')
+          .select('*')
+          .eq('id', reviewId)
+          .maybeSingle();
 
-        if (reviewDoc.exists()) {
-          const reviewData = reviewDoc.data();
-          // フォームの状態にデータを反映
-          setTitle(reviewData.title);
-          setRate(reviewData.rate);
-          setSize(reviewData.size);
-          setComment(reviewData.comment);
+        if (error) {
+          throw error;
+        }
+
+        if (data) {
+          setTitle(data.title);
+          setRate(String(data.rate));
+          setSize(data.size);
+          setComment(data.comment);
         } else {
           console.error('レビューが見つかりませんでした');
         }
@@ -60,14 +66,21 @@ const ReviewEdit = () => {
     }
 
     try {
-      const reviewRef = doc(firestore, 'review', reviewId as string); // reviewIdをstringにキャスト
-      await updateDoc(reviewRef, {
-        title: title,
-        rate: rate,
-        size: size,
-        comment: comment,
-        updatedAt: new Date(),
-      });
+      const supabase = createClient();
+      const { error } = await supabase
+        .from('reviews')
+        .update({
+          title,
+          rate: Number(rate),
+          size,
+          comment,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', reviewId);
+
+      if (error) {
+        throw error;
+      }
 
       alert('レビューを更新しました');
     } catch (error) {
