@@ -7,6 +7,25 @@ import { ContentsAreaGray } from '@/components/features/ContentsArea';
 import { useUploadFile } from '@/hooks/useUploadFile';
 import { Container } from '@/components/ui/Container';
 
+const parsePrice = (value: string): number | null => {
+  const normalized = value
+    .replace(/[０-９]/g, digit =>
+      String.fromCharCode(digit.charCodeAt(0) - 0xfee0)
+    )
+    .replace(/[¥￥円,\s，]/g, '');
+
+  if (!normalized) {
+    return null;
+  }
+
+  const amount = Number(normalized);
+  if (!Number.isFinite(amount) || amount < 0) {
+    return null;
+  }
+
+  return Math.round(amount);
+};
+
 const Page = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -28,9 +47,15 @@ const Page = () => {
     e.preventDefault();
     if (!file) return;
 
+    const parsedPrice = parsePrice(price);
+    if (parsedPrice === null) {
+      alert('価格は数字で入力してください');
+      return;
+    }
+
     const itemData = {
       name,
-      price: Number(price),
+      price: parsedPrice,
       category,
       detail,
       url,
@@ -115,7 +140,14 @@ const Page = () => {
                     placeholder='価格を入力してください'
                     value={price}
                     required
+                    inputMode='numeric'
                     onChange={e => setPrice(e.target.value)}
+                    onBlur={() => {
+                      const parsedPrice = parsePrice(price);
+                      if (parsedPrice !== null) {
+                        setPrice(parsedPrice.toLocaleString('ja-JP'));
+                      }
+                    }}
                     style={{
                       padding: '8px',
                       width: '200px',
